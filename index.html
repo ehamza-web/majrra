@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقترحات مجرة - تجربة الخلاصة النصية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #020617;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            gap: 40px;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .phone-container {
+            position: relative; background: #000; border: 12px solid #1e293b;
+            border-radius: 55px; box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8);
+            overflow: hidden; width: 340px; height: 700px;
+        }
+
+        .iphone-notch {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            background: #1e293b; height: 25px; width: 120px;
+            border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 500;
+        }
+
+        .screen {
+            width: 100%; height: 100%; background-color: #0f1115;
+            overflow-y: auto; overflow-x: hidden; position: relative;
+        }
+
+        /* --- قسم الإحصائيات (مطابق للصورة) --- */
+        .gift-stats-container {
+            background: #1a1c20; 
+            border: 1px solid #2d2f36; 
+            border-radius: 24px;
+            margin: 15px; 
+            display: flex; 
+            padding: 22px 0; 
+            align-items: center;
+            position: relative;
+        }
+        .stat-box { 
+            flex: 1; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .stat-divider { 
+            width: 1px; 
+            height: 40px; 
+            background: #2d2f36; 
+        }
+        .stat-value { 
+            font-size: 22px; 
+            font-weight: 800; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            color: white;
+            line-height: 1;
+        }
+        .stat-label { 
+            font-size: 11px; 
+            color: #94a3b8; 
+            margin-top: 6px; 
+            font-weight: 600;
+        }
+
+        /* --- بانر لعبة كلمات --- */
+        .word-game-banner {
+            background-color: #7dd3fc;
+            margin: 0 15px;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* --- أنماط الخلاصة النصية --- */
+        .summaries-gateway {
+            margin: 15px; background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            border-radius: 24px; padding: 20px; position: relative; overflow: hidden;
+            cursor: pointer; border: 1px solid #4338ca;
+        }
+
+        .overlay-page {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #080808; z-index: 200; display: none; flex-direction: column;
+            scroll-snap-type: y mandatory; overflow-y: scroll;
+        }
+
+        .summary-full-screen {
+            min-height: 100%; width: 100%;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 20px 20px; 
+        }
+
+        /* --- تكبير كارد المحتوى وزيادة مساحة النص --- */
+        .summary-content-wrapper {
+            background: #11141a;
+            border: 1px solid #1e293b;
+            border-radius: 35px;
+            padding: 35px 24px; 
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            min-height: 85%; /* زيادة الارتفاع لضمان عدم الاحتياج لسكرول */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .interaction-header {
+            display: flex; 
+            justify-content: center;
+            gap: 12px; 
+            margin-bottom: 20px;
+        }
+        
+        .node-btn-circle {
+            height: 40px;
+            padding: 0 14px;
+            background: #1e293b; 
+            border: 1px solid #334155;
+            border-radius: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .read-full-btn {
+            margin-top: auto; 
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .back-btn-float {
+            position: absolute; top: 15px; right: 20px; z-index: 600;
+            width: 35px; height: 35px; background: rgba(255,255,255,0.05);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        }
+
+        .summary-text-body {
+            color: #cbd5e1;
+            font-size: 14.5px; /* تصغير طفيف جداً للملائمة */
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        /* ضبط حجم العنوان ليكون ظاهراً بالكامل */
+        .summary-title {
+            font-size: 20px; /* تقليل الحجم ليتناسب مع الكارد الجديد */
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="flex flex-col items-center w-full">
+        <div class="proposal-header mb-6 text-center">
+            <h3 class="text-2xl font-black text-blue-400">تحديث واجهة مجرة</h3>
+        </div>
+
+        <div class="phone-container">
+            <div class="iphone-notch"></div>
+            
+            <!-- نافذة الملخصات -->
+            <div id="summaries-view" class="overlay-page no-scrollbar">
+                <button onclick="togglePage('summaries-view', false)" class="back-btn-float">
+                    <i class="fa-solid fa-xmark text-white"></i>
+                </button>
+
+                <div class="summary-full-screen">
+                    <div class="summary-content-wrapper">
+                        <div class="interaction-header">
+                            <div class="node-btn-circle">
+                                <i class="fa-solid fa-thumbs-up text-blue-400 text-xs"></i>
+                                <span class="text-[11px] font-bold">1.2k</span>
+                            </div>
+                            <div class="node-btn-circle">
+                                <i class="fa-solid fa-thumbs-down text-slate-400 text-xs"></i>
+                            </div>
+                            <div class="node-btn-circle">
+                                <i class="fa-solid fa-share-nodes text-slate-400 text-xs"></i>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 mb-3 justify-center">
+                            <span class="bg-blue-600/20 text-blue-400 border border-blue-600/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider">آفاق التقنية</span>
+                        </div>
+
+                        <h2 class="summary-title">مستقبل الحوسبة الكمية: هل نحن مستعدون للثورة القادمة؟</h2>
+                        
+                        <div class="summary-text-body">
+                            <p class="mb-3">تخطت المعالجات الكمية الجديدة حاجز الـ 1000 كيوبت، مما يمثل قفزة نوعية في القدرة الحسابية التي كانت تعتبر مستحيلة قبل سنوات قليلة.</p>
+                            <p>هذا التطور سيغير جذرياً طريقة تعاملنا مع فك الشفرات المعقدة وتصميم الأدوية المخصصة، وحتى محاكاة الأنظمة البيئية بدقة متناهية.</p>
+                        </div>
+
+                        <button class="read-full-btn">
+                            <span>قراءة المقال كاملاً</span>
+                            <i class="fa-solid fa-arrow-left text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- كارد آخر لمثال التمرير -->
+                <div class="summary-full-screen">
+                    <div class="summary-content-wrapper">
+                        <div class="interaction-header">
+                            <div class="node-btn-circle">
+                                <i class="fa-solid fa-thumbs-up text-blue-400 text-xs"></i>
+                                <span class="text-[11px] font-bold">890</span>
+                            </div>
+                            <div class="node-btn-circle">
+                                <i class="fa-solid fa-thumbs-down text-slate-400 text-xs"></i>
+                            </div>
+                            <div class="node-btn-circle">
+                                <i class="fa-solid fa-share-nodes text-slate-400 text-xs"></i>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 mb-3 justify-center">
+                            <span class="bg-purple-600/20 text-purple-400 border border-purple-600/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider">سلوكيات</span>
+                        </div>
+
+                        <h2 class="summary-title">لماذا نتخذ قرارات خاطئة تحت الضغط؟</h2>
+                        
+                        <div class="summary-text-body">
+                            <p class="mb-3">عندما نتعرض للتوتر الشديد، يقوم الدماغ بتفعيل 'لوزة الدماغ' المسؤولة عن ردود الفعل العاطفية، مما يعطل عمل القشرة الجبهية المسؤولة عن المنطق.</p>
+                            <p>دراسات أثبتت أن التنفس العميق لمدة 30 ثانية قبل اتخاذ القرار يقلل من تأثير التوتر بنسبة 40%، مما يسمح للمنطق باستعادة السيطرة.</p>
+                        </div>
+
+                        <button class="read-full-btn">
+                            <span>قراءة المقال كاملاً</span>
+                            <i class="fa-solid fa-arrow-left text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الشاشة الرئيسية -->
+            <div class="screen no-scrollbar">
+                <div class="p-6 flex justify-between items-center pt-10">
+                    <div class="text-xl font-black text-white">مجرة</div>
+                    <div class="w-8 h-8 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User">
+                    </div>
+                </div>
+
+                <div class="summaries-gateway" onclick="togglePage('summaries-view', true)">
+                    <div class="relative z-10 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-md font-black text-white mb-1">ومضات معرفية</h3>
+                            <p class="text-indigo-200 text-[10px]">تصفح الخلاصة بأسلوب تفاعلي سريع</p>
+                        </div>
+                        <i class="fa-solid fa-bolt text-yellow-400"></i>
+                    </div>
+                </div>
+
+                <!-- قسم الإحصائيات -->
+                <div class="gift-stats-container">
+                    <div class="stat-box">
+                        <div class="stat-value">
+                            <i class="fa-solid fa-chevron-left text-[12px] text-slate-500 ml-1"></i>
+                            <span>17</span>
+                        </div>
+                        <div class="stat-label">شخص استفادوا</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-box">
+                        <div class="stat-value">
+                            <i class="fa-solid fa-gift text-[16px] text-slate-400 ml-2"></i>
+                            <span>100</span>
+                        </div>
+                        <div class="stat-label">إهداءات متبقية</div>
+                    </div>
+                </div>
+
+                <!-- بانر لعبة كلمات -->
+                <div class="word-game-banner">
+                    <span>لعبة كلمات في قسم تصفح أيضاً في نهاية الصفحة</span>
+                    <i class="fa-solid fa-xmark text-xs opacity-60"></i>
+                </div>
+
+                <div class="px-5 mt-8">
+                    <h3 class="text-md font-black mb-4">اخترنا لك</h3>
+                    <div class="article-card-long opacity-40">
+                        <div class="h-32 bg-slate-800 rounded-2xl mb-4"></div>
+                        <div class="h-3 bg-slate-800 w-3/4 rounded-full mb-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function togglePage(id, show) {
+            const page = document.getElementById(id);
+            page.style.display = show ? 'flex' : 'none';
+        }
+    </script>
+</body>
+</html>
