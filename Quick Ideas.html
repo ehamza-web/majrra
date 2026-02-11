@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق مجرة - تمرير الملخصات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #000;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .iphone-frame {
+            position: relative;
+            width: 325px;
+            height: 670px;
+            background: #1a1a1a;
+            border-radius: 3rem;
+            border: 8px solid #333;
+            box-shadow: 0 0 60px rgba(0,0,0,0.9);
+            overflow: hidden;
+        }
+        .dynamic-island {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 28px;
+            background: black;
+            border-radius: 999px;
+            z-index: 500;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .status-bar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            color: white;
+            z-index: 140;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .story-card {
+            width: 105px;
+            height: 170px;
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .story-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .story-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, transparent 50%, rgba(0,0,0,0.85) 100%);
+        }
+        
+        /* Story Viewer Overlay */
+        #story-viewer-overlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: #000;
+            z-index: 450;
+            flex-direction: column;
+        }
+        #story-viewer-overlay.active {
+            display: flex;
+        }
+        .story-progress-container {
+            position: absolute;
+            top: 45px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            gap: 4px;
+            z-index: 510;
+        }
+        .progress-bar-bg {
+            flex: 1;
+            height: 2px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: white;
+            width: 0%;
+        }
+        .story-visual-container {
+            height: 70%;
+            width: 100%;
+            position: relative;
+            margin-top: 40px;
+            overflow: hidden;
+            border-radius: 0 0 25px 25px;
+        }
+        .story-text-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 20px 25px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.98) 40%);
+            color: white;
+        }
+        .story-viewer-footer {
+            flex: 1;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .majarra-logo-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: rgba(230, 230, 230, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Summary View Overlay with SNAP SCROLL */
+        #summary-overlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: #0d1117;
+            z-index: 600;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+        #summary-overlay.active { display: block; }
+        
+        .summary-page {
+            height: 100%;
+            width: 100%;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: #0d1117;
+        }
+
+        .interaction-header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px 20px;
+            z-index: 700;
+            background: linear-gradient(to bottom, #0d1117 40%, transparent);
+        }
+        .action-group { display: flex; gap: 8px; }
+        .circle-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .like-pill {
+            background: rgba(255,255,255,0.08);
+            padding: 0 16px;
+            height: 38px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .summary-card-square {
+            background: #111;
+            border-radius: 28px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .summary-card-square:active { transform: scale(0.98); }
+        .summary-card-square img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+        }
+        .summary-card-square .info { padding: 18px; text-align: right; }
+
+        /* Floating Nav Bar */
+        .bottom-nav-container {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 90px;
+            background: linear-gradient(to top, #000 70%, transparent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 20px;
+            z-index: 100;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: #666; transition: all 0.3s; flex: 1; }
+        .nav-item.active { color: #fff; }
+        .nav-item span { font-size: 9px; font-weight: 700; }
+        .center-action {
+            position: relative;
+            background: #3b82f6; width: 48px; height: 48px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; color: white;
+            transform: translateY(-15px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame">
+        <div class="dynamic-island"></div>
+        <div class="status-bar">
+            <span id="current-time">12:00</span>
+            <div class="flex items-center gap-1.5">
+                <i data-lucide="signal" class="w-3 h-3"></i>
+                <i data-lucide="wifi" class="w-3 h-3"></i>
+                <i data-lucide="battery" class="w-3 h-3"></i>
+            </div>
+        </div>
+
+        <!-- نظام عرض القصص التفاعلي -->
+        <div id="story-viewer-overlay">
+            <div class="story-progress-container" id="story-progress-bars"></div>
+            <button onclick="closeStoryViewer()" class="absolute top-12 left-4 z-[550] text-white/50 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <div class="story-visual-container" onclick="handleStoryNavigation(event)">
+                <img id="active-story-img" src="" class="w-full h-full object-cover">
+                <div class="story-text-info text-right">
+                    <span id="active-story-tag" class="text-blue-400 text-[9px] font-black uppercase tracking-widest mb-1.5 block"></span>
+                    <h2 id="active-story-title" class="text-base font-black leading-tight mb-2"></h2>
+                    <p id="active-story-long-desc" class="text-[11px] text-white/80 leading-relaxed line-clamp-4 font-medium"></p>
+                </div>
+            </div>
+
+            <div class="story-viewer-footer">
+                <button class="w-full bg-blue-600 text-white font-black py-4 rounded-2xl flex items-center justify-center gap-3">
+                    <span>قراءة المقال كاملًا</span><i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <div class="h-4"></div>
+            </div>
+        </div>
+
+        <!-- واجهة الملخص المفتوح بالتمرير العمودي -->
+        <div id="summary-overlay" class="no-scrollbar">
+            <div id="summary-scroller"></div>
+        </div>
+
+        <!-- تطبيق مجرة الرئيسي -->
+        <div class="w-full h-full bg-[#0a0a0a] flex flex-col relative overflow-hidden">
+            
+            <header class="p-4 pt-12 flex justify-between items-center border-b border-white/5 bg-[#0a0a0a]/90 z-50">
+                <div class="flex items-center gap-3">
+                   <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center p-1.5"><img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" class="w-full h-full"></div>
+                   <div class="text-white font-black text-xl italic">مجرة</div>
+                </div>
+                <div class="flex gap-2">
+                    <button class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white"><i data-lucide="bell" class="w-4 h-4"></i></button>
+                    <button class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white"><i data-lucide="search" class="w-4 h-4"></i></button>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto no-scrollbar pb-32">
+                <div class="px-4 pt-6">
+                    <h2 class="text-white font-black text-lg mb-4 text-right">أحدث القصص</h2>
+                    <div class="flex overflow-x-auto gap-4 no-scrollbar pb-2" id="stories-row"></div>
+                </div>
+                
+                <div class="px-4 mt-8">
+                    <h2 class="text-white font-black text-lg mb-4 text-right">اقتباس اليوم</h2>
+                    <div class="bg-gradient-to-br from-[#1a1c20] to-[#111] rounded-3xl p-5 border border-white/5 relative overflow-hidden text-right">
+                        <div class="text-blue-500 text-[10px] font-bold mb-2 flex items-center gap-1.5 justify-end">
+                            <span>اقتباس من المقال التالي</span><i data-lucide="quote" class="w-3 h-3 fill-blue-500"></i>
+                        </div>
+                        <p class="text-white/80 text-[13px] font-medium leading-relaxed mb-6 italic pr-4 border-r-2 border-blue-500/50">"إن أعظم العقول هي تلك التي لا تتوقف عن طرح الأسئلة، حتى عندما تبدو الإجابات واضحة للجميع."</p>
+                        <button class="w-full bg-blue-600 text-white text-xs font-black py-3 rounded-xl flex items-center justify-center gap-2"><span>قراءة المقال كاملًا</span><i data-lucide="arrow-left" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+
+                <div class="mt-10 px-4">
+                    <h2 class="text-white font-black text-lg mb-4 text-right">اخترنا لك مواد قصيرة</h2>
+                    <div class="flex overflow-x-auto gap-4 no-scrollbar pb-4" dir="rtl">
+                        <div class="w-[140px] flex-shrink-0">
+                            <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-2 border border-white/5"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=200" class="w-full h-full object-cover"></div>
+                            <h4 class="text-white text-[11px] font-bold line-clamp-2 text-right">5 حقائق مذهلة عن الكون</h4>
+                        </div>
+                        <div class="w-[140px] flex-shrink-0">
+                            <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-2 border border-white/5"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=200" class="w-full h-full object-cover"></div>
+                            <h4 class="text-white text-[11px] font-bold line-clamp-2 text-right">كبسولة علمية: أين تذهب أفكارنا؟</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-4 mt-8">
+                    <h2 class="text-white font-black text-lg mb-4 text-right">ملخصات من مجرة</h2>
+                    <div class="flex flex-col gap-2" id="summaries-list"></div>
+                </div>
+            </main>
+
+            <nav class="bottom-nav-container">
+                <div class="flex w-full items-center justify-between px-4">
+                    <button class="nav-item active"><i data-lucide="home"></i><span>الرئيسية</span></button>
+                    <button class="nav-item"><i data-lucide="headphones"></i><span>الصوتيات</span></button>
+                    <button class="nav-item">
+                        <div class="center-action"><i data-lucide="zap" class="fill-current"></i></div><span class="-mt-3">أفكار سريعة</span>
+                    </button>
+                    <button class="nav-item"><i data-lucide="compass"></i><span>المنصات</span></button>
+                    <button class="nav-item"><i data-lucide="clock"></i><span>ثواني</span></button>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const LOGO_URL = "https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg";
+        const contentData = [
+            { 
+                id: 0, 
+                title: 'مستقبل الحوسبة الكمية: هل نحن مستعدون؟', 
+                tag: 'آفاق التقنية', 
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600', 
+                desc: 'تخطت المعالجات الكمية الجديدة حاجز الـ 1000 كيوبيت، مما يمثل قفزة نوعية في القدرة الحسابية.', 
+                longDesc: 'تمثل الحوسبة الكمية الثورة الصناعية القادمة في عالم البيانات. بدلاً من العمل بالنظام الثنائي التقليدي (0 و 1)، تستخدم هذه الحواسيب "الكيوبيت" للقيام بعمليات حسابية معقدة في ثوانٍ معدودة، وهي عمليات قد تستغرق آلاف السنين على أقوى الحواسيب الفائقة الحالية. إن القدرة على فك التشفير ومحاكاة الجزيئات الكيميائية ستجعل العالم مكاناً مختلفاً تماماً عما نعرفه اليوم. نحن نقف الآن على أعتاب عصر جديد حيث ستتغير مفاهيمنا عن السرعة والذكاء الاصطناعي بشكل جذري وشامل.' 
+            },
+            { 
+                id: 1, 
+                title: 'سيكولوجية العادات: كيف تعيد برمجة عقلك؟', 
+                tag: 'تطوير الذات', 
+                image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600', 
+                desc: 'الدماغ البشري يميل دائماً إلى توفير الطاقة، وهذا ما يفسر تكون العادات.', 
+                longDesc: 'تتكون العادة من ثلاث مراحل: الإشارة، الروتين، والمكافأة. لفهم كيف نغير سلوكنا، يجب أن نفهم كيف يربط الدماغ بين المجهود والنتيجة. إن سر بناء عادات تدوم يكمن في البدايات الصغيرة والتركيز على الاستمرارية أكثر من النتائج الفورية. عندما ندرك كيف يعمل نظام المكافأة في أدمغتنا، يصبح بإمكاننا تصميم بيئتنا لتسهيل العادات الجيدة وجعل العادات السيئة أكثر صعوبة وتكلفة بالنسبة لنا.' 
+            },
+            { 
+                id: 2, 
+                title: 'اقتصاد الفضاء: الثورة الصناعية القادمة', 
+                tag: 'علوم واقتصاد', 
+                image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600', 
+                desc: 'لم يعد الفضاء حكراً على الحكومات. اليوم تقود الشركات الخاصة سباق التعدين الفضائي.', 
+                longDesc: 'يشهد العقد الحالي تحولاً جذرياً من استكشاف الفضاء لأغراض علمية فقط إلى استغلال موارده اقتصادياً. إن التعدين في الكويكبات القريبة والسياحة الفضائية ليست مجرد أحلام من الخيال العلمي، بل هي قطاعات تجارية بدأت تنمو بالفعل. من المتوقع أن تصل قيمة اقتصاد الفضاء إلى تريليونات الدولارات خلال العقدين القادمين، مما سيخلق فرص عمل جديدة تماماً ويغير توازنات القوى الاقتصادية العالمية بشكل لم يسبق له مثيل في تاريخ البشرية.' 
+            }
+        ];
+
+        let storyIdx = 0;
+        let storyInterval = null;
+        let storyProgress = 0;
+        const DURATION = 6000;
+
+        function updateTime() { document.getElementById('current-time').textContent = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }); }
+
+        function openStoryViewer(index) {
+            storyIdx = index;
+            document.getElementById('story-viewer-overlay').classList.add('active');
+            const bars = document.getElementById('story-progress-bars');
+            bars.innerHTML = contentData.map((_, i) => `<div class="progress-bar-bg"><div class="progress-bar-fill" id="pbar-${i}"></div></div>`).join('');
+            renderStory(index);
+        }
+
+        function renderStory(index) {
+            if (index >= contentData.length) { closeStoryViewer(); return; }
+            if (index < 0) { index = 0; }
+            storyIdx = index;
+            const data = contentData[index];
+            document.getElementById('active-story-img').src = data.image;
+            document.getElementById('active-story-title').textContent = data.title;
+            document.getElementById('active-story-tag').textContent = data.tag;
+            document.getElementById('active-story-long-desc').textContent = data.longDesc;
+            contentData.forEach((_, i) => {
+                const b = document.getElementById(`pbar-${i}`);
+                if (b) {
+                    if (i < index) b.style.width = '100%';
+                    else if (i > index) b.style.width = '0%';
+                }
+            });
+            startStoryProgress(index);
+        }
+
+        function startStoryProgress(index) {
+            clearInterval(storyInterval);
+            storyProgress = 0;
+            const bar = document.getElementById(`pbar-${index}`);
+            const step = 100 / (DURATION / 50);
+            storyInterval = setInterval(() => {
+                storyProgress += step;
+                if (storyProgress >= 100) { bar.style.width = '100%'; renderStory(storyIdx + 1); }
+                else { bar.style.width = `${storyProgress}%`; }
+            }, 50);
+        }
+
+        function handleStoryNavigation(e) {
+            const x = e.clientX - e.currentTarget.getBoundingClientRect().left;
+            const width = e.currentTarget.offsetWidth;
+            if (x < width / 3) renderStory(storyIdx - 1);
+            else renderStory(storyIdx + 1);
+        }
+
+        function closeStoryViewer() { clearInterval(storyInterval); document.getElementById('story-viewer-overlay').classList.remove('active'); }
+
+        function openSummaryOverlay(id) {
+            const overlay = document.getElementById('summary-overlay');
+            const scroller = document.getElementById('summary-scroller');
+            
+            scroller.innerHTML = contentData.map((item, index) => `
+                <div class="summary-page" id="page-${item.id}">
+                    <div class="interaction-header" dir="ltr">
+                        <button onclick="closeSummaryOverlay()" class="circle-btn"><i data-lucide="x" class="w-5 h-5"></i></button>
+                        <div class="action-group">
+                            <div class="like-pill"><span>1.2k</span><i data-lucide="thumbs-up" class="w-4 h-4 fill-white"></i></div>
+                            <div class="circle-btn"><i data-lucide="thumbs-down" class="w-4 h-4"></i></div>
+                            <div class="circle-btn"><i data-lucide="share-2" class="w-4 h-4"></i></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 overflow-y-auto no-scrollbar px-6 pt-24 pb-12 text-right flex flex-col">
+                        <div class="inline-block bg-blue-900/30 text-blue-400 px-4 py-1 rounded-full text-[10px] font-black mb-4 border border-blue-500/20 w-fit ml-auto">${item.tag}</div>
+                        <h1 class="text-white text-xl font-black mb-6 leading-tight">${item.title}</h1>
+                        <div class="text-white/80 text-[14px] leading-relaxed font-medium space-y-4">
+                            <p>${item.longDesc}</p>
+                            <p>هذا المحتوى مقدم خصيصاً لمشتركي مجرة لضمان تجربة معرفية سريعة وعميقة تناسب نمط الحياة العصري والباحثين عن التميز المعرفي.</p>
+                        </div>
+                        
+                        <!-- Flex Spacer to push button down -->
+                        <div class="flex-grow min-h-[40px]"></div>
+
+                        <!-- Button in the bottom area of the scroll content -->
+                        <div class="pb-10">
+                             <button class="w-full bg-blue-600 text-white font-black py-4 rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-blue-600/40">
+                                <span>قراءة المقال كاملًا</span><i data-lucide="arrow-left" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            overlay.classList.add('active');
+            lucide.createIcons();
+
+            const targetPage = document.getElementById(`page-${id}`);
+            if (targetPage) targetPage.scrollIntoView();
+        }
+
+        function closeSummaryOverlay() { document.getElementById('summary-overlay').classList.remove('active'); }
+
+        function init() {
+            updateTime(); setInterval(updateTime, 1000);
+            
+            const storiesRow = document.getElementById('stories-row');
+            storiesRow.innerHTML = contentData.map((s, i) => `
+                <div onclick="openStoryViewer(${i})" class="story-card">
+                    <img src="${s.image}" class="story-card-img"><div class="story-card-overlay"></div>
+                    <div class="majarra-logo-container"><img src="${LOGO_URL}" class="w-full h-full"></div>
+                    <div class="absolute bottom-3 right-3 left-3 text-right"><span class="text-white text-[10px] font-black leading-tight line-clamp-2">${s.title}</span></div>
+                </div>
+            `).join('');
+            
+            const summariesList = document.getElementById('summaries-list');
+            summariesList.innerHTML = contentData.map(s => `
+                <div onclick="openSummaryOverlay(${s.id})" class="summary-card-square">
+                    <img src="${s.image}" alt="${s.title}">
+                    <div class="info">
+                        <h3 class="text-white text-lg font-black leading-tight mb-2">${s.title}</h3>
+                        <p class="text-white/60 text-xs mb-4 line-clamp-1">${s.desc}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-500 text-xs font-black">عرض الملخص</span>
+                            <i data-lucide="share-2" class="text-white/40 w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
