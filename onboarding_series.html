@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسارات الترحيب الكاملة - مجرة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+            font-size: 1.15rem; /* زيادة الحجم العام */
+        }
+        .flow-line {
+            position: relative;
+        }
+        .flow-line::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 3px;
+            height: 50px;
+            background: #cbd5e1;
+            transform: translateX(-50%);
+        }
+        .last-node::after {
+            display: none;
+        }
+        .condition-branch {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .condition-branch::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            width: 80%;
+            height: 3px;
+            background: #cbd5e1;
+            transform: translateX(-50%);
+        }
+        .path-section {
+            background: #ffffff;
+            border-radius: 2.5rem;
+            padding: 4rem 2rem;
+            margin-bottom: 5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        .email-content-box {
+            font-size: 0.95rem; /* تكبير محتوى الإيميل */
+            line-height: 1.6;
+            text-align: right;
+            background: #fdfdfd;
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .badge {
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        input, textarea, button {
+            font-size: 1rem !important;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-5xl font-bold text-slate-900 mb-6">خارطة مسارات الترحيب الشاملة</h1>
+            <p class="text-slate-600 text-xl text-center mb-8 font-medium">عرض متسلسل لكافة فئات مستخدمي منصة "مجرة"</p>
+            
+            <div class="bg-white border-2 border-slate-100 p-5 rounded-2xl shadow-sm inline-flex flex-col md:flex-row items-center gap-6">
+                <div class="flex items-center gap-3 text-amber-900 bg-amber-50 px-6 py-3 rounded-xl text-lg font-bold border border-amber-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-amber-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                    <span>تنبيه: كلمة المرور تصل حالياً عبر "مكوك".</span>
+                </div>
+
+                <div id="connection-status-bar" class="flex items-center gap-2 bg-slate-50 px-6 py-3 rounded-xl text-sm font-bold text-slate-500 border border-slate-200">
+                    <span id="dot" class="status-dot bg-slate-300 animate-pulse"></span>
+                    <span id="status-text">جاري فحص الاتصال بالملاحظات...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 1. Free Users Section -->
+        <section class="path-section border-t-[12px] border-indigo-600">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-indigo-900 mb-4">1. مسار المستخدم المجاني (Free Users)</h2>
+                <div class="flex flex-wrap justify-center gap-3 mb-4">
+                    <span class="badge bg-indigo-100 text-indigo-800 border border-indigo-200 text-lg px-4 py-1">الجمهور: أي شخص عدا B2B Royal أو TDRA</span>
+                    <span class="badge bg-slate-800 text-white text-lg px-4 py-1">إجمالي القوالب: 4</span>
+                    <span class="badge bg-emerald-600 text-white text-lg px-4 py-1">العدد المستلم فعلياً: 3 (حسب التفاعل)</span>
+                </div>
+                <p class="text-base text-slate-500 font-medium italic">* إيميل الفلتر (فتح/لم يفتح) يُحسب كإيميل واحد من أصل 4 قوالب متاحة.</p>
+            </div>
+            
+            <div class="flex flex-col items-center text-center">
+                <!-- Step 1 -->
+                <div class="bg-indigo-50 border-2 border-indigo-100 p-10 rounded-[2rem] w-full max-w-2xl shadow-sm flow-line">
+                    <div class="badge bg-indigo-600 text-white mb-4 text-sm uppercase tracking-wide">بعد 15 دقيقة من التسجيل</div>
+                    <h3 class="text-2xl font-bold text-indigo-950 underline mb-3">الإيميل الأول: الترحيب والمهمة</h3>
+                    <h4 class="text-xl font-bold text-indigo-800 mb-4 italic">Subject: أهلاً بك. ماذا يعني انضمامك إلى مجرة؟</h4>
+                    <div class="email-content-box bg-white">
+                        <p class="mb-4 text-lg">أهلاً بك في مجرة، أحببت أن أرحب بك في منصتنا وأن أتمنى لك تجربة استثنائية...</p>
+                        <p class="text-indigo-600 font-bold mb-4">"قصة كريم وابنته، وهدفنا في تعريب المعرفة العالمية"</p>
+                        <p class="font-bold text-slate-800">مهمتنا واضحة:</p>
+                        <p class="mb-4">نحن فريق من 150 مبدعاً نعمل يومياً لتقديم أرقى محتوى عربي عبر أحدث التقنيات.</p>
+                        <p class="font-bold text-slate-800">هل يمكن للجميع الاستفادة؟ نعم:</p>
+                        <ul class="list-disc list-inside text-right space-y-2 mr-4">
+                            <li>مقالان مجانيان شهرياً للجميع.</li>
+                            <li>باقات متنوعة تناسب كافة مستويات الدخل.</li>
+                            <li>برنامج "شركاء النهضة" للمنح المجانية.</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-slate-100">
+                            <p class="font-bold text-indigo-800 text-lg">عمار هيكل - الرئيس التنفيذي</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 mb-4 bg-slate-200 text-slate-700 px-6 py-2 rounded-full text-sm font-black border border-slate-300 uppercase tracking-widest">بعد 25 دقيقة (فلترة النشاط)</div>
+                
+                <div class="condition-branch">
+                    <div class="flex flex-col items-center">
+                        <div class="text-lg text-emerald-600 font-black mb-4 bg-emerald-50 px-4 py-1 rounded-lg">فتح التطبيق ✓</div>
+                        <div class="bg-white border-2 border-slate-200 p-8 rounded-3xl w-80 shadow-md flow-line">
+                            <h4 class="font-bold text-slate-900 text-lg underline mb-2">إيميل الخيار (أ)</h4>
+                            <p class="text-sm text-blue-700 font-bold mb-3 italic">Subject: تطبيق مجرة يتيح لك الوصول...</p>
+                            <div class="email-content-box bg-slate-50 text-sm">
+                                <p class="font-bold">استمتع بالتجربة الكاملة!</p>
+                                <p class="mt-2 text-slate-600">تصفح آلاف المقالات واستخدم ميزات المشاركة والاشتراك السلس.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="text-lg text-rose-600 font-black mb-4 bg-rose-50 px-4 py-1 rounded-lg">لم يفتح التطبيق ✗</div>
+                        <div class="bg-white border-2 border-slate-200 p-8 rounded-3xl w-80 shadow-md flow-line">
+                            <h4 class="font-bold text-slate-900 text-lg underline mb-2">إيميل الخيار (ب)</h4>
+                            <p class="text-sm text-rose-700 font-bold mb-3 italic">Subject: تطبيق مجرة يتيح لك الوصول...</p>
+                            <div class="email-content-box bg-slate-50 text-sm">
+                                <p class="font-bold">حمّل تطبيق مجرة الآن</p>
+                                <p class="mt-2 text-slate-600">يضم التطبيق هارفارد ونفسيتي والعلوم للعموم في مكان واحد.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Step -->
+                <div class="bg-orange-50 border-2 border-orange-200 p-8 rounded-3xl w-full max-w-xl shadow-sm last-node">
+                    <div class="badge bg-orange-600 text-white mb-3 text-sm">بعد يومين (بقاء الحالة مجانية)</div>
+                    <h3 class="text-2xl font-bold text-orange-950 underline mb-3">الإيميل الثالث: عرض التحويل</h3>
+                    <h4 class="text-xl font-bold text-orange-900 mb-4">Subject: خصم خاص 5% على اشتراكك</h4>
+                    <div class="email-content-box bg-white text-base">تقديم حافز مادي بسيط (خصم ترحيبي) لتشجيع المستخدم على الانتقال للباقة المدفوعة.</div>
+                </div>
+
+                <div class="note-container bg-slate-100 border-2 border-slate-200 shadow-inner p-8" style="margin-top: 20px";>
+                    <h4 class="text-xl font-bold text-slate-800 mb-6">توثيق ملاحظة للمسار المجاني</h4>
+                    <input type="text" id="name_free" class="w-full p-4 mb-4 bg-white border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 text-center" placeholder="اسمك (إجباري) *">
+                    <textarea id="note_free" class="w-full p-4 bg-white border border-slate-300 rounded-xl h-32 resize-none outline-none focus:ring-2 focus:ring-indigo-500 text-center" placeholder="اكتب ملاحظتك هنا..."></textarea>
+                    <button onclick="saveNote('free', 'المسار المجاني')" id="btn_free" class="w-full mt-4 bg-indigo-700 text-white font-bold py-4 rounded-xl hover:bg-indigo-800 transition-all text-lg">حفظ الملاحظة</button>
+                    <div id="status_free" class="mt-4 text-center font-bold hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Subscribers Section -->
+        <section class="path-section border-t-[12px] border-blue-600">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4">2. مسار المستخدم المشترك (Subscribers)</h2>
+                <div class="flex flex-wrap justify-center gap-3 mb-4">
+                    <span class="badge bg-blue-100 text-blue-800 border border-blue-200 text-lg px-4 py-1">الجمهور: المشتركون (عدا B2B Royal/TDRA/شركاء النهضة)</span>
+                    <span class="badge bg-slate-800 text-white text-lg px-4 py-1">إجمالي القوالب: 3</span>
+                    <span class="badge bg-emerald-600 text-white text-lg px-4 py-1">العدد المستلم فعلياً: 2</span>
+                </div>
+                <p class="text-base text-slate-500 font-medium italic">* يتلقى المشترك إيميل الترحيب + إيميل الفلتر المناسب لحالته فقط.</p>
+            </div>
+
+            <div class="flex flex-col items-center text-center">
+                <div class="bg-blue-50 border-2 border-blue-100 p-10 rounded-[2rem] w-full max-w-2xl shadow-sm flow-line">
+                    <div class="badge bg-blue-600 text-white mb-4 text-sm">بعد 15 دقيقة من التسجيل</div>
+                    <h3 class="text-2xl font-bold text-blue-950 underline mb-3">الإيميل الأول: الترحيب والامتنان</h3>
+                    <h4 class="text-xl font-bold text-blue-800 mb-4">Subject: أهلاً بك في مجتمع المعرفة</h4>
+                    <div class="email-content-box bg-white">
+                        <p class="mb-4 text-lg">قصة التأسيس وفلسفة مجرة، مع فقرة ترحيبية خاصة بالمشترك الجديد.</p>
+                        <p class="font-bold text-blue-700 text-lg">لماذا ننصحك بالتطبيق؟</p>
+                        <p class="text-slate-700 mb-2">لأنه مصمم ليكون "مساعدك المعرفي الشخصي" لتطوير مهاراتك اليومية.</p>
+                        <p class="font-bold text-slate-800 mt-6 text-lg">عمار هيكل</p>
+                    </div>
+                </div>
+
+                <div class="condition-branch">
+                    <div class="flex flex-col items-center">
+                        <div class="text-lg text-emerald-600 font-black mb-4">فتح التطبيق ✓</div>
+                        <div class="bg-white border-2 border-slate-200 p-8 rounded-3xl w-80 shadow-md flow-line last-node">
+                            <h4 class="font-bold text-slate-900 text-lg underline mb-2">إيميل (أ): للمتفاعلين</h4>
+                            <div class="email-content-box bg-slate-50 text-sm">
+                                <p class="font-bold text-blue-800">كيف تستفيد من اشتراكك؟</p>
+                                <ul class="text-right mt-2 space-y-1">
+                                    <li>• استكشف المحتوى الصوتي.</li>
+                                    <li>• نظام الاقتراحات الذكي.</li>
+                                    <li>• مشاركة المقالات الحصرية.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="text-lg text-rose-600 font-black mb-4">لم يفتح التطبيق ✗</div>
+                        <div class="bg-white border-2 border-slate-200 p-8 rounded-3xl w-80 shadow-md flow-line last-node">
+                            <h4 class="font-bold text-slate-900 text-lg underline mb-2">إيميل (ب): للتذكير</h4>
+                            <div class="email-content-box bg-slate-50 text-sm">
+                                <p class="font-bold text-rose-800">لا تفوّت ميزات اشتراكك!</p>
+                                <p class="mt-2">حمّل التطبيق الآن للوصول إلى 70 ألف مقالة وكتاب في جيبك.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-container bg-slate-100 border-2 border-slate-200 p-8 mt-12">
+                    <h4 class="text-xl font-bold text-slate-800 mb-6">توثيق ملاحظة لمسار المشتركين</h4>
+                    <input type="text" id="name_sub" class="w-full p-4 mb-4 bg-white border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-center" placeholder="اسمك *">
+                    <textarea id="note_sub" class="w-full p-4 bg-white border border-slate-300 rounded-xl h-32 resize-none outline-none focus:ring-2 focus:ring-blue-500 text-center" placeholder="اكتب ملاحظتك..."></textarea>
+                    <button onclick="saveNote('sub', 'مسار المشتركين')" id="btn_sub" class="w-full mt-4 bg-blue-700 text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-all text-lg">حفظ الملاحظة</button>
+                    <div id="status_sub" class="mt-4 text-center font-bold hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Partners Section -->
+        <section class="path-section border-t-[12px] border-teal-600">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-teal-900 mb-4">3. مسار شركاء النهضة (Shurakaa AL Nahda)</h2>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="badge bg-teal-100 text-teal-800 border border-teal-200 text-lg px-4 py-1">الجمهور: مستفيدو المنح</span>
+                    <span class="badge bg-slate-800 text-white text-lg px-4 py-1">إجمالي القوالب: 3</span>
+                    <span class="badge bg-emerald-600 text-white text-lg px-4 py-1">العدد المستلم فعلياً: 2</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center text-center">
+                <div class="bg-teal-50 border-2 border-teal-100 p-10 rounded-[2rem] w-full max-w-2xl shadow-sm flow-line">
+                    <h3 class="text-2xl font-bold text-teal-950 underline mb-3">الإيميل الترحيبي الأول</h3>
+                    <h4 class="text-xl font-bold text-teal-800 mb-4 italic">Subject: وجهتكم نحو المعرفة تبدأ الآن 🎉</h4>
+                    <div class="email-content-box bg-white">
+                        <p class="text-lg">نبارك لك القبول في البرنامج. تفعيل اشتراكك السنوي بدعم من شركائنا.</p>
+                        <p class="font-bold text-teal-700 mt-4 text-lg">خطوات البداية:</p>
+                        <ul class="list-disc list-inside text-right mt-2 space-y-1">
+                            <li>تفعيل الحساب بكلمة المرور المرسلة.</li>
+                            <li>تحميل التطبيق فوراً.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="condition-branch">
+                    <div class="flex flex-col items-center">
+                        <div class="text-lg text-emerald-600 font-black mb-4">فتح التطبيق ✓</div>
+                        <div class="bg-white border-2 border-slate-200 p-8 rounded-3xl w-80 shadow-md flow-line last-node">
+                            <div class="email-content-box bg-slate-50 text-sm">شرح ميزات المنصة الكاملة وكيفية استغلال السنة المجانية.</div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="text-lg text-rose-600 font-black mb-4">لم يفتح التطبيق ✗</div>
+                        <div class="bg-white border-2 border-slate-200 p-8 rounded-3xl w-80 shadow-md flow-line last-node">
+                            <div class="email-content-box bg-slate-50 text-sm">تذكير بأهمية استغلال هذه المنحة وتحميل التطبيق للوصول السهل.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-container bg-slate-100 border-2 border-slate-200 p-8">
+                    <h4 class="text-xl font-bold text-slate-800 mb-6">توثيق ملاحظة لمسار الشركاء</h4>
+                    <input type="text" id="name_partner" class="w-full p-4 mb-4 bg-white border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-teal-500 text-center" placeholder="الاسم *">
+                    <textarea id="note_partner" class="w-full p-4 bg-white border border-slate-300 rounded-xl h-32 resize-none outline-none focus:ring-2 focus:ring-teal-500 text-center" placeholder="الملاحظة..."></textarea>
+                    <button onclick="saveNote('partner', 'مسار الشركاء')" id="btn_partner" class="w-full mt-4 bg-teal-700 text-white font-bold py-4 rounded-xl hover:bg-teal-800 transition-all text-lg">حفظ الملاحظة</button>
+                    <div id="status_partner" class="mt-4 text-center font-bold hidden"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUu837VEmHYeaZlR6GqKllyW92QQc_3D13NWu_28fFh2F5051Zs-8MIlnB9iX37kl1yg/exec";
+
+        window.onload = function() { checkConnection(); };
+
+        async function checkConnection() {
+            const statusText = document.getElementById('status-text');
+            const dot = document.getElementById('dot');
+            try {
+                await fetch(SCRIPT_URL, { method: 'GET', mode: 'no-cors' });
+                dot.classList.replace('bg-slate-300', 'bg-emerald-500');
+                dot.classList.remove('animate-pulse');
+                statusText.innerText = "متصل بنظام الملاحظات ✓";
+                statusText.className = "text-emerald-700 font-bold";
+            } catch (error) {
+                dot.classList.replace('bg-slate-300', 'bg-rose-500');
+                statusText.innerText = "خطأ في الاتصال بالسيرفر";
+                statusText.className = "text-rose-700 font-bold";
+            }
+        }
+
+        async function saveNote(idSuffix, pathTitle) {
+            const nameEl = document.getElementById('name_' + idSuffix);
+            const noteEl = document.getElementById('note_' + idSuffix);
+            const btn = document.getElementById('btn_' + idSuffix);
+            const status = document.getElementById('status_' + idSuffix);
+
+            if (!nameEl.value.trim()) {
+                showLocalStatus(status, "يرجى كتابة الاسم أولاً", "text-rose-600");
+                return;
+            }
+
+            btn.disabled = true;
+            const originalText = btn.innerText;
+            btn.innerText = "جاري الحفظ...";
+            
+            try {
+                const formData = new URLSearchParams();
+                formData.append('timestamp', new Date().toLocaleString('ar-EG'));
+                formData.append('type', pathTitle);
+                formData.append('email', nameEl.value.trim()); 
+                formData.append('note', noteEl.value.trim() || "بدون ملاحظة");
+
+                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData });
+                showLocalStatus(status, "تم الحفظ بنجاح! ✓", "text-emerald-600");
+                noteEl.value = ""; nameEl.value = "";
+            } catch (e) {
+                showLocalStatus(status, "فشل الحفظ، حاول ثانية", "text-rose-600");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = originalText;
+            }
+        }
+
+        function showLocalStatus(el, msg, colorClass) {
+            el.innerText = msg;
+            el.className = `mt-4 text-center font-bold ${colorClass}`;
+            el.classList.remove('hidden');
+            setTimeout(() => el.classList.add('hidden'), 5000);
+        }
+    </script>
+</body>
+</html>
