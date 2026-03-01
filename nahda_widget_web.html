@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ودجت شركاء النهضة - تصميم موحد</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .partnership-overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 52vh; 
+            background: white;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            z-index: 1000;
+            box-shadow: 0 -15px 40px rgba(0,0,0,0.08);
+            padding-top: 1.5rem;
+        }
+
+        .btn-teal {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            box-shadow: 0 8px 15px -5px rgba(20, 184, 166, 0.4);
+        }
+
+        .content-fade-trigger {
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, white);
+            position: absolute;
+            bottom: 52vh;
+            left: 0;
+            right: 0;
+            z-index: 900;
+        }
+
+        .feature-icon {
+            color: #10b981; 
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- محاكاة محتوى الموقع -->
+    <div class="relative min-h-screen pb-[52vh]">
+        <div class="bg-black text-white p-2 flex justify-between items-center px-8">
+            <div class="flex items-center gap-4">
+                <div class="bg-[#facc15] text-black px-4 py-1 font-bold text-xs rounded-sm">اشتراك الآن</div>
+                <span class="text-[10px] font-bold">تسجيل الدخول</span>
+            </div>
+            <img src="https://majarra.com/front/assets/icons/majara_2.svg" class="h-4 brightness-0 invert" alt="Majarra Logo">
+        </div>
+
+        <article class="max-w-3xl mx-auto px-6 mt-6 opacity-20 text-right">
+            <h1 class="text-3xl font-black text-gray-900 mb-4">دليل القادة لإنهاء فوضى التواصل</h1>
+            <p class="text-lg text-gray-700">يعتبر التواصل الفعال حجر الزاوية في نجاح أي مؤسسة...</p>
+        </article>
+
+        <div class="content-fade-trigger"></div>
+
+        <!-- الودجت المحدثة - تصميم الميزات موحد -->
+        <div class="partnership-overlay">
+            <div class="max-w-2xl w-full flex flex-col items-center px-6 text-center">
+                
+                <img src="https://majarra.com/front/assets/icons/majara_2.svg" class="h-10 mb-2" alt="Majarra">
+
+                <h2 class="text-2xl font-black text-[#1e1b4b] mb-3">برنامج "شركاء النهضة"</h2>
+
+                <p class="text-gray-700 text-center text-base max-w-lg mb-6 leading-relaxed">
+                    لأننا نؤمن بأن الوصول إلى المعرفة هو حق للجميع، ونظراً لعدم توفر طريقة الدفع في بلدك، يسعدنا إعلامك بأنك مؤهل للحصول على <span class="text-teal-600 font-bold underline decoration-2 underline-offset-4">اشتراك مجاني مفتوح</span>.
+                </p>
+
+                <!-- قسم الميزات بتصميم موحد بدون إطارات -->
+                <div class="w-full mb-8 space-y-3">
+                    <div class="flex justify-center flex-wrap gap-x-8 gap-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="feature-icon">✓</span>
+                            <span class="text-gray-800 text-sm font-semibold">اشتراك مفتوح لمدة سنة كاملة</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="feature-icon">✓</span>
+                            <span class="text-gray-800 text-sm font-semibold">تصفح لا محدود لكافة منصات مجرة</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="flex items-center gap-2">
+                            <span class="feature-icon">✓</span>
+                            <span class="text-gray-800 text-sm font-semibold">الوصول إلى محتوى مرئي وصوتي وفيديو وقسم ثواني</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-teal w-full max-w-[320px] text-white font-black py-4 rounded-xl text-xl transition-all active:scale-95 shadow-xl">
+                    اشترك الآن
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
