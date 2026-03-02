@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاكاة أندرويد - تطبيق مجرة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-color: #1a1a1a;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Android Device Frame */
+        .phone-frame {
+            width: 360px;
+            height: 740px;
+            background-color: #000;
+            border: 12px solid #333;
+            border-radius: 40px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Camera Notch */
+        .camera-punch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: #111;
+            border-radius: 50%;
+            z-index: 100;
+        }
+
+        /* Android Status Bar */
+        .status-bar {
+            height: 30px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: white;
+            z-index: 40;
+            background-color: #0a0a0a;
+        }
+
+        .app-container {
+            flex: 1;
+            background-color: #0a0a0a;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .app-container::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        .gradient-border {
+            border: 1px solid transparent;
+            background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+                        linear-gradient(to bottom right, #8b5cf6, #d8b4fe) border-box;
+        }
+
+        .progress-dots .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #333;
+            margin: 0 3px;
+        }
+
+        .progress-dots .dot.active {
+            background-color: #ffffff;
+        }
+
+        /* Android Navigation Bar */
+        .nav-bar {
+            height: 48px;
+            background-color: #000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: 4px;
+        }
+
+        .nav-icon { width: 18px; height: 18px; border: 2px solid #666; border-radius: 2px; }
+        .nav-circle { width: 18px; height: 18px; border: 2px solid #666; border-radius: 50%; }
+        .nav-triangle { width: 0; height: 0; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 12px solid #666; transform: rotate(180deg); }
+        
+        .majarra-logo { height: 44px; width: auto; }
+
+        /* Custom Dropdown Styling */
+        .dropdown-container {
+            position: relative;
+            z-index: 50;
+        }
+
+        .dropdown-trigger {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 12px 16px;
+            color: #efefef;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dropdown-trigger.active {
+            border-color: #a855f7;
+            background-color: rgba(168, 85, 247, 0.05);
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            left: 0;
+            background-color: #151515;
+            border: 1.5px solid #a855f7;
+            border-radius: 16px;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            animation: fadeInScale 0.2s ease-out;
+        }
+
+        .dropdown-menu.show {
+            display: flex;
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            color: #ccc;
+            font-size: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: right;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(168, 85, 247, 0.1);
+            color: #fff;
+            padding-right: 20px;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-trigger.active .chevron-icon {
+            transform: rotate(180deg);
+            color: #a855f7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        <div class="camera-punch"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span>9:41</span>
+            <div class="flex gap-1 items-center">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-18C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.01 21.49L23.64 7c-.45-.34-4.93-4-11.64-4C5.28 3 .81 6.66.36 7l11.63 14.49.01.01.01-.01z"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.34V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+            </div>
+        </div>
+
+        <div class="app-container">
+            <!-- Header -->
+            <div class="flex justify-between items-start mb-8 pt-2">
+                <button class="text-white text-sm font-bold opacity-80">تخطي</button>
+                <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="Majarra Logo" class="majarra-logo">
+                <div class="w-8"></div>
+            </div>
+
+            <!-- Enhanced Custom Dropdown -->
+            <div class="mb-6 dropdown-container">
+                <label class="block text-gray-500 text-[11px] font-medium mb-2 px-1">ما هي مهنتك الحالية؟</label>
+                
+                <div class="dropdown-trigger" id="dropdownTrigger">
+                    <span id="selectedText">اختر من القائمة...</span>
+                    <div class="chevron-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-item" data-value="student">طالب/ة</div>
+                    <div class="dropdown-item" data-value="unemployed">عاطل/ة عن العمل</div>
+                    <div class="dropdown-item" data-value="entrepreneur">رائد/ة أعمال</div>
+                    <div class="dropdown-item" data-value="employee">موظف/ موظفة</div>
+                    <div class="dropdown-item" data-value="none">كلا لا تشملني أي من الحالات التالية</div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="text-center mb-6">
+                <h1 class="text-xl font-bold mb-4 leading-snug text-white">
+                    كيف يمكن لمجرة<br>أن تدعم رحلتك المعرفية؟
+                </h1>
+                <p class="text-gray-400 text-[13px] leading-6 px-1">
+                    كل فكرة تكتبها هي بداية لمحتوى يلهمك. اكتب ما يشغلك، ما تطمح لتعلمه، وما يثير فضولك. نحن هنا لنصمم لك تجربة معرفية تعكس طموحاتك وتدعم رحلتك.
+                </p>
+            </div>
+
+            <!-- Goal Input Box -->
+            <div class="relative mb-6">
+                <div class="gradient-border rounded-2xl p-[1px]">
+                    <div class="bg-[#0f0f0f] rounded-2xl p-4 min-h-[140px]">
+                        <textarea 
+                            maxlength="400"
+                            placeholder="أسعى لاكتساب معرفة عملية في تنظيم الوقت، قيادة الفرق، وتعزيز المهارات الشخصية لدعم تطوري المهني."
+                            class="w-full h-28 bg-transparent text-sm text-gray-400 resize-none focus:outline-none leading-6 placeholder:text-gray-600"
+                        ></textarea>
+                    </div>
+                </div>
+                <div class="absolute bottom-4 left-5 opacity-40">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10L7.87 12.13L10 13L7.87 13.87L7 16L6.13 13.87L4 13L6.13 12.13L7 10Z" fill="white"/>
+                        <path d="M15 4L16.31 7.19L19.5 8.5L16.31 9.81L15 13L13.69 9.81L10.5 8.5L13.69 7.19L15 4Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="absolute bottom-4 right-5 text-[10px] text-gray-600">0/400</div>
+            </div>
+
+            <!-- Action Button -->
+            <button class="w-full bg-[#e6e6e6] text-gray-700 font-bold py-4 rounded-2xl text-sm mb-auto active:scale-[0.98] transition-all">
+                حفظ البيانات والمتابعة
+            </button>
+
+            <!-- Bottom Navigation -->
+            <div class="flex justify-between items-center pt-4 pb-2">
+                <button class="bg-[#e6e6e6] p-3 rounded-xl text-black active:scale-90 transition-transform">
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                    </svg>
+                </button>
+
+                <div class="flex progress-dots">
+                    <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                </div>
+
+                <button class="flex items-center text-white text-[13px] font-bold">
+                    <span class="ml-1">السابق</span>
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Android OS Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-triangle"></div>
+            <div class="nav-circle"></div>
+            <div class="nav-icon"></div>
+        </div>
+    </div>
+
+    <script>
+        const trigger = document.getElementById('dropdownTrigger');
+        const menu = document.getElementById('dropdownMenu');
+        const selectedText = document.getElementById('selectedText');
+        const items = document.querySelectorAll('.dropdown-item');
+
+        // Toggle dropdown
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = menu.classList.contains('show');
+            closeAllDropdowns();
+            if (!isOpen) {
+                menu.classList.add('show');
+                trigger.classList.add('active');
+            }
+        });
+
+        // Select item
+        items.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                selectedText.innerText = item.innerText;
+                selectedText.style.color = '#fff';
+                closeAllDropdowns();
+            });
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', () => {
+            closeAllDropdowns();
+        });
+
+        function closeAllDropdowns() {
+            menu.classList.remove('show');
+            trigger.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
