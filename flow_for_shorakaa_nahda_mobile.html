@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل المطور التقني - ميزة شركاء النهضة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700&display=swap');
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .dev-step {
+            background: white;
+            border-left: 4px solid #0f172a;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .step-header {
+            background: #1e293b;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .variable-tag {
+            background: #e2e8f0;
+            color: #475569;
+            font-family: monospace;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            direction: ltr;
+            display: inline-block;
+        }
+        .info-box {
+            background: #f8fafc;
+            border-right: 4px solid #cbd5e1;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .badge {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .badge-logic { background: #fee2e2; color: #991b1b; }
+        .badge-ui { background: #dcfce7; color: #166534; }
+        .badge-api { background: #e0e7ff; color: #3730a3; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-10 border-b border-slate-300 pb-6 text-center">
+            <h1 class="text-3xl font-bold text-slate-800">الدليل التحليلي لمطور الموبايل</h1>
+            <p class="text-slate-500 mt-2 text-lg">هندسة ميزة "شركاء النهضة" واعتماد المتحولات التقنية</p>
+        </header>
+
+        <!-- المرحلة الأولى -->
+        <div class="dev-step">
+            <div class="step-header">
+                <span class="font-bold">المرحلة الأولى: حيازة البيانات محلياً (Data Persistence)</span>
+                <span class="badge badge-ui">Local State</span>
+            </div>
+            <div class="p-6">
+                <h3 class="font-bold text-slate-800 mb-2">العملية: حفظ اختيار المهنة</h3>
+                <p class="text-slate-600 mb-4">عندما يختار المستخدم مهنته في مرحلة الـ Onboarding، يجب حفظها فوراً لضمان توفرها عند الربط مع الحساب لاحقاً.</p>
+                
+                <div class="info-box">
+                    <strong>المتحول المطلوب:</strong> <span class="variable-tag">user_occupation_cache</span>
+                    <br><strong>القيمة:</strong> نص (String) يمثل القيمة المختارة من القائمة.
+                    <br><strong>مكان التخزين:</strong> ذاكرة الجهاز (SharedPreferences / UserDefaults).
+                </div>
+            </div>
+        </div>
+
+        <!-- المرحلة الثانية -->
+        <div class="dev-step">
+            <div class="step-header" style="background: #0369a1;">
+                <span class="font-bold">المرحلة الثانية: بروتوكول المزامنة (Identity Synchronization)</span>
+                <span class="badge badge-api">Post-Auth Hook</span>
+            </div>
+            <div class="p-6">
+                <h3 class="font-bold text-slate-800 mb-2">العملية: نقل البيانات للسيرفر</h3>
+                <p class="text-slate-600 mb-4">تعتمد هذه الخطوة على التحقق من وجود بيانات محلية فور نجاح الحصول على <span class="variable-tag">access_token</span>.</p>
+                
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                    <strong class="text-blue-900 block mb-2">شروط الاستدعاء (API Call Conditions):</strong>
+                    <ul class="list-disc list-inside mt-2 space-y-1 text-blue-800">
+                        <li>بعد نجاح <span class="variable-tag">auth_login_success</span></li>
+                        <li>بعد نجاح <span class="variable-tag">auth_register_success</span></li>
+                        <li>بعد نجاح <span class="variable-tag">auth_guest_login_success</span></li>
+                    </ul>
+                </div>
+
+                <div class="info-box border-blue-300">
+                    <strong>التسلسل المنطقي:</strong>
+                    <br>1. التحقق: هل <span class="variable-tag">user_occupation_cache</span> ليس فارغاً؟
+                    <br>2. التنفيذ: استدعاء خدمة <span class="variable-tag">set_interest_description</span> وتمرير القيمة المخزنة.
+                    <br>3. التنظيف: مسح قيمة <span class="variable-tag">user_occupation_cache</span> من الجهاز بعد استلام <span class="variable-tag">HTTP 200 OK</span>.
+                </div>
+            </div>
+        </div>
+
+        <!-- المرحلة الثالثة -->
+        <div class="dev-step">
+            <div class="step-header" style="background: #b45309;">
+                <span class="font-bold">المرحلة الثالثة: منطق العرض الشرطي (Conditional UI)</span>
+                <span class="badge badge-logic">Global Variables</span>
+            </div>
+            <div class="p-6">
+                <h3 class="font-bold text-slate-800 mb-2">العملية: التحكم في ظهور العناصر</h3>
+                
+                <div class="space-y-6">
+                    <div class="border p-4 rounded">
+                        <h4 class="font-bold text-slate-700 border-b pb-2 mb-2">1. نافذة الصفحة الرئيسية (Home Popup):</h4>
+                        <p class="text-sm text-slate-600 mb-3">تظهر النافذة إذا كانت الشروط التالية محققة (Boolean Check):</p>
+                        <ul class="text-xs space-y-2">
+                            <li>- <span class="variable-tag">user.profile.job == 'طالب/ة'</span></li>
+                            <li>- <span class="variable-tag">user.membership.is_free == true</span></li>
+                            <li>- <span class="variable-tag">cache.nahda_popup_count < 3</span></li>
+                            <li>- <span class="variable-tag">cache.nahda_last_show_date != current_date</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="border p-4 rounded">
+                        <h4 class="font-bold text-slate-700 border-b pb-2 mb-2">2. ويدجت حائط الدفع (Paywall Widget):</h4>
+                        <p class="text-sm text-slate-600 mb-2">يظهر عند محاولة فتح محتوى واستلام استجابة الخطأ التالية:</p>
+                        <div class="bg-slate-100 p-2 text-xs font-mono rounded">
+                            status_code: -6 (Student Program Eligibility)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- المرحلة الرابعة -->
+        <div class="dev-step">
+            <div class="step-header" style="background: #065f46;">
+                <span class="font-bold">المرحلة الرابعة: تمرير المعاملات (Parameter Injection)</span>
+                <span class="badge badge-ui">Auto-fill</span>
+            </div>
+            <div class="p-6">
+                <h3 class="font-bold text-slate-800 mb-2">العملية: ملء الفورم تلقائياً</h3>
+                <p class="text-slate-600 mb-4">عند الانتقال من "مسار الطالب"، يجب إرسال قيم ثابتة للسيرفر دون إظهارها للمستخدم.</p>
+                
+                <div class="info-box border-emerald-300">
+                    <strong>المتحولات المحقونة (Hidden Fields):</strong>
+                    <br>1. <span class="variable-tag">form_field_identity = "طالب/ة"</span>
+                    <br>2. <span class="variable-tag">form_field_reason = "لا تتوافر لدي القدرة المادية"</span>
+                </div>
+
+                <div class="mt-4 border-t pt-4">
+                    <h5 class="font-bold text-slate-700 mb-2 text-sm">متحولات Firebase Remote Config:</h5>
+                    <p class="text-xs text-slate-500 mb-2">يجب استخدام المفاتيح التالية حصراً لجلب النصوص:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono">
+                        <div class="bg-slate-50 p-1">shurkaa_nahda_header</div>
+                        <div class="bg-slate-50 p-1">shurkaa_nahda_description</div>
+                        <div class="bg-slate-50 p-1">shurkaa_nahda_features_list</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center text-slate-400 text-xs mt-8 pb-10">
+            دليل المطورين - الإصدار 1.4 - المخطط القائم على المتحولات
+        </footer>
+    </div>
+
+</body>
+</html>
