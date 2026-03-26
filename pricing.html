@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجرة - باقات الاشتراك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+        /* Color matching from images */
+        .text-majara-purple { color: #5c2d91; }
+        .bg-majara-purple { background-color: #5c2d91; }
+        .border-majara-purple { border-color: #5c2d91; }
+        
+        .text-renaissance-teal { color: #14a499; }
+        .bg-renaissance-teal { background-color: #14a499; }
+        .border-renaissance-teal { border-color: #14a499; }
+        
+        .nav-link:hover {
+            color: #5c2d91;
+        }
+        
+        .shadow-pricing {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 12px -4px rgba(0, 0, 0, 0.03);
+        }
+
+        .toggle-container {
+            background-color: #f1f5f9;
+        }
+        
+        .active-tab {
+            background-color: #1e293b;
+            color: white;
+        }
+
+        .badge-discount {
+            background-color: #bd1e2d;
+        }
+
+        .widget-gradient {
+            background: linear-gradient(to bottom, #ffffff, #fcfdfd);
+        }
+    </style>
+</head>
+<body class="bg-white pb-40">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-gray-100 sticky top-0 bg-white/80 backdrop-blur-md z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Right Side: Logo and Navigation -->
+                <div class="flex items-center gap-10">
+                    <div class="flex items-center">
+                        <!-- Custom SVG for Logo-like text -->
+                        <span class="text-2xl font-extrabold text-majara-purple tracking-tight">مجرة</span>
+                    </div>
+                    <nav class="hidden md:flex space-x-reverse space-x-8 text-[14px] font-bold">
+                        <a href="#" class="nav-link flex items-center gap-1 text-gray-800">المنصات <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a>
+                        <a href="#" class="text-majara-purple border-b-[3px] border-majara-purple pb-[21px] relative top-[2px]">باقات الاشتراك</a>
+                        <a href="#" class="text-gray-800 nav-link">الرئيسية</a>
+                        <a href="#" class="text-gray-800 nav-link">حمّل تطبيق مجرة</a>
+                    </nav>
+                </div>
+
+                <!-- Left Side: Auth Buttons -->
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-sm font-bold text-gray-700 hover:text-majara-purple">تسجيل الدخول</a>
+                    <a href="#" class="bg-[#ffd400] text-black px-7 py-2.5 rounded-md font-extrabold text-sm hover:bg-[#ffcc00] shadow-sm transition-all">
+                        اشترك الآن
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-10 leading-tight">أفضل محتوى عربي على الإنترنت</h1>
+
+            <!-- Toggle Switch -->
+            <div class="relative inline-flex items-center toggle-container p-1.5 rounded-xl mb-14">
+                <!-- Badge -->
+                <div class="absolute -top-7 right-0 badge-discount text-white text-[11px] font-bold px-3 py-1 rounded-md shadow-sm">
+                    توفير 50% - الأكثر شعبية
+                </div>
+                <button class="px-10 py-3 rounded-lg text-sm font-extrabold active-tab shadow-sm transition-all">اشتراك سنوي</button>
+                <button class="px-10 py-3 rounded-lg text-sm font-extrabold text-gray-500 hover:text-gray-800 transition-all">اشتراك شهري</button>
+            </div>
+
+            <!-- Pricing Card -->
+            <div class="max-w-[480px] mx-auto border border-gray-100 rounded-[24px] shadow-pricing p-10 text-right bg-white relative overflow-hidden">
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-3">اشتراك مجرة السنوي</h2>
+                <p class="text-gray-500 mb-10 font-medium text-lg">تصفح لا محدود من كامل منصات مجرة</p>
+
+                <!-- Features List -->
+                <ul class="space-y-7">
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 flex-shrink-0">
+                            <svg class="w-5 h-5 text-gray-400 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                            كل محتوى مجرة بين يديك في تطبيق واحد؛ بما في ذلك هارفارد بزنس ريفيو، وغيرها.
+                        </p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 flex-shrink-0">
+                            <svg class="w-5 h-5 text-gray-400 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                            آخر تطورات الإدارة والعلوم والتكنولوجيا من مصادر موثوقة وحديثة.
+                        </p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 flex-shrink-0">
+                            <svg class="w-5 h-5 text-gray-400 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                            أرشيف واسع مع تحديث مستمر وإضافة محتوى جديد يومياً مع فيديو ومواد صوتية.
+                        </p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 flex-shrink-0">
+                            <svg class="w-5 h-5 text-gray-400 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                            تصفح في أي مكان وأي وقت كل يوم، أو كل أسبوع، أو كل شهر حسب رغبتك.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Renaissance Widget -->
+    <div id="renaissanceWidget" class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-8px_30px_rgba(0,0,0,0.08)] border-t-4 border-renaissance-teal z-50 widget-gradient">
+        <div class="max-w-7xl mx-auto px-6 py-8 relative">
+            <!-- Close Button -->
+            <button onclick="closeWidget()" class="absolute top-5 left-5 text-gray-400 hover:text-gray-600 transition-colors p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="flex flex-col items-center text-center">
+                <span class="text-majara-purple font-extrabold text-2xl mb-3">مجرة</span>
+                <h3 class="text-2xl font-extrabold text-gray-900 mb-4 tracking-tight">برنامج "شركاء النهضة"</h3>
+                <p class="text-gray-500 text-[15px] max-w-3xl mb-8 leading-loose font-medium">
+                    لأننا نؤمن بأن الوصول إلى المعرفة هو حق للجميع، ونظراً لعدم توفر طريقة الدفع في بلدك، يسعدنا إعلامك بأنك مؤهل للحصول على <a href="#" class="text-renaissance-teal font-extrabold underline underline-offset-4 decoration-2">اشتراك مجاني مفتوح</a>، ضمن برنامج "شركاء النهضة".
+                </p>
+
+                <!-- Features Row -->
+                <div class="flex flex-wrap justify-center gap-x-10 gap-y-4 mb-10 text-[14px] font-bold text-gray-800">
+                    <div class="flex items-center gap-2.5">
+                        <svg class="w-5 h-5 text-renaissance-teal stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        <span>اشتراك مفتوح لمدة سنة كاملة</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <svg class="w-5 h-5 text-renaissance-teal stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        <span>تصفح لا محدود لكافة منصات مجرة</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <svg class="w-5 h-5 text-renaissance-teal stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                        <span>الوصول إلى محتوى مرئي وصوتي وفيديو وقسم ثواني</span>
+                    </div>
+                </div>
+
+                <button class="bg-renaissance-teal text-white px-16 py-4 rounded-xl font-extrabold text-lg shadow-[0_10px_20px_-5px_rgba(20,164,153,0.4)] hover:shadow-[0_15px_25px_-5px_rgba(20,164,153,0.5)] transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                    اشترك الآن
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeWidget() {
+            const widget = document.getElementById('renaissanceWidget');
+            widget.style.transform = 'translateY(100%)';
+            setTimeout(() => {
+                widget.style.display = 'none';
+                document.body.style.paddingBottom = '0';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
