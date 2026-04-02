@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فن القيادة - مجرة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;600;800&display=swap');
+        
+        :root {
+            --majarra-bg: #ffffff;
+            --majarra-text: #1a1a1a;
+            --majarra-purple: #632a7e;
+            --majarra-yellow: #ffde00;
+            --majarra-dark: #121212;
+        }
+
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-color: var(--majarra-bg);
+            color: var(--majarra-text);
+            scroll-behavior: smooth;
+        }
+
+        /* Header Style */
+        .header-main {
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+            height: 70px;
+        }
+
+        .nav-link-custom {
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--majarra-purple);
+        }
+
+        .btn-subscribe-yellow {
+            background-color: var(--majarra-yellow);
+            color: #000;
+            font-weight: 800;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: transform 0.2s;
+        }
+
+        /* Hero & Content Styles */
+        .hero-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .badge-new-light {
+            background-color: #fff1f1;
+            color: #e03131;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .capsule-card-light {
+            background: #1a1a1a;
+            color: white;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: right;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card {
+            background: #ffffff;
+            border: 1px solid #eee;
+            border-radius: 24px;
+            padding: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-corporate {
+            border: 2px solid var(--majarra-yellow);
+            position: relative;
+        }
+
+        /* Updated Footer Styles */
+        .main-footer {
+            background-color: var(--majarra-dark);
+            color: white;
+            border-radius: 40px 40px 0 0;
+            padding: 60px 0 20px 0;
+        }
+
+        .no-dots-border {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .website-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .website-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .website-links a {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .website-links a::before {
+            content: "○";
+            font-size: 0.8rem;
+        }
+
+        .website-links a:hover {
+            color: white;
+        }
+
+        .store-image {
+            height: 40px;
+            transition: transform 0.2s;
+        }
+        
+        .store-image:hover {
+            transform: scale(1.05);
+        }
+
+        .bottom-footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 40px;
+            padding-top: 20px;
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .footer-payment-mehtod {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+
+        .footer-payment-mehtod img {
+            height: 24px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-payment-mehtod img:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header-main sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-1">
+                    <span class="text-2xl font-black text-[#632a7e]">مجرة</span>
+                    <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2"></div>
+                </div>
+                <nav class="hidden lg:flex items-center gap-6">
+                    <a href="#" class="nav-link-custom">المنصات <i class="fas fa-chevron-down text-[10px] mt-1"></i></a>
+                    <a href="#" class="nav-link-custom border-b-2 border-black pb-1">الرئيسية</a>
+                    <a href="#pricing" class="nav-link-custom">باقات الاشتراك</a>
+                    <a href="#" class="nav-link-custom">حمّل تطبيق مجرة</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#" class="text-[#1a1a1a] font-bold text-sm">تسجيل الدخول</a>
+                <a href="#pricing" class="btn-subscribe-yellow">اشترك الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="badge-new-light">جديد هارفارد بزنس ريفيو</div>
+            <h1 class="text-5xl md:text-6xl font-black mb-6 text-slate-900 leading-tight">فن القيادة</h1>
+            <p class="text-lg text-slate-500 mb-12 max-w-2xl mx-auto">
+                منتج اشتراك سنوي جديد من "هارفارد بزنس ريفيو العربية"، يعتمد على مفهوم التعلم المصغر لتطوير مهاراتك القيادية يومياً.
+            </p>
+
+            <!-- Capsule Card -->
+            <div class="capsule-card-light max-w-2xl mx-auto">
+                <div class="flex items-center gap-2 mb-4 text-emerald-400">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                    <span class="text-sm font-bold">كبسولة اليوم</span>
+                </div>
+                <p class="text-xl md:text-2xl font-bold mb-8 leading-relaxed">
+                    "القيادة هي فن جعل الآخرين يريدون القيام بما هو ضروري. ابدأ بالاستماع الفعال قبل اتخاذ القرار."
+                </p>
+                <div class="flex justify-between items-center border-t border-white/10 pt-6 text-slate-400">
+                    <span class="text-xs">HBR العربية</span>
+                    <div class="flex gap-4">
+                        <i class="far fa-bookmark hover:text-white cursor-pointer"></i>
+                        <i class="fas fa-share-alt hover:text-white cursor-pointer"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-4 space-y-6">
+            <div class="pricing-card shadow-sm">
+                <div class="text-right">
+                    <p class="text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">الاشتراك السنوي للأفراد</p>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-black text-slate-900">$90</span>
+                        <span class="text-slate-400 text-sm">330 ريال | 330 درهم</span>
+                    </div>
+                </div>
+                <button class="bg-black text-white px-10 py-3.5 rounded-xl font-bold hover:bg-slate-800 transition-colors">
+                    اشترك للباقة الفردية
+                </button>
+            </div>
+
+            <div class="pricing-card pricing-corporate shadow-sm">
+                <div class="absolute top-4 left-4 bg-yellow-400 text-black text-[10px] font-black px-2 py-1 rounded">خصم 20%</div>
+                <div class="text-right">
+                    <p class="text-xs font-bold text-yellow-600 mb-1 uppercase tracking-wider">عرض الشركات</p>
+                    <h3 class="text-2xl font-black text-slate-900">باقة القادة</h3>
+                </div>
+                <button class="border-2 border-slate-900 text-slate-900 px-10 py-3.5 rounded-xl font-bold hover:bg-slate-900 hover:text-white transition-all flex items-center gap-2">
+                    <i class="far fa-comment-dots"></i>
+                    تواصل معنا لباقة المؤسسات
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                
+                <!-- Col 1: اهم الروابط -->
+                <div class="md:col-span-6">
+                    <h1 class="no-dots-border">أهم الروابط</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <ul class="website-links">
+                            <li><a href="#">مجرة: أفضل محتوى عربي على الإنترنت</a></li>
+                            <li><a href="#">اشتراكات مجرة</a></li>
+                            <li><a href="#">اشتراك عن طريق STC</a></li>
+                            <li><a href="#">إهداء اشتراك</a></li>
+                            <li><a href="#">برنامج شركاء النهضة</a></li>
+                        </ul>
+                        <ul class="website-links">
+                            <li><a href="#">خدمات الشركات</a></li>
+                            <li><a href="#">استخدام رمز الهدية</a></li>
+                            <li><a href="#">شروط استخدام اشتراك مجرة</a></li>
+                            <li><a href="#">سياسة الخصوصية</a></li>
+                            <li><a href="#">الأسئلة الشائعة</a></li>
+                            <li><a href="#">خدمة القراء والمشتركين</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Col 2: منصاتنا -->
+                <div class="md:col-span-3">
+                    <h1 class="no-dots-border">منصاتنا</h1>
+                    <ul class="website-links">
+                        <li><a href="#">هارفارد بزنس ريفيو</a></li>
+                        <li><a href="#">إم آي تي تكنولوجي</a></li>
+                        <li><a href="#">العلوم للعموم</a></li>
+                        <li><a href="#">نفسيتي</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: حمل التطبيق -->
+                <div class="md:col-span-3">
+                    <h1 class="no-dots-border">حمّل التطبيق</h1>
+                    <div class="flex flex-col gap-4">
+                        <a href="#" target="_blank">
+                            <img src="https://my.majarra.com/_nuxt/img/googl-play.bde92fe.svg" alt="Google Play" class="store-image w-36">
+                        </a>
+                        <a href="#" target="_blank">
+                            <img src="https://my.majarra.com/_nuxt/img/apple-store.75cac4f.svg" alt="App Store" class="store-image w-36">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer Area -->
+            <div class="bottom-footer flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <span class="text-xs text-slate-400">طرق الدفع المتاحة للاشتراك</span>
+                    <div class="footer-payment-mehtod">
+                        <img src="https://my.majarra.com/_nuxt/img/ApplePay.c129627.svg" alt="ApplePay">
+                        <img src="https://my.majarra.com/_nuxt/img/GooglePay.97a40f6.svg" alt="GooglePay">
+                        <img src="https://my.majarra.com/_nuxt/img/Visa.9010abc.svg" alt="Visa">
+                        <img src="https://my.majarra.com/_nuxt/img/AMEX.f90aee9.svg" alt="AMEX">
+                    </div>
+                </div>
+                <div class="text-xs">
+                    © جميع الحقوق محفوظة لمجرة 2026
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
