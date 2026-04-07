@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فن القيادة - مجرة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Dubai';
+            src: url('https://fonts.cdnfonts.com/s/14883/Dubai-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Dubai';
+            src: url('https://fonts.cdnfonts.com/s/14883/Dubai-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Dubai', sans-serif;
+            background-color: #ffffff;
+            color: #1b1b1c;
+            margin: 0;
+        }
+
+        /* الهيدر المتطابق مع الصورة */
+        .majarra-header {
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 40px;
+        }
+
+        .nav-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo img {
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1b1b1c;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links .platforms-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .login-link {
+            color: #1b1b1c;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .btn-subscribe {
+            background-color: #ffda00; /* الأصفر من الصورة */
+            color: #1b1b1c;
+            padding: 10px 28px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* شريط التنقل السفلي للجوال (الصورة المرفقة) */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2a2a2a;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            z-index: 2000;
+            border-top: 1px solid #3d3d3d;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #a1a1a1;
+            font-size: 12px;
+            gap: 4px;
+        }
+
+        .mobile-nav-item.active {
+            color: #ffffff;
+        }
+
+        .mobile-nav-item i {
+            font-size: 20px;
+        }
+
+        /* تحسينات العنوان */
+        .main-title {
+            color: #5A00A0; /* اللون البنفسجي المطلوب */
+            line-height: 1.2;
+        }
+
+        @media (max-width: 1024px) {
+            .majarra-header { padding: 0 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body class="pb-20 lg:pb-0">
+
+    <!-- الهيدر المحدث بناءً على الصورة -->
+    <header class="majarra-header">
+        <div class="nav-container">
+            <!-- اليمين: الشعار والقائمة -->
+            <div class="right-section">
+                <a href="/" class="logo">
+                    <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="Majarra Logo">
+                </a>
+                <nav class="nav-links">
+                    <a href="#" class="platforms-btn">
+                        المنصات
+                        <i class="fas fa-chevron-down text-[10px]"></i>
+                    </a>
+                    <a href="#" class="font-bold">الرئيسية</a>
+                    <a href="#">باقات الاشتراك</a>
+                    <a href="#">حمّل تطبيق مجرة</a>
+                </nav>
+            </div>
+
+            <!-- اليسار: تسجيل الدخول والاشتراك -->
+            <div class="left-section">
+                <a href="/login" class="login-link">تسجيل الدخول</a>
+                <a href="#" class="btn-subscribe">اشترك الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- قسم المحتوى الرئيسي -->
+        <section class="py-24 px-6 text-center bg-[#fafafa]">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="inline-block bg-red-50 text-red-600 px-4 py-1 rounded-full text-sm font-bold border border-red-100">
+                    جديد هارفارد بزنس ريفيو
+                </div>
+                <h1 class="text-7xl md:text-9xl font-black main-title">
+                    فن القيادة
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto">
+                    طور مهاراتك القيادية يومياً عبر مفهوم التعلم المصغر المستخلص من أهم أبحاث الإدارة العالمية.
+                </p>
+            </div>
+        </section>
+
+        <!-- شبكة البطاقات -->
+        <section class="max-w-6xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- بطاقة الاشتراك السنوي المحدثة بالمميزات الجديدة -->
+                <div class="bg-[#111827] rounded-[40px] p-12 text-white flex flex-col justify-between min-h-[550px] shadow-2xl">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4">الاشتراك السنوي</h2>
+                        <div class="text-6xl font-black mb-8">$89.99</div>
+                        <ul class="space-y-6">
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                                <div>
+                                    <span class="font-bold text-lg block">وصول ذكي عبر الإيميل والتطبيق.</span>
+                                    <p class="text-gray-400 text-sm">محتواك القيادي معك أينما كنت وبأسهل الطرق.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                                <div>
+                                    <span class="font-bold text-lg block">خلاصة فكر هارفارد بكبسولة مركّزة.</span>
+                                    <p class="text-gray-400 text-sm">أهم استراتيجيات الإدارة العالمية في دقائق معدودة.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                                <div>
+                                    <span class="font-bold text-lg block">تعلم مستمر بمحتوى صباحي ملهم.</span>
+                                    <p class="text-gray-400 text-sm">ابدأ يومك بجرعة يومية من المعرفة والتحفيز.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="w-full bg-white text-black py-5 rounded-2xl font-bold text-xl mt-12 hover:bg-gray-100 transition-colors">اشترك الآن بـ $89.99</button>
+                </div>
+
+                <!-- بطاقة المؤسسات المحدثة (تم حذف الميزتين المطلوبتين) -->
+                <div class="bg-white border-2 border-[#d4af37] rounded-[40px] p-12 flex flex-col justify-between min-h-[550px] shadow-sm">
+                    <div>
+                        <span class="text-[#d4af37] font-bold text-sm tracking-widest uppercase mb-2 block">للمؤسسات</span>
+                        <h2 class="text-3xl font-bold text-black mb-6">باقة القادة للفرق</h2>
+                        <p class="text-gray-500 text-lg leading-relaxed">
+                            حلول مخصصة للشركات والفرق الكبيرة لدعم النمو المؤسسي وتطوير الكوادر القيادية عبر الوصول الكامل لكافة مواردنا التعليمية المتميزة.
+                        </p>
+                        <!-- تم حذف القائمة التي كانت تحتوي على لوحة التحكم والتقارير -->
+                    </div>
+                    <button class="w-full border-2 border-[#d4af37] text-[#d4af37] py-4 rounded-2xl font-bold text-xl mt-8 hover:bg-[#d4af37]/5 transition-colors">طلب عرض سعر</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- شريط التنقل السفلي -->
+    <div class="mobile-bottom-nav lg:hidden">
+        <div class="mobile-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>الرئيسية</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>المنصات</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fas fa-headphones"></i>
+            <span>الصوتيات</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fas fa-search"></i>
+            <span>البحث</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fas fa-stopwatch"></i>
+            <span>ثواني</span>
+        </div>
+    </div>
+
+</body>
+</html>
