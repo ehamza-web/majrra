@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أرشيف الكبسولات - فن القيادة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-color: #020617;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            min-height: 100vh;
+            flex-wrap: wrap;
+        }
+
+        .phone-container {
+            width: 375px;
+            height: 780px;
+            border-radius: 48px;
+            overflow: hidden; 
+            position: relative;
+            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            border: 8px solid #1e293b;
+        }
+
+        .light-mode { background: #fdfdfd; color: #0f172a; }
+        .light-mode .card { background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05); }
+        .light-mode .filter-btn { background: #f1f5f9; color: #64748b; }
+        .light-mode .filter-btn.active { background: #1e3a8a; color: white; }
+        .light-mode .play-all-btn { background: #f1f5f9; color: #1e3a8a; }
+
+        .dark-mode { background: #0f172a; color: white; }
+        .dark-mode .card { background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .dark-mode .filter-btn { background: #1e293b; color: #94a3b8; }
+        .dark-mode .filter-btn.active { background: #3b82f6; color: white; }
+        .dark-mode .play-all-btn { background: #ffffff/10; color: #3b82f6; border: 1px solid rgba(255,255,255,0.1); }
+
+        .card { cursor: pointer; transition: all 0.2s ease; border-radius: 20px; }
+        .card:active { transform: scale(0.97); }
+
+        .action-icon {
+            width: 40px; height: 40px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .light-mode .action-icon { background: #f1f5f9; color: #1e3a8a; }
+        .dark-mode .action-icon { background: #0f172a; color: #3b82f6; }
+
+        .top-controls { padding: 0 24px 16px; display: flex; flex-direction: column; gap: 16px; }
+
+        .filter-scroll { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+        .filter-scroll::-webkit-scrollbar { display: none; }
+        
+        .filter-btn { 
+            padding: 10px 18px; 
+            border-radius: 14px; 
+            font-size: 11px; 
+            font-weight: 800; 
+            white-space: nowrap; 
+            transition: all 0.2s;
+        }
+
+        .play-all-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px; border-radius: 14px; font-size: 13px; font-weight: 800; width: 100%;
+        }
+
+        .modal-view {
+            position: absolute; inset: 0; z-index: 100;
+            transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+            display: flex; flex-direction: column;
+        }
+        .modal-view.active { transform: translateY(0); }
+
+        .reading-mode { padding: 40px 24px; overflow-y: auto; }
+        .reading-title { font-size: 28px; font-weight: 800; line-height: 1.3; margin-bottom: 24px; }
+        .reading-content { font-size: 18px; line-height: 1.8; text-align: justify; }
+
+        /* تحديث الناف بار ليتطابق مع الصور */
+        .bottom-nav {
+            height: 90px; display: flex; justify-content: space-around; align-items: center;
+            padding: 0 10px 20px; border-top: 1px solid rgba(255,255,255,0.05); z-index: 50;
+        }
+        .light-mode .bottom-nav { background: #ffffff; border-top: 1px solid #f1f5f9; }
+        .dark-mode .bottom-nav { background: #0f172a; }
+
+        .nav-item { 
+            display: flex; flex-direction: column; align-items: center; gap: 6px; 
+            color: #64748b; cursor: pointer; transition: all 0.2s ease;
+            flex: 1;
+        }
+        .nav-item i { font-size: 18px; }
+        .nav-item span { font-size: 10px; font-weight: 700; }
+        
+        .light-mode .nav-item.active { color: #1e3a8a; }
+        .dark-mode .nav-item.active { color: #ffffff; }
+
+        .audio-player-container {
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px 24px 40px;
+            scrollbar-width: none;
+        }
+        .audio-player-container::-webkit-scrollbar { display: none; }
+
+        .cover-art {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 32px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            margin-bottom: 30px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .audio-controls-row {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; margin: 24px 0;
+        }
+
+        .audio-description {
+            margin-top: 30px; padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .light-mode .audio-description { border-top: 1px solid rgba(0,0,0,0.05); }
+
+        .transcript-overlay {
+            position: absolute; 
+            inset: 0; 
+            z-index: 110; 
+            display: none; 
+            padding: 40px 24px;
+            overflow-y: auto;
+        }
+        
+        .light-mode .transcript-overlay { background-color: #ffffff; color: #0f172a; }
+        .dark-mode .transcript-overlay { background-color: #0f172a; color: #ffffff; }
+
+        .transcript-overlay.active { display: block; animation: fadeInTranscript 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        @keyframes fadeInTranscript { 
+            from { opacity: 0; transform: translateY(40px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .toggle-transcript-btn {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 auto 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            cursor: pointer;
+        }
+
+        /* Home Indicator like iPhone */
+        .home-indicator {
+            position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+            width: 120px; height: 5px; background: rgba(128,128,128,0.3); border-radius: 10px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- نسخة الوضع الفاتح -->
+    <div class="phone-container light-mode" id="phone-light">
+        <div class="px-8 py-3 flex justify-between items-center text-[11px] font-bold text-slate-400">
+            <span>٩:٤١</span>
+            <div class="flex gap-2"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></div>
+        </div>
+        <header class="px-6 py-4"><h1 class="text-2xl font-black">أرشيف الكبسولات</h1></header>
+        <div class="top-controls">
+            <button class="play-all-btn bg-slate-100 text-blue-900"><i class="fas fa-play"></i><span>تشغيل كل الكبسولات الصوتية</span></button>
+            <div class="filter-scroll">
+                <button class="filter-btn active">اليوم</button>
+                <button class="filter-btn">هذا الأسبوع</button>
+                <button class="filter-btn">هذا الشهر</button>
+                <button class="filter-btn">الكل</button>
+            </div>
+        </div>
+        <main class="flex-grow px-6 py-2 overflow-y-auto space-y-4" id="list-light"></main>
+        
+        <div id="modal-light" class="modal-view light-mode">
+            <div class="flex items-center justify-between px-6 pt-6 mb-2 relative z-[101]">
+                <button onclick="closeModal('light')" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center"><i class="fas fa-chevron-down text-slate-500"></i></button>
+                <i class="far fa-bookmark text-slate-400"></i>
+            </div>
+            <div id="modal-body-light" class="flex-grow overflow-hidden relative"></div>
+        </div>
+
+        <!-- الناف بار المحدث (وضع فاتح) -->
+        <nav class="bottom-nav">
+            <div class="nav-item active"><i class="fas fa-home"></i><span>الرئيسية</span></div>
+            <div class="nav-item"><i class="fas fa-th-large"></i><span>المنصات</span></div>
+            <div class="nav-item"><i class="fas fa-headphones"></i><span>الصوتيات</span></div>
+            <div class="nav-item"><i class="fas fa-search"></i><span>البحث</span></div>
+            <div class="nav-item"><i class="fas fa-stopwatch"></i><span>ثواني</span></div>
+        </nav>
+        <div class="home-indicator"></div>
+    </div>
+
+    <!-- نسخة الوضع الداكن -->
+    <div class="phone-container dark-mode" id="phone-dark">
+        <div class="px-8 py-3 flex justify-between items-center text-[11px] font-bold text-slate-600">
+            <span>٩:٤١</span>
+            <div class="flex gap-2"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></div>
+        </div>
+        <header class="px-6 py-4"><h1 class="text-2xl font-black">أرشيف الكبسولات</h1></header>
+        <div class="top-controls">
+            <button class="play-all-btn bg-white/5 text-blue-400 border border-white/10"><i class="fas fa-play"></i><span>تشغيل كل الكبسولات الصوتية</span></button>
+            <div class="filter-scroll">
+                <button class="filter-btn active">اليوم</button>
+                <button class="filter-btn">هذا الأسبوع</button>
+                <button class="filter-btn">هذا الشهر</button>
+                <button class="filter-btn">الكل</button>
+            </div>
+        </div>
+        <main class="flex-grow px-6 py-2 overflow-y-auto space-y-4" id="list-dark"></main>
+        
+        <div id="modal-dark" class="modal-view dark-mode">
+            <div class="flex items-center justify-between px-6 pt-6 mb-2 relative z-[101]">
+                <button onclick="closeModal('dark')" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center"><i class="fas fa-chevron-down text-white/50"></i></button>
+                <i class="far fa-bookmark text-white/30"></i>
+            </div>
+            <div id="modal-body-dark" class="flex-grow overflow-hidden relative"></div>
+        </div>
+
+        <!-- الناف بار المحدث (وضع داكن) -->
+        <nav class="bottom-nav">
+            <div class="nav-item active"><i class="fas fa-home"></i><span>الرئيسية</span></div>
+            <div class="nav-item"><i class="fas fa-th-large"></i><span>المنصات</span></div>
+            <div class="nav-item"><i class="fas fa-headphones"></i><span>الصوتيات</span></div>
+            <div class="nav-item"><i class="fas fa-search"></i><span>البحث</span></div>
+            <div class="nav-item"><i class="fas fa-stopwatch"></i><span>ثواني</span></div>
+        </nav>
+        <div class="home-indicator"></div>
+    </div>
+
+    <script>
+        const capsules = [
+            {
+                id: 1,
+                type: 'text',
+                title: 'حوكمة الذكاء الاصطناعي: الدليل الكامل لمجالس الإدارة',
+                date: '٢ أبريل ٢٠٢٦',
+                content: `تعد حوكمة الذكاء الاصطناعي اليوم الركيزة الأساسية لضمان استدامة الابتكار في الشركات الكبرى. يتطلب هذا المسار فهماً عميقاً للمخاطر الأخلاقية والتقنية، مع ضرورة وضع أطر عمل تضمن الشفافية والمساءلة. يجب على القادة التنفيذيين ليس فقط تبني التقنية، بل قيادة الحوار حول كيفية دمجها بمسؤولية في صلب استراتيجية الأعمال.`
+            },
+            {
+                id: 2,
+                type: 'audio',
+                title: 'سيكولوجية التفاوض في الأزمات الاستراتيجية',
+                date: '١ أبريل ٢٠٢٦',
+                transcript: `أهلاً بك في كبسولة اليوم. إن التفاوض في الأزمات ليس مجرد تبادل للكلمات، بل هو رقصة دقيقة على حافة الهاوية المعرفية. في هذه الجلسة، سنقوم بتحليل كيف يواجه القادة التنفيذيون الضغوط الهائلة. 
+
+أولاً: الهدوء البيولوجي. كيف تتحكم في مستويات الكورتيزول لضمان وضوح الرؤية؟ 
+ثانياً: الاستماع الراديكالي. لماذا يعد ما لا يقال أهم بكثير مما يقال صراحة؟ 
+
+سنستعرض حالات دراسية حقيقية لاندماج شركات عالمية كادت أن تفشل لولا تدخل "المفاوض الهادئ". إننا نؤمن أن القوة الحقيقية تكمن في القدرة على تحويل العداء إلى شراكة استراتيجية طويلة الأمد عبر فهم الدوافع العميقة للطرف الآخر.`,
+                description: `في هذه الكبسولة الصوتية الاستراتيجية، نغوص في أعماق العقل البشري أثناء لحظات الضغط العالي. ستتعلم كيف يحافظ القادة العالميون على ثباتهم الانفعالي عند طاولة المفاوضات المصيرية. نناقش تقنيات "الصمت الاستراتيجي" وكيفية قراءة لغة الجسد الرقمية في الاجتماعات الافتراضية.`
+            },
+            {
+                id: 3,
+                type: 'text',
+                title: 'القيادة الرؤوفة: التوازن بين الحزم والتعاطف',
+                date: '٣٠ مارس ٢٠٢٦',
+                content: 'دراسة حول أثر التعاطف في زيادة إنتاجية الفرق التنفيذية...'
+            }
+        ];
+
+        function renderLists() {
+            ['light', 'dark'].forEach(mode => {
+                const container = document.getElementById(`list-${mode}`);
+                container.innerHTML = capsules.map(cap => `
+                    <div class="card p-5 flex items-center gap-4" onclick="openCapsule(${cap.id}, '${mode}')">
+                        <div class="action-icon">
+                            <i class="fas ${cap.type === 'audio' ? 'fa-headphones' : 'fa-file-alt'} text-sm"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-[14px] font-bold leading-tight mb-1">${cap.title}</h3>
+                            <div class="flex items-center gap-1 opacity-40">
+                                <i class="far fa-calendar text-[9px]"></i>
+                                <span class="text-[10px] font-bold">${cap.date}</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-left opacity-20 text-[10px]"></i>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function openCapsule(id, mode) {
+            const cap = capsules.find(c => c.id === id);
+            const body = document.getElementById(`modal-body-${mode}`);
+            
+            if (cap.type === 'text') {
+                body.innerHTML = `
+                    <div class="reading-mode">
+                        <h2 class="reading-title">${cap.title}</h2>
+                        <p class="opacity-40 text-xs font-bold mb-8">${cap.date}</p>
+                        <div class="reading-content">${cap.content}</div>
+                        <div class="h-20"></div>
+                    </div>
+                `;
+            } else {
+                body.innerHTML = `
+                    <div id="transcript-${mode}" class="transcript-overlay">
+                        <div class="flex justify-between items-center mb-8">
+                             <h3 class="text-xl font-black">المحتوى النصي للكبسولة</h3>
+                             <button onclick="toggleTranscript('${mode}')" class="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center">
+                                <i class="fas fa-times text-blue-500 text-xs"></i>
+                             </button>
+                        </div>
+                        <div class="reading-content text-lg leading-relaxed font-medium whitespace-pre-line">
+                            ${cap.transcript}
+                        </div>
+                        <div class="h-20"></div>
+                    </div>
+
+                    <div class="audio-player-container">
+                        <div class="cover-art">
+                            <i class="fas fa-podcast text-white/20 text-8xl"></i>
+                        </div>
+                        
+                        <div class="text-right w-full mb-6">
+                            <h2 class="text-2xl font-black mb-2">${cap.title}</h2>
+                            <p class="opacity-50 text-[13px] font-bold tracking-wide">${cap.date}</p>
+                        </div>
+
+                        <button onclick="toggleTranscript('${mode}')" class="toggle-transcript-btn">
+                            <i class="fas fa-align-right"></i>
+                            عرض المحتوى النصي
+                        </button>
+
+                        <div class="w-full h-1.5 bg-gray-500/10 rounded-full mb-2 relative">
+                            <div class="absolute inset-y-0 right-0 w-1/3 bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                        </div>
+                        <div class="flex justify-between w-full text-[10px] font-bold opacity-30 mb-6">
+                            <span>04:12</span>
+                            <span>01:45</span>
+                        </div>
+
+                        <div class="audio-controls-row">
+                            <span class="text-[12px] font-black opacity-40">1x</span>
+                            <i class="fas fa-backward text-xl opacity-80 cursor-pointer"></i>
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-600/30 cursor-pointer active:scale-95 transition-transform">
+                                <i class="fas fa-play text-xl text-white ml-1"></i>
+                            </div>
+                            <i class="fas fa-forward text-xl opacity-80 cursor-pointer"></i>
+                            <i class="fas fa-moon text-[14px] opacity-40 cursor-pointer"></i>
+                        </div>
+
+                        <div class="audio-description">
+                            <h4 class="text-[15px] font-black mb-4 flex items-center gap-2">
+                                <i class="fas fa-align-right text-blue-500 text-xs"></i>
+                                ملخص الكبسولة
+                            </h4>
+                            <p class="text-[14px] leading-relaxed opacity-70 font-medium text-justify">
+                                ${cap.description}
+                            </p>
+                        </div>
+                        <div class="h-10"></div>
+                    </div>
+                `;
+            }
+            document.getElementById(`modal-${mode}`).classList.add('active');
+        }
+
+        function toggleTranscript(mode) {
+            const el = document.getElementById(`transcript-${mode}`);
+            el.classList.toggle('active');
+        }
+
+        function closeModal(mode) { 
+            const trans = document.getElementById(`transcript-${mode}`);
+            if (trans) trans.classList.remove('active');
+            document.getElementById(`modal-${mode}`).classList.remove('active'); 
+        }
+        
+        window.onload = renderLists;
+    </script>
+</body>
+</html>
