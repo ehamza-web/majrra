@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فن القيادة - النمط المطور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Dubai';
+            src: url('https://fonts.cdnfonts.com/s/14883/Dubai-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Dubai';
+            src: url('https://fonts.cdnfonts.com/s/14883/Dubai-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Dubai', sans-serif;
+            background-color: #f3f4f6;
+            color: #1a1a1a;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .phone-container {
+            width: 375px;
+            height: 812px;
+            background: #ffffff;
+            border: 12px solid #1a1a1a;
+            border-radius: 45px;
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+        }
+
+        .phone-container::-webkit-scrollbar { width: 0px; }
+
+        .majarra-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .majarra-logo {
+            height: 22px;
+        }
+
+        .subscription-card {
+            background: #ffffff;
+            color: #1a1a1a;
+            border: 1px solid #e5e7eb;
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+        }
+
+        .price-badge {
+            font-size: 34px; /* تم تصغيره قليلاً من 42px */
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1;
+            color: #10b981; 
+        }
+
+        .b2b-card-mini {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .legal-footer {
+            font-size: 10px;
+            color: #9ca3af;
+            text-align: center;
+            padding: 24px 0;
+            line-height: 1.6;
+        }
+
+        .nav-bar {
+            background: #ffffff;
+            border-top: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 14px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #9ca3af;
+        }
+
+        .nav-item.active { color: #10b981; font-weight: bold; }
+        
+        .purchase-notice {
+            font-size: 10px;
+            color: #9ca3af;
+            margin-top: 14px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .home-indicator {
+            width: 120px;
+            height: 5px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            margin: 8px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        <!-- شريط الحالة -->
+        <div class="px-8 py-3 flex justify-between items-center text-[12px] font-semibold text-gray-800">
+            <span>9:41</span>
+            <div class="flex gap-1.5 items-center">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <div class="w-5 h-2.5 border border-gray-400 rounded-sm relative flex items-center px-0.5">
+                    <div class="h-full bg-black w-3/4 rounded-3xs"></div>
+                </div>
+            </div>
+        </div>
+
+        <header class="majarra-header">
+            <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="Majarra Logo" class="majarra-logo">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 text-xs">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <img src="https://ui-avatars.com/api/?name=User&background=10b981&color=fff" class="w-8 h-8 rounded-full border border-gray-200" alt="Avatar">
+            </div>
+        </header>
+
+        <main class="flex-grow px-6 pt-6 pb-8 space-y-6">
+            <section class="text-center space-y-3">
+                <!-- تم تغيير اللون إلى الأحمر كما طلبت -->
+                <div class="inline-block bg-red-50 text-red-600 text-[11px] font-bold px-4 py-1.5 rounded-full border border-red-100 uppercase tracking-wide">
+                    هارفارد بزنس ريفيو
+                </div>
+                <h1 class="text-3xl font-black text-gray-900">فن القيادة</h1>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-[280px] mx-auto">
+                    اشتراك سنوي يمنحك خلاصة الفكر الإداري يومياً عبر مفهوم التعلم المصغر.
+                </p>
+            </section>
+
+            <!-- بطاقة الدفع الرئيسية -->
+            <div class="subscription-card">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="pt-1"> 
+                        <h3 class="text-2xl font-black text-gray-900 leading-tight">باقة الأفراد</h3>
+                        <p class="text-[12px] text-gray-400 font-bold mt-0.5">اشتراك سنوي - تجديد تلقائي</p>
+                    </div>
+                    <div class="text-left flex flex-col items-start">
+                        <!-- حجم السعر تم تصغيره قليلاً -->
+                        <div class="price-badge">$149.99</div>
+                        <span class="text-[13px] font-black text-emerald-600 mt-1">سنوياً</span>
+                    </div>
+                </div>
+
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-3 text-[14px] font-bold text-gray-900">
+                        <i class="fas fa-check-circle text-emerald-500 text-lg"></i>
+                        <span>وصول غير محدود لجميع الكبسولات.</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-[14px] font-bold text-gray-900">
+                        <i class="fas fa-check-circle text-emerald-500 text-lg"></i>
+                        <span>محتوى صباحي متجدد يومياً.</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-[14px] font-bold text-gray-900">
+                        <i class="fas fa-check-circle text-emerald-500 text-lg"></i>
+                        <span>تقارير هارفارد بزنس ريفيو الحصرية.</span>
+                    </li>
+                </ul>
+
+                <button class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-black text-lg active:scale-[0.98] transition-all shadow-lg shadow-emerald-100">
+                    بدء الاشتراك السنوي
+                </button>
+
+                <div class="purchase-notice">
+                    سيتم تجديد الاشتراك تلقائياً بمبلغ <strong class="text-emerald-700">$149.99 سنوياً</strong> ما لم يتم إلغاؤه قبل 24 ساعة من نهاية الفترة الحالية.
+                </div>
+            </div>
+
+            <div class="b2b-card-mini border-gray-100">
+                <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-briefcase text-gray-600 text-lg"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="text-gray-900 text-xs font-bold">باقة الفرق والمؤسسات</h4>
+                    <p class="text-gray-500 text-[10px]">تطوير مهارات فريقك القيادي.</p>
+                </div>
+                <button class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-xl text-[10px] font-bold">
+                    تواصل معنا
+                </button>
+            </div>
+
+            <div class="legal-footer">
+                <div class="flex justify-center gap-3 mb-3">
+                    <a href="#" class="hover:text-emerald-600">شروط الخدمة</a>
+                    <span>•</span>
+                    <a href="#" class="hover:text-emerald-600">الخصوصية</a>
+                    <span>•</span>
+                    <a href="#" class="hover:text-emerald-600">الدعم</a>
+                </div>
+                <p>جميع الحقوق محفوظة لمجرة © 2024</p>
+            </div>
+        </main>
+
+        <nav class="nav-bar">
+            <div class="nav-item active"><i class="fas fa-home text-xl mb-1"></i><span>الرئيسية</span></div>
+            <div class="nav-item"><i class="fas fa-compass text-xl mb-1"></i><span>اكتشف</span></div>
+            <div class="nav-item"><i class="fas fa-microphone text-xl mb-1"></i><span>بودكاست</span></div>
+            <div class="nav-item"><i class="fas fa-bookmark text-xl mb-1"></i><span>المكتبة</span></div>
+            <div class="nav-item"><i class="fas fa-user text-xl mb-1"></i><span>حسابي</span></div>
+        </nav>
+        
+        <div class="bg-white pb-2">
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+
+</body>
+</html>
