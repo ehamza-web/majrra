@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فن القيادة - واجهة الكبسولة</title>
+    <title>فن القيادة - واجهة التطبيق</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -44,71 +44,7 @@
             box-shadow: 0 40px 80px rgba(0,0,0,0.15);
         }
 
-        /* الطبقة الخلفية (التطبيق) */
-        .app-background {
-            filter: blur(4px); /* تمويه الخلفية لتركيز النظر على البوب أب */
-            pointer-events: none;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .majarra-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        /* تصميم البوب أب */
-        .popup-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            z-index: 1000;
-        }
-
-        .popup-card {
-            background: #ffffff;
-            width: 100%;
-            max-height: 90%;
-            border-radius: 32px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            animation: slideUp 0.4s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .capsule-body {
-            background: #fdfdfd;
-            border: 1px solid #f3f4f6;
-            border-radius: 20px;
-            padding: 16px;
-            margin-top: 20px;
-            border-right: 4px solid #eab308;
-        }
-
-        .home-indicator {
-            width: 120px;
-            height: 5px;
-            background: #e5e7eb;
-            border-radius: 10px;
-            margin: 8px auto;
-        }
+        .phone-container::-webkit-scrollbar { width: 0px; }
 
         .status-bar {
             padding: 12px 32px;
@@ -118,13 +54,138 @@
             font-size: 12px;
             font-weight: 600;
         }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            background-color: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4b5563;
+        }
+
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 20px;
+        }
+
+        .content-scroll::-webkit-scrollbar { width: 0px; }
+
+        .welcome-section {
+            margin: 20px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .horizontal-card-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .horizontal-card-container::-webkit-scrollbar { width: 0px; }
+
+        .feature-card {
+            min-width: 240px;
+            height: 180px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 15px;
+        }
+
+        .feature-card.secondary {
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+        }
+
+        .feature-card-tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 10px;
+            color: white;
+            align-self: flex-start;
+            margin-bottom: auto;
+        }
+
+        .leadership-banner {
+            background-color: #f9fafb;
+            border: 1px solid #f3f4f6;
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .red-badge {
+            background-color: #fee2e2;
+            color: #ef4444;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .nav-bar {
+            background: #ffffff;
+            border-top: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 16px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #9ca3af;
+        }
+
+        .nav-item.active { color: #1a1a1a; }
+
+        .home-indicator {
+            width: 120px;
+            height: 5px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            margin: 8px auto;
+        }
     </style>
 </head>
 <body>
 
     <div class="phone-container">
-        <!-- شريط الحالة ثابت فوق كل شيء -->
-        <div class="status-bar z-[1100] bg-white/10 backdrop-blur-sm">
+        <!-- Status Bar -->
+        <div class="status-bar">
             <span>9:41</span>
             <div class="flex gap-1.5 items-center">
                 <i class="fas fa-signal"></i>
@@ -133,56 +194,86 @@
             </div>
         </div>
 
-        <!-- التطبيق في الخلفية (مموه) -->
-        <div class="app-background">
-            <header class="majarra-header">
-                <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="Majarra Logo" class="h-5">
-                <div class="w-8 h-8 bg-gray-100 rounded-full"></div>
-            </header>
-            <main class="p-6 space-y-4">
-                <div class="h-40 bg-gray-100 rounded-3xl w-full"></div>
-                <div class="h-6 bg-gray-100 rounded w-1/2"></div>
-                <div class="h-20 bg-gray-100 rounded-3xl w-full"></div>
-            </main>
-        </div>
-
-        <!-- النافذة المنبثقة (Pop-up) للكبسولة -->
-        <div class="popup-overlay">
-            <div class="popup-card">
-                <div class="text-center mb-6">
-                    <h2 class="text-2xl font-black text-gray-900">كبسولة فن القيادة اليومية</h2>
-                </div>
-
-                <div class="capsule-body overflow-y-auto">
-                    <div class="flex items-center gap-2 mb-3">
-                        <i class="fas fa-bolt text-yellow-500 text-sm"></i>
-                        <h3 class="text-yellow-600 font-bold text-xs uppercase">مهارة اليوم: قاعدة الـ 10 ثوانٍ الذهبية</h3>
-                    </div>
-                    
-                    <div class="h-px bg-gray-100 w-full mb-4"></div>
-
-                    <div class="text-gray-700 text-[14px] leading-relaxed font-medium text-justify">
-                        <p class="mb-3">
-                            تعد "قاعدة الـ 10 ثوانٍ" مفتاحاً لتحويل رد فعلك من استجابة عاطفية متسرعة إلى قرار قيادي مدروس، حيث تمنحك هذه الثواني البسيطة سيطرة كاملة على نبرة الاجتماع وتفرض احترامك المهني على الفريق، مما يقلل احتمالية الوقوع في أخطاء ناتجة عن التوتر بنسبة تصل إلى 40%.
-                        </p>
-                        <p>
-                            وبمجرد إتقان هذا الصمت الاستراتيجي، ستلاحظ تحولاً جذرياً في كيفية استقبال الآخرين لأفكارك، حيث يُنظر إليك كقائد يمتلك رباطة جأش وحكمة استثنائية حتى في أحلك الظروف. إن الاستثمار في هذه اللحظات القصيرة ليس مجرد تكنيك مؤقت، بل هو أساس بناء كاريزما قيادية مستدامة تلهم فريقك.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mt-8 space-y-4">
-                    <button class="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 py-4 rounded-2xl font-black text-base shadow-lg shadow-yellow-100 active:scale-[0.98] transition-all">
-                        ابدأ رحلة التميز القيادي الآن
-                    </button>
-                    <button class="w-full text-gray-400 font-bold text-xs py-1">
-                        ليس الآن، أريد تصفح التطبيق أولاً
-                    </button>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-icons">
+                <div class="icon-circle font-bold text-xs">US</div>
+                <div class="icon-circle">
+                    <i class="fas fa-bell"></i>
                 </div>
             </div>
+            <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="مجرة" class="h-6">
+        </header>
+
+        <div class="content-scroll">
+            <!-- Welcome -->
+            <section class="welcome-section">
+                <h1 class="text-2xl font-black text-gray-900 text-right">مرحباً بك في مجرة</h1>
+                <p class="text-gray-400 text-sm text-right">إليك أفضل ما اخترناه لك اليوم.</p>
+            </section>
+
+            <!-- اخترنا لك -->
+            <section class="mb-6">
+                <div class="section-header">
+                    <h2 class="text-lg font-black text-gray-900">اخترنا لك</h2>
+                    <span class="text-yellow-600 font-bold text-sm">عرض الكل</span>
+                </div>
+                
+                <div class="horizontal-card-container">
+                    <!-- كرت 1 -->
+                    <div class="feature-card">
+                        <span class="feature-card-tag">إم آي تي تكنولوجي</span>
+                        <h3 class="text-white font-bold text-sm leading-tight text-right">مستقبل الذكاء الاصطناعي في 2024</h3>
+                    </div>
+                    <!-- كرت 2 -->
+                    <div class="feature-card secondary">
+                        <span class="feature-card-tag">بوبيولار ساينس</span>
+                        <h3 class="text-white font-bold text-sm leading-tight text-right">اكتشافات مذهلة من أعماق البحار</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- بنر فن القيادة -->
+            <section class="leadership-banner shadow-sm">
+                <!-- تم تعديل محاذاة الوسم لليمين (justify-start في نظام RTL تعني اليمين) -->
+                <div class="flex justify-start">
+                    <span class="red-badge">هارفارد بزنس ريفيو</span>
+                </div>
+                
+                <div class="text-right mt-2">
+                    <h3 class="text-xl font-black text-gray-900 mb-2">كن القائد الذي يلهم الجميع</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        لا تقرأ عن الإدارة فقط، بل عشها يومياً مع <span class="font-bold text-gray-900">فن القيادة</span>. دروس مكثفة في 3 دقائق.
+                    </p>
+                    <button class="w-full bg-yellow-400 text-gray-900 py-3.5 rounded-2xl font-black text-sm shadow-md active:scale-[0.98] transition-all">
+                        استكشف فن القيادة
+                    </button>
+                </div>
+            </section>
         </div>
+
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <div class="nav-item active">
+                <i class="fas fa-home text-xl mb-1"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-layer-group text-xl mb-1"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-headphones text-xl mb-1"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-search text-xl mb-1"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-clock text-xl mb-1"></i>
+            </div>
+        </nav>
         
-        <div class="absolute bottom-0 left-0 right-0 pb-2"><div class="home-indicator"></div></div>
+        <div class="bg-white pb-2">
+            <div class="home-indicator"></div>
+        </div>
     </div>
 
 </body>
