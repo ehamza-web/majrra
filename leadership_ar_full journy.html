@@ -82,19 +82,10 @@
 
         .capsule-card-premium {
             background: #26241e; border-radius: 12px; border-right: 3px solid #d4af37;
-            padding: 20px; margin: 20px 0; text-align: right; position: relative;
+            padding: 16px; margin: 16px 0; text-align: right; position: relative;
         }
 
-        .capsule-divider { border-top: 1px solid rgba(212, 175, 55, 0.2); margin: 15px 0; }
-
-        .check-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px; }
-
-        .check-icon {
-            color: #d4af37; background: rgba(212, 175, 55, 0.1);
-            width: 18px; height: 18px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px; margin-top: 4px; flex-shrink: 0;
-        }
+        .capsule-divider { border-top: 1px solid rgba(212, 175, 55, 0.2); margin: 12px 0; }
 
         /* Paywall Page */
         #paywall-page {
@@ -162,7 +153,6 @@
                     </div>
                     
                     <div class="horizontal-scroll no-scrollbar">
-                        <!-- Card 1 -->
                         <div class="article-card">
                             <div class="article-img bg-gradient-to-br from-blue-900 to-black p-4 flex items-end">
                                 <span class="text-[10px] bg-white/10 backdrop-blur px-2 py-0.5 rounded text-white font-bold">إم آي تي تكنولوجي</span>
@@ -171,7 +161,6 @@
                                 <h4 class="text-white text-[13px] font-bold leading-snug">مستقبل الذكاء الاصطناعي في 2024</h4>
                             </div>
                         </div>
-                        <!-- Card 2 -->
                         <div class="article-card">
                             <div class="article-img bg-gradient-to-br from-green-900 to-black p-4 flex items-end">
                                 <span class="text-[10px] bg-white/10 backdrop-blur px-2 py-0.5 rounded text-white font-bold">ببيولار ساينس</span>
@@ -217,40 +206,23 @@
         <!-- نافذة البوب أب -->
         <div id="popup-overlay">
             <div class="popup-content no-scrollbar shadow-2xl relative">
-                <button onclick="closePopup()" class="absolute top-2 left-4 text-gray-500 hover:text-white p-2"><i class="fas fa-times"></i></button>
-                
-                <p class="text-gray-500 text-[11px] font-bold mb-1 mt-4">رؤى حصرية من هارفارد بزنس ريفيو</p>
-                <h2 class="text-2xl font-black mb-6 text-white leading-tight">كبسولة فن القيادة اليومية</h2>
+                <!-- تم رفع العنوان للأعلى (mt-2 بدلاً من mt-6) لتقليل الارتفاع -->
+                <h2 class="text-2xl font-black mb-4 text-white leading-tight mt-2">كبسولة فن القيادة اليومية</h2>
                 
                 <div class="capsule-card-premium">
-                    <h4 class="text-[#d4af37] text-[14px] font-black mb-4 flex items-center gap-2">
+                    <h4 class="text-[#d4af37] text-[14px] font-black mb-3 flex items-center gap-2">
                         <i class="fas fa-bolt"></i> مهارة اليوم: قاعدة الـ 10 ثوانٍ الذهبية
                     </h4>
                     <div class="capsule-divider"></div>
-                    <p class="text-[14px] leading-relaxed text-gray-200 mb-6 font-bold">
-                        القيادة العظيمة لا تُبنى بالقرارات الكبرى فحسب، بل بكيفية إدارتك للحظات الضغط العالي. هل تعلم أن القادة الأكثر تأثيراً عالمياً يمارسون ما يسمى بـ <span class="text-white border-b-2 border-[#d4af37]">"الصمت الاستراتيجي"</span>؟
+                    <p class="text-[13px] leading-relaxed text-gray-200 text-right font-medium">
+                        تعد "قاعدة الـ 10 ثوانٍ" مفتاحاً لتحويل رد فعلك من استجابة عاطفية متسرعة إلى قرار قيادي مدروس، حيث تمنحك هذه الثواني البسيطة سيطرة كاملة على نبرة الاجتماع وتفرض احترامك المهني على الفريق، مما يقلل احتمالية الوقوع في أخطاء ناتجة عن التوتر بنسبة تصل إلى 40%. وبمجرد إتقان هذا الصمت الاستراتيجي، ستلاحظ تحولاً جذرياً في كيفية استقبال الآخرين لأفكارك، حيث يُنظر إليك كقائد يمتلك رباطة جأش وحكمة استثنائية حتى في أحلك الظروف. إن الاستثمار في هذه اللحظات القصيرة ليس مجرد تكنيك مؤقت، بل هو أساس بناء كاريزما قيادية مستدامة تلهم فريقك وتدفعهم نحو الأداء الأفضل دون الحاجة لرفع نبرة الصوت أو ممارسة الضغط التقليدي.
                     </p>
-                    <div class="space-y-5">
-                        <!-- تم تعديل الاتجاه هنا: Icon على اليمين والنص على اليسار -->
-                        <div class="check-item flex-row">
-                            <div class="check-icon order-1"><i class="fas fa-check"></i></div>
-                            <div class="flex-grow order-2"><p class="text-[13px] text-gray-300 leading-snug text-right">يسمح هذا الفاصل البسيط بتحويل رد فعلك من "عاطفي" إلى "قيادي" مدروس.</p></div>
-                        </div>
-                        <div class="check-item flex-row">
-                            <div class="check-icon order-1"><i class="fas fa-check"></i></div>
-                            <div class="flex-grow order-2"><p class="text-[13px] text-gray-300 leading-snug text-right">يمنحك السيطرة الكاملة على نبرة الاجتماع ويفرض احترامك على الفريق.</p></div>
-                        </div>
-                        <div class="check-item flex-row">
-                            <div class="check-icon order-1"><i class="fas fa-check"></i></div>
-                            <div class="flex-grow order-2"><p class="text-[13px] text-gray-300 leading-snug text-right">يقلل من احتمالية ارتكاب أخطاء تحت تأثير التوتر بنسبة تصل إلى 40%.</p></div>
-                        </div>
-                    </div>
                 </div>
 
-                <button onclick="showPaywall()" class="w-full bg-[#d4af37] text-black py-4 rounded-2xl font-black text-[16px] mb-4 shadow-xl shadow-yellow-600/20 active:scale-95 transition-all">
+                <button onclick="showPaywall()" class="w-full bg-[#d4af37] text-black py-4 rounded-2xl font-black text-[16px] mb-3 shadow-xl shadow-yellow-600/20 active:scale-95 transition-all">
                     ابدأ رحلة التميز القيادي الآن
                 </button>
-                <button onclick="closePopup()" class="text-gray-500 text-xs font-bold mb-4 opacity-70">ليس الآن، أريد تصفح التطبيق أولاً</button>
+                <button onclick="closePopup()" class="text-gray-500 text-xs font-bold mb-2 opacity-70">ليس الآن، أريد تصفح التطبيق أولاً</button>
             </div>
         </div>
 
