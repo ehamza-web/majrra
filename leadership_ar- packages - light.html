@@ -20,6 +20,11 @@
             font-style: normal;
         }
 
+        :root {
+            /* اللون الكموني المحدد */
+            --primary-gold: rgb(212, 175, 55);
+        }
+
         body {
             font-family: 'Dubai', sans-serif;
             background-color: #f3f4f6;
@@ -73,12 +78,13 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.04);
         }
 
+        /* تعديل السعر ليكون باللون الأسود */
         .price-badge {
-            font-size: 34px; /* تم تصغيره قليلاً من 42px */
+            font-size: 34px;
             font-weight: 900;
             letter-spacing: -1px;
             line-height: 1;
-            color: #10b981; 
+            color: #1a1a1a; 
         }
 
         .b2b-card-mini {
@@ -115,7 +121,10 @@
             color: #9ca3af;
         }
 
-        .nav-item.active { color: #10b981; font-weight: bold; }
+        .nav-item.active { 
+            color: var(--primary-gold); 
+            font-weight: bold; 
+        }
         
         .purchase-notice {
             font-size: 10px;
@@ -132,12 +141,22 @@
             border-radius: 10px;
             margin: 8px auto;
         }
+
+        .btn-gold {
+            background-color: var(--primary-gold);
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .text-gold {
+            color: var(--primary-gold);
+        }
     </style>
 </head>
 <body>
 
     <div class="phone-container">
-        <!-- شريط الحالة -->
+        <!-- Status Bar -->
         <div class="px-8 py-3 flex justify-between items-center text-[12px] font-semibold text-gray-800">
             <span>9:41</span>
             <div class="flex gap-1.5 items-center">
@@ -155,13 +174,14 @@
                 <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 text-xs">
                     <i class="fas fa-bell"></i>
                 </div>
-                <img src="https://ui-avatars.com/api/?name=User&background=10b981&color=fff" class="w-8 h-8 rounded-full border border-gray-200" alt="Avatar">
+                <div class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-white text-[10px] font-bold" style="background-color: var(--primary-gold);">
+                    US
+                </div>
             </div>
         </header>
 
         <main class="flex-grow px-6 pt-6 pb-8 space-y-6">
             <section class="text-center space-y-3">
-                <!-- تم تغيير اللون إلى الأحمر كما طلبت -->
                 <div class="inline-block bg-red-50 text-red-600 text-[11px] font-bold px-4 py-1.5 rounded-full border border-red-100 uppercase tracking-wide">
                     هارفارد بزنس ريفيو
                 </div>
@@ -171,7 +191,7 @@
                 </p>
             </section>
 
-            <!-- بطاقة الدفع الرئيسية -->
+            <!-- بطاقة الدفع -->
             <div class="subscription-card">
                 <div class="flex justify-between items-start mb-6">
                     <div class="pt-1"> 
@@ -179,33 +199,33 @@
                         <p class="text-[12px] text-gray-400 font-bold mt-0.5">اشتراك سنوي - تجديد تلقائي</p>
                     </div>
                     <div class="text-left flex flex-col items-start">
-                        <!-- حجم السعر تم تصغيره قليلاً -->
+                        <!-- السعر باللون الأسود كما طلبت -->
                         <div class="price-badge">$149.99</div>
-                        <span class="text-[13px] font-black text-emerald-600 mt-1">سنوياً</span>
+                        <span class="text-[13px] font-black mt-1 text-gold">سنوياً</span>
                     </div>
                 </div>
 
                 <ul class="space-y-3 mb-8">
                     <li class="flex items-center gap-3 text-[14px] font-bold text-gray-900">
-                        <i class="fas fa-check-circle text-emerald-500 text-lg"></i>
+                        <i class="fas fa-check-circle text-gold text-lg"></i>
                         <span>وصول غير محدود لجميع الكبسولات.</span>
                     </li>
                     <li class="flex items-center gap-3 text-[14px] font-bold text-gray-900">
-                        <i class="fas fa-check-circle text-emerald-500 text-lg"></i>
+                        <i class="fas fa-check-circle text-gold text-lg"></i>
                         <span>محتوى صباحي متجدد يومياً.</span>
                     </li>
                     <li class="flex items-center gap-3 text-[14px] font-bold text-gray-900">
-                        <i class="fas fa-check-circle text-emerald-500 text-lg"></i>
+                        <i class="fas fa-check-circle text-gold text-lg"></i>
                         <span>تقارير هارفارد بزنس ريفيو الحصرية.</span>
                     </li>
                 </ul>
 
-                <button class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-black text-lg active:scale-[0.98] transition-all shadow-lg shadow-emerald-100">
+                <button class="w-full btn-gold py-4 rounded-2xl font-black text-lg active:scale-[0.98] shadow-lg" style="box-shadow: 0 10px 20px -5px rgba(212, 175, 55, 0.3);">
                     بدء الاشتراك السنوي
                 </button>
 
                 <div class="purchase-notice">
-                    سيتم تجديد الاشتراك تلقائياً بمبلغ <strong class="text-emerald-700">$149.99 سنوياً</strong> ما لم يتم إلغاؤه قبل 24 ساعة من نهاية الفترة الحالية.
+                    سيتم تجديد الاشتراك تلقائياً بمبلغ <strong class="text-gold">$149.99 سنوياً</strong> ما لم يتم إلغاؤه قبل 24 ساعة من نهاية الفترة الحالية.
                 </div>
             </div>
 
@@ -224,11 +244,11 @@
 
             <div class="legal-footer">
                 <div class="flex justify-center gap-3 mb-3">
-                    <a href="#" class="hover:text-emerald-600">شروط الخدمة</a>
+                    <a href="#" class="hover:text-gold transition-colors">شروط الخدمة</a>
                     <span>•</span>
-                    <a href="#" class="hover:text-emerald-600">الخصوصية</a>
+                    <a href="#" class="hover:text-gold transition-colors">الخصوصية</a>
                     <span>•</span>
-                    <a href="#" class="hover:text-emerald-600">الدعم</a>
+                    <a href="#" class="hover:text-gold transition-colors">الدعم</a>
                 </div>
                 <p>جميع الحقوق محفوظة لمجرة © 2024</p>
             </div>
