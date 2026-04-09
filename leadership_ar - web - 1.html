@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فن القيادة - مجرة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* استيراد خط دبي */
+        @font-face {
+            font-family: 'Dubai';
+            src: url('https://fonts.cdnfonts.com/s/14883/Dubai-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Dubai';
+            src: url('https://fonts.cdnfonts.com/s/14883/Dubai-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Dubai', sans-serif;
+            background-color: #ffffff;
+            color: #1b1b1c;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* الهيدر المتطابق مع هوية مجرة */
+        .majarra-header {
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 40px;
+        }
+
+        .nav-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo img {
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1b1b1c;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links .platforms-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .login-link {
+            color: #1b1b1c;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .btn-subscribe {
+            background-color: #ffda00; 
+            color: #1b1b1c;
+            padding: 10px 28px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .btn-subscribe:hover {
+            transform: translateY(-2px);
+        }
+
+        /* تحسينات العنوان والألوان */
+        .main-title {
+            color: #5A00A0; /* اللون البنفسجي لمنتج فن القيادة */
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .card-annual {
+            background: linear-gradient(145deg, #111827, #1f2937);
+        }
+
+        .mockup-container {
+            background: radial-gradient(circle at center, #f3e8ff 0%, #fafafa 100%);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 450px; 
+        }
+
+        @media (max-width: 1024px) {
+            .majarra-header { padding: 0 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر الرئيسي -->
+    <header class="majarra-header">
+        <div class="nav-container">
+            <div class="right-section">
+                <a href="#" class="logo">
+                    <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="Majarra Logo">
+                </a>
+                <nav class="nav-links">
+                    <a href="#" class="platforms-btn">
+                        المنصات
+                        <i class="fas fa-chevron-down text-[10px]"></i>
+                    </a>
+                    <a href="#" class="font-bold border-b-2 border-black">الرئيسية</a>
+                    <a href="#">باقات الاشتراك</a>
+                    <a href="#">حمّل تطبيق مجرة</a>
+                </nav>
+            </div>
+
+            <div class="left-section">
+                <a href="#" class="login-link">تسجيل الدخول</a>
+                <a href="#" class="btn-subscribe">اشترك الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- قسم الـ Hero -->
+        <section class="relative overflow-hidden bg-[#fafafa] pt-20 pb-32">
+            <div class="max-w-6xl mx-auto px-6 relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 bg-red-50 text-red-600 px-5 py-2 rounded-full text-sm font-bold border border-red-100 mb-8">
+                    <span class="flex h-2 w-2 rounded-full bg-red-600 animate-pulse"></span>
+                    جديد هارفارد بزنس ريفيو
+                </div>
+                
+                <h1 class="text-7xl md:text-[140px] font-black main-title mb-8">
+                    فن القيادة
+                </h1>
+                
+                <p class="text-xl md:text-3xl text-gray-500 font-medium max-w-3xl mx-auto leading-relaxed">
+                    طور مهاراتك القيادية يومياً عبر مفهوم <span class="text-black font-bold">التعلم المصغر</span> المستخلص من أهم أبحاث الإدارة العالمية.
+                </p>
+            </div>
+            
+            <div class="absolute top-0 right-0 w-64 h-64 bg-purple-100 rounded-full blur-3xl opacity-20 -mr-32 -mt-32"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-yellow-100 rounded-full blur-3xl opacity-20 -ml-48 -mb-48"></div>
+        </section>
+
+        <!-- شبكة المحتوى -->
+        <section class="max-w-6xl mx-auto px-6 -mt-16 relative z-20 pb-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- بطاقة الاشتراك السنوي المحدثة -->
+                <div class="card-annual rounded-[40px] p-10 lg:p-14 text-white flex flex-col justify-between shadow-2xl transform hover:scale-[1.01] transition-all duration-300 h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <h2 class="text-3xl font-bold">الاشتراك السنوي</h2>
+                        </div>
+                        <div class="flex items-baseline gap-2 mb-10">
+                            <span class="text-6xl font-black">$89.99</span>
+                            <span class="text-gray-400">/ سنوياً</span>
+                        </div>
+                        
+                        <ul class="space-y-6">
+                            <li class="flex items-center gap-4">
+                                <div class="bg-green-400/10 p-2 rounded-lg">
+                                    <i class="fas fa-check text-green-400"></i>
+                                </div>
+                                <span class="font-bold text-xl">وصول ذكي عبر الإيميل والتطبيق</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="bg-green-400/10 p-2 rounded-lg">
+                                    <i class="fas fa-check text-green-400"></i>
+                                </div>
+                                <span class="font-bold text-xl">خلاصة فكر هارفارد بكبسولة مركّزة</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="bg-green-400/10 p-2 rounded-lg">
+                                    <i class="fas fa-check text-green-400"></i>
+                                </div>
+                                <span class="font-bold text-xl">تعلم مستمر بمحتوى صباحي ملهم</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="w-full bg-white text-black py-5 rounded-2xl font-bold text-xl mt-12 hover:bg-yellow-400 transition-colors duration-300 shadow-lg shadow-white/5">
+                        ابدأ رحلتك القيادية الآن
+                    </button>
+                </div>
+
+                <!-- قسم صورة التطبيق -->
+                <div class="mockup-container p-10 shadow-sm border border-gray-100 group h-full">
+                    <div class="relative w-full h-full flex flex-col items-center justify-center text-center">
+                        <img src="https://my.majarra.com/_nuxt/img/MockupDownloadApp.6381fe4.webp" alt="تطبيق مجرة" class="max-h-[380px] object-contain drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="mt-6">
+                            <h3 class="text-xl font-bold text-purple-900 mb-1">تجربة تعلم متكاملة</h3>
+                            <p class="text-gray-500 text-sm">تصفح محتوى "فن القيادة" عبر تطبيق مجرة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ملاحظة باقة المؤسسات -->
+            <div class="mt-12 text-center p-8 bg-gray-50 rounded-3xl border border-dashed border-gray-200">
+                <p class="text-gray-600 text-lg">
+                    <i class="fas fa-info-circle text-purple-600 ml-2"></i>
+                    هل تبحث عن حلول لشركتك؟ نوفر أيضاً <span class="font-bold text-black">باقة المؤسسات</span> و <span class="font-bold text-black">باقة القادة للفرق</span>. 
+                    <a href="#" class="text-purple-700 font-bold underline hover:text-purple-900 transition-colors mr-2">يمكنك التواصل معنا للتفاصيل</a>.
+                </p>
+            </div>
+        </section>
+
+        <!-- قسم الخاتمة البسيط -->
+        <section class="py-20 text-center border-t border-gray-100">
+            <h3 class="text-2xl font-bold mb-4">هل لديك استفسار؟</h3>
+            <p class="text-gray-500 mb-8">فريق خدمة العملاء متواجد لمساعدتك دائماً</p>
+            <a href="#" class="text-purple-600 font-bold underline">تواصل معنا عبر واتساب</a>
+        </section>
+    </main>
+
+</body>
+</html>
