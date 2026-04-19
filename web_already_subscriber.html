@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تنبيه الاشتراك - مجرة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            background-color: #f3f4f6;
+            overflow: hidden;
+        }
+
+        /* الطبقة الخلفية المموهة */
+        .page-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.1);
+            backdrop-filter: blur(6px);
+            z-index: 10;
+        }
+
+        /* تصميم الودجت السفلي */
+        .subscription-widget {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top-left-radius: 32px;
+            border-top-right-radius: 32px;
+            box-shadow: 0 -20px 60px rgba(0,0,0,0.15);
+            z-index: 1000;
+            padding: 24px 24px 44px 24px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* مقبض علوي */
+        .drag-handle {
+            width: 40px;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 0 auto 28px auto;
+        }
+
+        /* زر الإغلاق */
+        .close-button {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            width: 32px;
+            height: 32px;
+            background: #f8fafc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .close-button:hover {
+            background: #f1f5f9;
+            transform: rotate(90deg);
+        }
+
+        /* الشعار */
+        .majarra-logo {
+            height: 42px;
+            margin: 0 auto 32px auto;
+            display: block;
+        }
+
+        /* النصوص */
+        .message-content {
+            margin-bottom: 32px;
+        }
+
+        .highlight-text {
+            color: #111827;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .sub-text {
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        /* الزر البنفسجي المعتمد */
+        .btn-purple {
+            background-color: #5c2d91; 
+            color: white;
+            width: 100%;
+            max-width: 380px;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(92, 45, 145, 0.25);
+        }
+
+        .btn-purple:hover {
+            background-color: #4a2475;
+            box-shadow: 0 15px 30px rgba(92, 45, 145, 0.35);
+            transform: translateY(-3px);
+        }
+
+        .btn-purple:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-overlay"></div>
+
+    <div id="widget" class="subscription-widget">
+        <div class="drag-handle"></div>
+
+        <div class="close-button" onclick="closeWidget()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </div>
+
+        <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="Majarra Logo" class="majarra-logo">
+
+        <div class="message-content">
+            <p class="highlight-text">عزيزي المشترك، اشتراكك الحالي لا يزال سارياً.</p>
+            <p class="sub-text">يرجى التواصل معنا لمساعدتكم في تفعيل الاشتراك المطلوب.</p>
+        </div>
+
+        <button class="btn-purple" onclick="window.location.href='mailto:support@majarra.com'">
+            تواصل معنا
+        </button>
+    </div>
+
+    <script>
+        function closeWidget() {
+            const widget = document.getElementById('widget');
+            widget.style.transform = 'translateY(100%)';
+            setTimeout(() => {
+                widget.style.display = 'none';
+            }, 600);
+        }
+    </script>
+
+</body>
+</html>
