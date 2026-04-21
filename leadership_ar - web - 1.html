@@ -130,13 +130,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow: hidden; /* هذا يضمن أن أي محتوى داخلي (مثل الصورة) سيتم قصه عند الزوايا المنحنية */
             min-height: 450px; 
+            position: relative;
+        }
+
+        /* تأثير القص (Masking) للصورة لتبدو مشطوبة الأطراف مع الحاوية */
+        .clipped-image {
+            max-height: 380px;
+            width: auto;
+            object-fit: contain;
+            /* إضافة انحناء للصورة نفسها لضمان عدم وجود زوايا حادة أبداً */
+            border-radius: 24px; 
+            mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
         }
 
         @media (max-width: 1024px) {
             .majarra-header { padding: 0 20px; }
             .nav-links { display: none; }
+            .main-title { font-size: 80px; }
         }
     </style>
 </head>
@@ -181,7 +194,7 @@
                 </h1>
                 
                 <p class="text-xl md:text-3xl text-gray-500 font-medium max-w-3xl mx-auto leading-relaxed">
-                    طور مهاراتك القيادية يومياً عبر مفهوم <span class="text-black font-bold">التعلم المصغر</span> المستخلص من أهم أبحاث الإدارة العالمية.
+                    طور مهاراتك القيادية يومياً عبر مفهوم <span class="text-black font-bold">التعلم المصغر</span> المستخلص من أهم أبحاث وتجارب الإدارة العالمية.
                 </p>
             </div>
             
@@ -193,7 +206,7 @@
         <section class="max-w-6xl mx-auto px-6 -mt-16 relative z-20 pb-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                 
-                <!-- بطاقة الاشتراك السنوي المحدثة -->
+                <!-- بطاقة الاشتراك السنوي -->
                 <div class="card-annual rounded-[40px] p-10 lg:p-14 text-white flex flex-col justify-between shadow-2xl transform hover:scale-[1.01] transition-all duration-300 h-full">
                     <div>
                         <div class="flex justify-between items-start mb-6">
@@ -231,10 +244,16 @@
                     </button>
                 </div>
 
-                <!-- قسم صورة التطبيق -->
+                <!-- قسم صورة التطبيق (المعدل بحدود مشطوبة وزوايا غير حادة) -->
                 <div class="mockup-container p-10 shadow-sm border border-gray-100 group h-full">
                     <div class="relative w-full h-full flex flex-col items-center justify-center text-center">
-                        <img src="https://my.majarra.com/_nuxt/img/MockupDownloadApp.6381fe4.webp" alt="تطبيق مجرة" class="max-h-[380px] object-contain drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="relative overflow-hidden rounded-[30px] transition-transform duration-500 group-hover:scale-105">
+                            <img 
+                                src="https://i.ibb.co/Q74VtxXp/Art-Of-Leadership-Banner-01-2.png" 
+                                alt="تطبيق مجرة" 
+                                class="clipped-image drop-shadow-2xl"
+                            />
+                        </div>
                         <div class="mt-6">
                             <h3 class="text-xl font-bold text-purple-900 mb-1">تجربة تعلم متكاملة</h3>
                             <p class="text-gray-500 text-sm">تصفح محتوى "فن القيادة" عبر تطبيق مجرة.</p>
@@ -253,6 +272,12 @@
             </div>
         </section>
 
+        <!-- قسم الخاتمة -->
+        <footer class="py-20 text-center border-t border-gray-100">
+            <h3 class="text-2xl font-bold mb-4">هل لديك استفسار؟</h3>
+            <p class="text-gray-500 mb-8">فريق خدمة العملاء متواجد لمساعدتك دائماً</p>
+            <a href="#" class="text-purple-600 font-bold underline">تواصل معنا عبر واتساب</a>
+        </footer>
     </main>
 
 </body>
