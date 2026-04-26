@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+
+
+
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كبسولة فن القيادة - تواضع كي تواصل التعلم</title>
+<template id="__bundler_thumbnail" data-bg-color="#e8e8e8">
+  <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="400" fill="#e8e8e8"/>
+    <rect x="80" y="40" width="440" height="320" rx="4" fill="#fff"/>
+    <rect x="80" y="40" width="440" height="70" fill="#fff" rx="4"/>
+    <rect x="80" y="108" width="440" height="3" fill="#111"/>
+    <rect x="80" y="111" width="440" height="90" fill="#f9f9f9"/>
+    <text x="300" y="165" textAnchor="middle" fontFamily="serif" fontSize="22" fontWeight="900" fill="#111">تواضع كي تواصل التعلم</text>
+    <rect x="80" y="201" width="440" height="120" fill="#fff"/>
+    <rect x="80" y="321" width="440" height="39" fill="#111" rx="0"/>
+    <rect x="220" y="334" width="160" height="14" rx="7" fill="#fff" opacity="0.5"/>
+  </svg>
+</template>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&amp;family=Noto+Serif+Arabic:wght@400;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8e8e8;
+    font-family: 'Noto Naskh Arabic', serif;
+    direction: rtl;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 16px 64px;
+    min-height: 100vh;
+  }
+
+  .email-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .pre-header {
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 16px;
+  }
+
+  .email-card {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+  }
+
+  /* ── Header ── */
+  .header {
+    background: #fff;
+    padding: 22px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* ── Black stripe ── */
+  .stripe {
+    height: 3px;
+    background: #111;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 20px 36px 32px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    color: #111;
+    letter-spacing: 0.14em;
+    margin-bottom: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 2px;
+    background: #111;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif Arabic', serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: #111;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  /* ── Body ── */
+  .body-content {
+    padding: 36px 36px 32px;
+    background: #fff;
+  }
+
+  .body-text {
+    font-size: 16.5px;
+    line-height: 2;
+    color: #222;
+    font-weight: 400;
+  }
+
+  .source-note {
+    margin-top: 28px;
+    font-size: 13px;
+    color: #888;
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .source-note a {
+    color: #111;
+    text-decoration: underline;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 32px 36px 36px;
+    background: #fff;
+    text-align: center;
+    border-top: 1px solid #eee;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 44px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Noto Naskh Arabic', serif;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  }
+
+  .cta-button:hover {
+    background: #333;
+    transform: translateY(-1px);
+  }
+
+  .cta-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    color: #ccc;
+    font-size: 12px;
+  }
+
+  .cta-divider::before,
+  .cta-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #eee;
+  }
+
+  .push-notif {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #999;
+  }
+
+  .push-icon {
+    width: 28px;
+    height: 28px;
+    background: #111;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: #111;
+    padding: 28px 36px;
+    text-align: center;
+  }
+
+  .footer-logo img {
+    height: 26px;
+    margin-bottom: 14px;
+  }
+
+  .footer-text {
+    font-size: 11.5px;
+    color: #aaa;
+    line-height: 1.8;
+  }
+
+  .footer-links {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    color: #888;
+    text-decoration: none;
+  }
+
+  .footer-links a:hover { color: #fff; }
+</style>
+</head>
+<body data-cc-id="cc-1" style="cursor: crosshair;">
+<div class="email-wrapper">
+
+  <div class="pre-header">كبسولتك الصباحية من فن القيادة — تواضع كي تواصل التعلم</div>
+
+  <div class="email-card">
+
+    <!-- Header: Composite logo -->
+    <div class="header" data-cc-id="cc-3">
+      <div style="display: flex; align-items: stretch; border: 2px solid rgb(17, 17, 17); border-radius: 3px; overflow: hidden; direction: rtl; width: 250px;" data-cc-id="cc-8">
+        <!-- Right: فن القيادة -->
+        <div style="flex:6; padding:14px 20px; display:flex; flex-direction:column; justify-content:center; gap:2px; border-left:2px solid #111;" data-cc-id="cc-7">
+          <span style="font-family: &quot;Noto Serif Arabic&quot;, serif; font-size: 26px; font-weight: 900; color: rgb(26, 107, 255); line-height: 1.2;" data-cc-id="cc-9">فن القيادة</span>
+          <span style="font-size:13px; font-weight:700; color:#111; line-height:1.4;">أفكار يومية للقادة</span>
+          <span style="font-size: 11px; color: rgb(85, 85, 85); line-height: 1.4; font-weight: 600;" data-cc-id="cc-2">من هارفارد بزنس ريفيو</span>
+        </div>
+        <!-- Left: HBR logo -->
+        <div style="flex:4; padding: 10px 30px 14px 0px; display: flex; align-items: center; justify-content: center; background: rgb(255, 255, 255);" data-cc-id="cc-6">
+          <img src="https://app.majarracdn.cloud/makook/photos/clients/hbr_new_logo_2025_black.png" alt="Harvard Business Review" style="height: 60px; opacity: 0.85; object-fit: fill;" data-cc-id="cc-4">
+        </div>
+      </div>
+    </div>
+
+    <!-- Black stripe -->
+    <div class="stripe"></div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-eyebrow">فكرة اليوم</div>
+      <h1 class="hero-title" data-cc-id="cc-5" style="">تواضع كي تواصل التعلم</h1>
+      <p class="hero-sub">الفكرة ١ ضمن سلسلة فن القيادة</p>
+    </div>
+
+    <!-- Body -->
+    <div class="body-content">
+      <p class="body-text">
+        عندما تكون صغيراً، تتعلم من الأذكى: أبواك، ومعلموك، ومدراؤك. لكن عندما تتولى منصباً قيادياً، تصبح أنت الأذكى. تشعرك هذه الصورة بالرضا، لكنها تحدّ من نموك إذا تمسّكت بالاعتقاد بأنك لن تتعلم إلا من شخص أذكى منك.
+        <br><br>
+        لكي تواصل التطور، التمس أفكار الآخرين واستمع إليها، لا سيما الذين يختلفون معك في وجهات نظرهم وخلفياتهم؛ فرغبتك المتواضعة في التعلم من الجميع تتيح لك فرص تعلم لا حدود لها.
+      </p>
+
+      <p class="source-note">
+        هذه الفكرة مقتبسة من مقال <a href="https://hbrarabic.com/%d9%85%d8%a7-%d9%85%d8%af%d9%89-%d8%ac%d9%88%d8%af%d8%a9-%d9%82%d9%8a%d8%a7%d8%b3%d9%83-%d9%84%d8%ad%d9%8a%d8%a7%d8%aa%d9%83%d8%9f/">"كيف تقيس جودة حياتك؟"</a> لكلايتون كريستنسن
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="push-notif">
+        <div class="push-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.13 2 5 5.13 5 9v5l-2 2v1h18v-1l-2-2V9c0-3.87-3.13-7-7-7zm0 20c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z" fill="#fff"/>
+          </svg>
+        </div>
+        <span>تصلك فكرة جديدة كل صباح عبر الإشعارات وتطبيق مجرة</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-logo">
+        <svg height="30" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
+          <text x="50" y="24" text-anchor="middle" font-family="'Noto Serif Arabic',serif" font-size="24" font-weight="900" fill="#fff">مجرة</text>
+        </svg>
+      </div>
+      <p class="footer-text" data-cc-id="cc-1" style="color: rgb(247, 244, 244);">
+        أنت مشترك في "فن القيادة" من هارفارد بزنس ريفيو العربية.<br>
+        © 2026 مجرة. جميع الحقوق محفوظة.
+      </p>
+      <div class="footer-links">
+        <a href="#" data-cc-id="cc-2" style="color: rgb(250, 245, 245);">إلغاء الاشتراك</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+</body></html>
