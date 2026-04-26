@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلغاء الاشتراك - أفكار فن القيادة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-color: #ffffff;
+        }
+        .btn-confirm {
+            background-color: #fce7f3;
+            color: #831843;
+            transition: all 0.2s ease;
+        }
+        .btn-confirm:hover {
+            background-color: #fbcfe8;
+        }
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- المحتوى الرئيسي -->
+    <main class="flex-grow flex items-center justify-center px-4">
+        <div class="max-w-2xl w-full text-center space-y-8">
+            
+            <!-- الشعار -->
+            <div class="logo-container flex justify-center mb-12">
+                <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="شعار مجرة" onerror="this.src='https://via.placeholder.com/180x50?text=Majarra'">
+            </div>
+
+            <!-- نص التأكيد المعدل ليكون على سطر واحد -->
+            <div class="space-y-4">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 whitespace-nowrap">إلغاء الاشتراك في "أفكار فن القيادة"</h1>
+                <p class="text-lg text-gray-600">هل أنت متأكد أنك تريد التوقف عن استلام إيميلات سلسلة <span class="font-bold text-gray-800">"أفكار فن القيادة"</span>؟</p>
+            </div>
+
+            <!-- الأزرار -->
+            <div class="flex flex-row items-center justify-center gap-8 mt-10">
+                <a href="#" class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors">
+                    تراجع
+                </a>
+                <button onclick="handleUnsubscribe()" class="btn-confirm px-8 py-3 rounded-full font-bold text-md">
+                    نعم
+                </button>
+            </div>
+
+            <!-- رسالة نجاح مخفية -->
+            <div id="successMessage" class="hidden mt-8 p-4 bg-green-50 text-green-700 rounded-lg border border-green-200">
+                تم إلغاء اشتراكك بنجاح. لن تصلك إيميلات "أفكار فن القيادة" بعد الآن.
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function handleUnsubscribe() {
+            const btn = document.querySelector('.btn-confirm');
+            const successMsg = document.getElementById('successMessage');
+            
+            btn.innerHTML = 'جاري المعالجة...';
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                btn.parentElement.classList.add('hidden');
+                document.querySelector('.space-y-4').classList.add('hidden');
+                successMsg.classList.remove('hidden');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
