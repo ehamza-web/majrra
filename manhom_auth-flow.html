@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة من هم — الفلو الكامل</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:#FDFDFD;direction:rtl;color:#1e293b}
+button{font-family:inherit;cursor:pointer}
+a{text-decoration:none;color:inherit}
+
+/* ── Layout ── */
+.page{min-height:100vh;display:flex;flex-direction:column}
+.container{max-width:1100px;margin:0 auto;padding:0 20px;width:100%}
+.container-lg{max-width:1280px;margin:0 auto;padding:0 20px;width:100%}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;font-family:inherit;cursor:pointer;font-weight:700;transition:all .2s}
+.btn-primary{background:#0570de;color:white;border-radius:10px;padding:15px 24px;font-size:15px;width:100%}
+.btn-primary:hover{background:#0461c8}
+.btn-primary:disabled{background:#93c5fd;cursor:not-allowed}
+.btn-ghost{background:transparent;color:#6b7280;border:1px solid #e2e8f0;border-radius:10px;padding:13px 24px;font-size:14px;width:100%;margin-top:8px}
+.btn-blue{background:#2563eb;color:white;border-radius:100px;padding:10px 28px;font-size:14px}
+.btn-blue:hover{background:#1d4ed8}
+.btn-dark{background:#1e293b;color:white;border-radius:100px;padding:9px 20px;font-size:13px}
+
+/* ── Cards ── */
+.card{background:white;border:1px solid #f1f5f9;border-radius:16px;padding:24px;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+
+/* ── Header ── */
+.site-header{background:#96E3FF;border-bottom:1px solid rgba(0,0,0,.05);position:sticky;top:0;z-index:50}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;height:72px;gap:8px}
+.logo{font-size:22px;font-weight:900;color:#1e293b;background:none;border:none;padding:0}
+.logo em{color:#4169E1;font-style:normal}
+.nav-btn{background:none;border:none;font-size:15px;font-weight:500;color:#4F4F4F;padding:7px 10px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap}
+.nav-btn:hover{color:#4169E1;background:rgba(0,0,0,0.05)}
+
+/* ── Dropdown ── */
+.dropdown{position:relative}
+.dd-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;background:white;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.14);border:1px solid #e2e8f0;min-width:210px;z-index:300;overflow:hidden}
+.dd-menu.open{display:block}
+.dd-item{display:flex;align-items:center;gap:6px;width:100%;padding:12px 18px;font-size:14px;color:#1e293b;font-weight:500;background:transparent;border:none;font-family:inherit;text-align:right}
+.dd-item:hover{background:#f0f9ff;cursor:pointer}
+
+/* ── Person card ── */
+.person-card{cursor:pointer;background:white;border-radius:12px;overflow:hidden;border:1px solid #f1f5f9;transition:box-shadow .2s,transform .2s}
+.person-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.10);transform:translateY(-2px)}
+.person-card img{width:100%;aspect-ratio:306/353;object-fit:cover;object-position:top;display:block}
+.person-card .pc-info{padding:10px 10px 12px;text-align:center}
+.person-card h3{font-size:13px;font-weight:700;color:#20211F;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap;line-height:1.4}
+.person-card p{font-size:11.5px;color:#4F4F4F;line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+/* ── Chips ── */
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px;border-radius:100px;font-weight:600}
+.chip-blue{background:#eff6ff;color:#2563eb}
+.chip-green{background:#f0fdf4;color:#166534}
+.chip-gray{background:#f1f5f9;color:#475569}
+.chip-amber{background:#fffbeb;color:#b45309;border:1px solid #fde68a}
+
+/* ── VIP card ── */
+.vip-ceo{background:linear-gradient(180deg,#FEF6D8 0%,#F6EDCA 79%,#E0D29E 100%);border-radius:10px;border:1px solid #E0D29E;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:box-shadow .2s,transform .2s;margin-bottom:8px}
+.vip-ceo:hover{box-shadow:0 4px 16px rgba(0,0,0,.10);transform:translateY(-1px)}
+
+/* ── Day badge ── */
+.day-badge{display:flex;flex-direction:column;align-items:center;justify-content:center;width:50px;height:50px;border-radius:12px;flex-shrink:0}
+.day-badge .nb{font-size:18px;font-weight:800;line-height:1}
+.day-badge .mb{font-size:9px;margin-top:2px;font-weight:600}
+.day-badge.db-blue{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #bfdbfe}.day-badge.db-blue .nb{color:#1d4ed8}.day-badge.db-blue .mb{color:#2563eb}
+.day-badge.db-green{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac}.day-badge.db-green .nb,.day-badge.db-green .mb{color:#15803d}
+.day-badge.db-amber{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fcd34d}.day-badge.db-amber .nb,.day-badge.db-amber .mb{color:#b45309}
+.day-badge.db-red{background:linear-gradient(135deg,#fef2f2,#fecaca);border:1px solid #fca5a5}.day-badge.db-red .nb,.day-badge.db-red .mb{color:#b91c1c}
+
+/* ── Pay inputs ── */
+.pay-input{width:100%;height:48px;padding:0 14px;border:2px solid #e2e8f0;border-radius:10px;font-size:14px;font-family:inherit;outline:none;transition:border-color .15s;box-sizing:border-box}
+.pay-input:focus{border-color:#0570de}
+
+/* ── KYC progress ── */
+.kyc-progress-bar{height:3px;background:#e5e7eb}
+.kyc-progress-fill{height:100%;background:#0570de;transition:width .4s ease}
+
+/* ── Footer ── */
+.site-footer{background:#f8fafc;border-top:1px solid #e2e8f0;margin-top:48px}
+.footer-grid{max-width:1280px;margin:0 auto;padding:48px 20px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-bottom{border-top:1px solid #e2e8f0;padding:16px 20px;text-align:center;font-size:14px;color:#94a3b8}
+.footer-col a{display:block;padding:5px 0;font-size:14px;color:#64748b}
+
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(34,197,94,.18)}50%{box-shadow:0 0 0 7px rgba(34,197,94,.06)}}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+const PEOPLE = [
+  {id:'masoud',  name:'مسعود شريف محمود',          role:'الرئيس التنفيذي في "مجموعة إي آند"',                        photo:'https://manhom.majarracdn.cloud/mgmt/images/118419/1772351963/%D9%85%D8%B3%D8%B9%D9%88%D8%AF-%D9%85%D8%AD%D9%85%D8%AF-%D8%B4%D8%B1%D9%8A%D9%81-%D9%85%D8%AD%D9%85%D9%88%D8%AF_306_353.webp', v:'gold', country:'الإمارات'},
+  {id:'dheyab',  name:'الشيخ ذياب بن محمد بن زايد',role:'نائب رئيس "ديوان الرئاسة" للشؤون التنموية',               photo:'https://manhom.majarracdn.cloud/mgmt/images/115905/1746439965/%D8%A7%D9%84%D8%B4%D9%8A%D8%AE-%D8%B0%D9%8A%D8%A7%D8%A8-%D8%A8%D9%86-%D9%85%D8%AD%D9%85%D8%AF-%D8%A8%D9%86-%D8%B2%D8%A7%D9%8A%D8%AF-%D8%A2%D9%84-%D9%86%D9%87%D9%8A%D8%A7%D9%86_306_353.webp', v:'blue', country:'الإمارات'},
+  {id:'badr2',   name:'بدر بن نصيف المنصوري',       role:'نائب الرئيس المساعد للشراكات الحكومية في "الدار العقارية"',photo:'https://manhom.majarracdn.cloud/mgmt/images/592705/%D8%A8%D8%AF%D8%B1-%D8%A8%D9%86-%D9%86%D8%B5%D9%8A%D9%81_306_353.webp', v:'blue', country:'الإمارات'},
+  {id:'fatima',  name:'فاطمة الزهراء الضاوي',       role:'مذيعة أخبار اقتصادية رئيسية لدى "قناة العربية"',          photo:'https://manhom.majarracdn.cloud/mgmt/images/122566/1774862820/%D9%81%D8%A7%D8%B7%D9%85%D8%A9-%D8%A7%D9%84%D8%B2%D9%87%D8%B1%D8%A7%D8%A1-%D8%A7%D9%84%D8%B6%D8%A7%D9%88%D9%8A_306_353.webp', v:'blue', country:'الإمارات'},
+  {id:'dallas',  name:'دالاس كحيلا',                role:'مؤسس "دالاس استديو"',                                     photo:'https://manhom.majarracdn.cloud/mgmt/images/266106/1775566252/%D8%AF%D8%A7%D9%84%D8%A7%D8%B3-%D9%83%D8%AD%D9%8A%D9%84%D8%A7_306_353.webp', v:'blue', country:'الإمارات'},
+  {id:'ammar',   name:'عمار هيكل',                  role:'الرئيس التنفيذي في "شركة مجرة"',                          photo:'https://manhom.majarracdn.cloud/mgmt/images/108460/1775470390/%D8%B9%D9%85%D8%A7%D8%B1-%D9%87%D9%8A%D9%83%D9%84_306_353.webp', v:'gold', country:'الإمارات'},
+  {id:'wasim',   name:'وسيم إبراهيم',               role:'مؤسس "شركة سكارليت رويال"',                               photo:'https://manhom.majarracdn.cloud/mgmt/images/282550/1771506012/%D9%88%D8%B3%D9%8A%D9%85-%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85_306_353.webp', v:'gold', country:'الإمارات'},
+  {id:'badr',    name:'بدر جعفر',                   role:'رائد أعمال اجتماعية إماراتي',                             photo:'https://manhom.majarracdn.cloud/mgmt/images/107426/1774267527/%D8%A8%D8%AF%D8%B1-%D8%AC%D8%B9%D9%81%D8%B1_306_353.webp', v:'gold', country:'الإمارات'},
+  {id:'ziad',    name:'زياد خلف عبد كريم',           role:'رئيس مجلس إدارة "مصرف التنمية الدولي"',                  photo:'https://manhom.majarracdn.cloud/mgmt/images/180863/1771833427/%D8%B2%D9%8A%D8%A7%D8%AF-%D8%AE%D9%84%D9%81-%D8%B9%D8%A8%D8%AF-%D9%83%D8%B1%D9%8A%D9%85_306_353.webp', v:'gold', country:'العراق'},
+  {id:'saeed2',  name:'سعيد المقبالي',               role:'مؤسس ورئيس مجلس إدارة "بوابة أبوظبي للاستثمار"',         photo:'https://manhom.majarracdn.cloud/mgmt/images/122978/1707204627/%D8%B3%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D8%A7%D9%84%D9%8A_306_353.webp', v:'blue', country:'الإمارات'},
+];
+
+const MAWSHOOR = [
+  {day:'07',mon:'أبريل',color:'db-green',who:'نورة القحطاني',  what:'أصبحت رئيسة تنفيذية للابتكار في',co:'سدايا',       when:'اليوم'},
+  {day:'06',mon:'أبريل',color:'db-amber',who:'محمد العتيبي',   what:'حصل على جائزة أفضل قائد رقمي',   co:'',            when:'اليوم'},
+  {day:'06',mon:'أبريل',color:'db-green',who:'سعيد الكعبي',    what:'أصبح نائب أول للرئيس التنفيذي في',co:'اتصالات',   when:'أمس'},
+  {day:'05',mon:'أبريل',color:'db-red',  who:'عبدالله الحارثي',what:'غادر منصبه كمدير عام للاستثمار',  co:'',            when:'أمس'},
+  {day:'04',mon:'أبريل',color:'db-green',who:'فيصل بخاري',     what:'أصبح الرئيس التنفيذي للموارد البشرية في',co:'مجموعة النهلة',when:'منذ يومين'},
+  {day:'03',mon:'أبريل',color:'db-amber',who:'أحمد الجنيبي',   what:'حصل على وسام الاستحقاق الدبلوماسي',co:'',          when:'منذ 3 أيام'},
+];
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+const S = {
+  screen:'home',
+  personId:'masoud',
+  plan:{title:'الأساسية',price:300,cycle:'yearly'},
+  profileTab:'bio',
+  searchView:'grid',
+  mawshoorSub:false,
+  addStep:0,
+  nominateQ:'',
+  // checkout
+  checkoutSca:false,
+  // verify
+  verifyStep:'why',  // why | docType | scanDoc | selfie | done
+  verifyDoc:'passport',
+  verifyMode:'camera',
+};
+
+function go(screen, extra){
+  S.screen = screen;
+  if(extra) Object.assign(S, extra);
+  if(screen==='checkout'){ S.checkoutSca=false; }
+  if(screen==='verify'){   S.verifyStep='why'; }
+  window.scrollTo(0,0);
+  draw();
+}
+
+// ══════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════
+const BD = "M45.99 24L41.11 18.42L41.79 11.04L34.57 9.4L30.79 3L23.99 5.92L17.19 3L13.41 9.38L6.19 11L6.87 18.4L1.99 24L6.87 29.58L6.19 36.98L13.41 38.62L17.19 45L23.99 42.06L30.79 44.98L34.57 38.6L41.79 36.96L41.11 29.58L45.99 24ZM20.17 33.44L12.57 25.82L15.53 22.86L20.17 27.52L31.87 15.78L34.83 18.74L20.17 33.44Z";
+function badge(type='blue', size=16){
+  return `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" style="flex-shrink:0;vertical-align:middle"><path d="${BD}" fill="${type==='gold'?'#D4A017':'#4169E3'}"/></svg>`;
+}
+function pcard(p, onclick){
+  return `<div class="person-card" onclick="${onclick}">
+    <img src="${p.photo}" alt="${p.name}" onerror="this.src='https://picsum.photos/seed/${p.id}/306/353'">
+    <div class="pc-info">
+      <h3>${p.name}${p.v?badge(p.v,14):''}</h3>
+      <p>${p.role}</p>
+    </div>
+  </div>`;
+}
+
+function header(active=''){
+  return `<header class="site-header">
+  <div class="header-inner">
+    <button class="logo btn" onclick="go('home')">من<em>هم</em></button>
+    <nav style="display:flex;align-items:center;gap:2px;flex:1;justify-content:center;flex-wrap:wrap">
+      <div class="dropdown" id="dd-add">
+        <button class="nav-btn" onclick="toggleDD('dd-add')" style="display:inline-flex;align-items:center;gap:4px">
+          أضف <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dd-menu" id="dd-add-menu">
+          <button class="dd-item" onclick="go('add');closeDD()">أضف شخصية</button>
+          <button class="dd-item" onclick="closeDD()">أضف شركة</button>
+        </div>
+      </div>
+      <div class="dropdown" id="dd-mem">
+        <button class="nav-btn" onclick="toggleDD('dd-mem')" style="display:inline-flex;align-items:center;gap:4px">
+          عضويات <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dd-menu" id="dd-mem-menu">
+          <button class="dd-item" onclick="go('membership');closeDD()">العضوية الموثقة ${badge('blue',14)}</button>
+          <button class="dd-item" onclick="closeDD()">عضوية الرؤساء التنفيذيين</button>
+        </div>
+      </div>
+      <button class="nav-btn" onclick="go('mawshoor')">نشرة تعيينات السعودية</button>
+      <button class="nav-btn" onclick="go('categories')">التصنيفات</button>
+      <button class="nav-btn" onclick="go('lists')">القوائم</button>
+      <button class="nav-btn" onclick="go('nominate')">قدرات السعودية</button>
+    </nav>
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <button onclick="go('search')" style="background:none;border:none;padding:4px;display:flex;align-items:center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="btn btn-dark" style="display:inline-flex;gap:7px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        تسجيل الدخول
+      </button>
+    </div>
+  </div>
+</header>`;
+}
+
+function footer(){
+  return `<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div style="font-size:24px;font-weight:900;color:#1e293b;margin-bottom:16px">من<span style="color:#4169E1">هم</span></div>
+      <p style="font-size:15px;color:#64748b;line-height:1.8;margin-bottom:16px">منصة الحضور العربي الموثق للأفراد والمؤسسات. إحدى منصات مجرة.</p>
+    </div>
+    <div class="footer-col">
+      <p style="font-weight:700;font-size:17px;color:#1e293b;margin-bottom:16px">حول من هم</p>
+      ${['التصنيفات','إدارة الحسابات','عن من هم','سياسة الخصوصية','شروط الاستخدام'].map(l=>`<a href="#">${l}</a>`).join('')}
+    </div>
+    <div class="footer-col">
+      <p style="font-weight:700;font-size:17px;color:#1e293b;margin-bottom:16px">مواقع أخرى من مجرة</p>
+      ${['هارفارد بزنس ريفيو','إم آي تي تكنولوجي ريفيو','نفسيتي','العلوم للعموم'].map(l=>`<a href="#">${l}</a>`).join('')}
+    </div>
+  </div>
+  <div class="footer-bottom">جميع الحقوق محفوظة لـ من هم 2026</div>
+</footer>`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: HOME
+// ══════════════════════════════════════════
+function sHome(){
+  const cats=['رجال وسيدات أعمال','رؤساء تنفيذيون','كفاءات سعودية','رواد أعمال','أطباء وطبيبات','استثمار جريء','ملاك شركات عائلية','أثرياء العالم العربي','دبلوماسيون','سفراء الإمارات'];
+  return `
+  ${header('home')}
+  <section style="background:#96E3FF;padding:52px 20px 64px;text-align:center">
+    <div style="max-width:880px;margin:0 auto">
+      <h1 style="font-size:46px;font-weight:800;color:#20211F;margin-bottom:12px;line-height:1.2;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+        منصة الحضور العربي الموثق ${badge('blue',36)}
+      </h1>
+      <p style="font-size:17px;color:#1e293b;margin-bottom:30px;opacity:.85">تحكم بما يعرفه الناس عنك</p>
+      <div style="max-width:720px;margin:0 auto;background:white;border-radius:100px;height:56px;display:flex;align-items:center;padding:0 8px 0 22px;box-shadow:0 6px 18px rgba(0,0,0,.05);gap:8px">
+        <button class="btn btn-blue" onclick="go('search')" style="height:40px;flex-shrink:0">ابحث</button>
+        <input placeholder="ابحث ضمن 326,451 شخصية ومؤسسة" style="flex:1;height:100%;border:none;outline:none;background:transparent;font-size:14.5px;font-family:inherit;text-align:right">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <main style="flex:1" class="container" style="padding-top:0">
+    <!-- Mawshoor -->
+    <section style="margin-top:36px">
+      <h2 style="font-size:18px;font-weight:800;color:#0f172a;margin-bottom:18px;text-align:center">موشور <span style="color:#94a3b8;font-weight:500">|</span> <span style="color:#475569;font-weight:600">خدمة أحدث التغييرات الإدارية</span></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        ${MAWSHOOR.map(m=>`
+        <div onclick="go('mawshoor')" style="display:flex;gap:12px;padding:14px 16px;background:#F3F4F5;border-radius:8px;cursor:pointer;align-items:flex-start" onmouseover="this.style.background='#e9ebed'" onmouseout="this.style.background='#F3F4F5'">
+          <div class="day-badge ${m.color}"><div class="nb">${m.day}</div><div class="mb">${m.mon}</div></div>
+          <div style="flex:1">
+            <strong style="font-size:15px;color:#0f172a;display:block;margin-bottom:4px">${m.who}</strong>
+            <p style="font-size:13px;color:#334155;line-height:1.6;margin-bottom:4px">${m.what}${m.co?` <span style="color:#4169E1;font-weight:700">${m.co}</span>`:''}</p>
+            <span style="font-size:11.5px;color:#94a3b8">${m.day} ${m.mon} 2026</span>
+          </div>
+        </div>`).join('')}
+      </div>
+      <div style="text-align:center;margin-top:18px">
+        <button onclick="go('mawshoor')" style="color:#4169E1;font-size:13px;font-weight:700;background:none;border:none;cursor:pointer;font-family:inherit">عرض كل تحديثات موشور ←</button>
+      </div>
+    </section>
+
+    <!-- Saudi banner -->
+    <section style="margin-top:40px">
+      <div onclick="go('nominate')" style="background:linear-gradient(135deg,#166534,#15803d);border-radius:16px;overflow:hidden;display:flex;align-items:stretch;min-height:180px;cursor:pointer">
+        <img src="https://picsum.photos/seed/saudi/360/360" style="width:180px;object-fit:cover;flex-shrink:0;display:block">
+        <div style="flex:1;padding:28px 36px;text-align:right">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);color:white;padding:4px 14px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:14px">🏅 مبادرة وطنية</div>
+          <h2 style="font-size:34px;font-weight:900;color:white;margin-bottom:12px;line-height:1.2">قدرات السعودية 2026</h2>
+          <p style="font-size:15px;color:rgba(255,255,255,.88);line-height:1.7">ساهم في إبراز الكفاءات السعودية الشابة عبر ترشيح من تراه مناسباً.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- People -->
+    <section style="margin-top:60px">
+      <h2 style="font-size:26px;font-weight:800;color:#20211F;text-align:center;margin-bottom:28px">الشخصيات الأكثر زيارة الآن</h2>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
+        ${PEOPLE.map(p=>pcard(p,`go('profile',{personId:'${p.id}'})`)).join('')}
+      </div>
+      <div style="text-align:center;margin-top:28px"><button class="btn btn-blue" onclick="go('search')" style="padding:12px 32px;font-size:15px">تصفح المزيد</button></div>
+    </section>
+
+    <!-- Companies -->
+    <section style="margin-top:60px;background:#F9FBFF;border-radius:48px;padding:40px 32px 48px;text-align:center">
+      <h2 style="font-size:26px;font-weight:800;color:#20211F;margin-bottom:28px">المؤسسات الأكثر زيارة الآن</h2>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+        ${PEOPLE.map((p,i)=>`
+        <div onclick="go('company')" style="cursor:pointer;background:white;border:1px solid #f1f5f9;border-radius:14px;padding:8px 6px 12px;transition:box-shadow .15s,transform .15s" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+          <img src="https://picsum.photos/seed/co${i}/100/100" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;display:block">
+          <p style="font-size:12px;font-weight:700;color:#20211F;margin-top:6px;text-align:center;line-height:1.4">شركة ${i+1}</p>
+        </div>`).join('')}
+      </div>
+      <div style="margin-top:28px"><button class="btn btn-blue" onclick="go('search')" style="padding:12px 40px;font-size:15px">عرض الكل</button></div>
+    </section>
+
+    <!-- Categories -->
+    <section style="margin-top:48px;margin-bottom:60px">
+      <h2 style="font-size:26px;font-weight:800;color:#20211F;text-align:center;margin-bottom:24px">التصنيفات المختارة</h2>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+        ${cats.map((c,i)=>`
+        <div onclick="go('categories')" style="cursor:pointer;background:white;border:1px solid #f1f5f9;border-radius:14px;padding:8px 6px 12px;transition:box-shadow .15s,transform .15s" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+          <img src="https://picsum.photos/seed/cat${i}/200/200" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;display:block">
+          <p style="font-size:12px;font-weight:600;color:#20211F;margin-top:8px;text-align:center;line-height:1.4">${c}</p>
+        </div>`).join('')}
+      </div>
+      <div style="text-align:center;margin-top:24px"><button class="btn btn-blue" onclick="go('categories')" style="padding:12px 40px;font-size:15px">عرض الكل</button></div>
+    </section>
+  </main>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: SEARCH
+// ══════════════════════════════════════════
+function sSearch(){
+  const tabs=[{id:'all',l:'الكل',n:247},{id:'people',l:'شخصيات',n:198},{id:'companies',l:'شركات',n:42}];
+  const grid = S.searchView==='grid'
+    ? `<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">${PEOPLE.map(p=>pcard(p,`go('profile',{personId:'${p.id}'})`)).join('')}</div>`
+    : `<div class="card" style="padding:0;overflow:hidden">${PEOPLE.map((p,i)=>`
+        <div onclick="go('profile',{personId:'${p.id}'})" style="display:flex;align-items:center;gap:16px;padding:16px;border-bottom:${i<PEOPLE.length-1?'1px solid #f1f5f9':'none'};cursor:pointer" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+          <img src="${p.photo}" onerror="this.src='https://picsum.photos/seed/${p.id}/60/70'" style="width:56px;height:68px;border-radius:10px;object-fit:cover;flex-shrink:0">
+          <div style="flex:1"><div style="font-weight:700;font-size:15px;color:#0f172a;display:flex;align-items:center;gap:6px">${p.name}${p.v?badge(p.v,14):''}</div><div style="font-size:13px;color:#64748b">${p.role}</div></div>
+          <span class="chip chip-gray">${p.country}</span>
+        </div>`).join('')}</div>`;
+  return `
+  ${header()}
+  <main style="flex:1;max-width:1280px;margin:0 auto;padding:24px 20px;width:100%">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <h1 style="font-size:22px;font-weight:800">نتائج البحث <span style="font-size:14px;color:#64748b;font-weight:500">247 نتيجة</span></h1>
+      <div style="display:flex;background:#f1f5f9;border-radius:10px;padding:3px">
+        <button onclick="S.searchView='grid';draw()" style="background:${S.searchView==='grid'?'white':'transparent'};border:none;padding:8px 12px;border-radius:8px;cursor:pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${S.searchView==='grid'?'#1e293b':'#94a3b8'}" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </button>
+        <button onclick="S.searchView='list';draw()" style="background:${S.searchView==='list'?'white':'transparent'};border:none;padding:8px 12px;border-radius:8px;cursor:pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${S.searchView==='list'?'#1e293b':'#94a3b8'}" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div style="display:flex;gap:4px;border-bottom:1px solid #e2e8f0;margin-bottom:24px">
+      ${tabs.map(t=>`<button style="background:none;border:none;padding:12px 18px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:${t.id==='all'?700:500};color:${t.id==='all'?'#2563eb':'#64748b'};border-bottom:${t.id==='all'?'2px solid #2563eb':'2px solid transparent'}">
+        ${t.l} <span style="font-size:11px;background:${t.id==='all'?'#dbeafe':'#f1f5f9'};color:${t.id==='all'?'#1d4ed8':'#94a3b8'};padding:2px 8px;border-radius:100px">${t.n}</span>
+      </button>`).join('')}
+    </div>
+    <div style="display:grid;grid-template-columns:260px 1fr;gap:24px">
+      <aside>
+        <div class="card" style="padding:18px">
+          <h3 style="font-size:15px;font-weight:800;margin-bottom:12px">الفلاتر</h3>
+          <div style="border-bottom:1px solid #f1f5f9;padding-bottom:14px;margin-bottom:14px">
+            <p style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:10px">الدولة</p>
+            ${[{n:'الإمارات',k:'65K'},{n:'السعودية',k:'89K'},{n:'مصر',k:'45K'},{n:'قطر',k:'18K'},{n:'الكويت',k:'14K'}].map(c=>`
+            <label style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:#475569;cursor:pointer">
+              <input type="checkbox" style="accent-color:#2563eb"> <span style="flex:1">${c.n}</span><span style="color:#94a3b8;font-size:11px">${c.k}</span>
+            </label>`).join('')}
+          </div>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:10px">حالة التوثيق</p>
+            <label style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:#475569;cursor:pointer"><input type="checkbox" style="accent-color:#2563eb"> ${badge('gold',14)} موثّق ذهبي</label>
+            <label style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:#475569;cursor:pointer"><input type="checkbox" style="accent-color:#2563eb"> ${badge('blue',14)} موثّق أزرق</label>
+          </div>
+        </div>
+      </aside>
+      <div>${grid}</div>
+    </div>
+  </main>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: PROFILE
+// ══════════════════════════════════════════
+function sProfile(){
+  const p = PEOPLE.find(x=>x.id===S.personId)||PEOPLE[0];
+  const tabs=[{id:'bio',l:'السيرة الذاتية'},{id:'stations',l:'المحطات'},{id:'news',l:'الأخبار'},{id:'articles',l:'مقالات تهمك'}];
+  const content = S.profileTab==='bio'
+    ? `<div class="card"><h2 style="font-size:20px;font-weight:700;margin-bottom:16px">سيرة ${p.name}</h2><p style="font-size:15px;color:#1e293b;line-height:2;text-align:justify">${p.role} منذ 1 أبريل 2026. يمتلك خبرة تمتد لأكثر من 25 عاماً في قطاع الاتصالات والاستثمارات والعمل الحكومي.</p></div>`
+    : S.profileTab==='stations'
+    ? `<div class="card"><p style="font-size:12px;font-weight:700;color:#94a3b8;margin-bottom:16px">مناصب حالية</p><div style="display:flex;align-items:flex-start;gap:14px;border-right:3px solid #16a34a;padding-right:12px"><div style="flex:1"><div style="font-size:15px;font-weight:700;margin-bottom:2px">الرئيس التنفيذي</div><div style="font-size:13px;color:#4169E1;font-weight:500">مجموعة إي آند</div><div style="font-size:12px;color:#94a3b8;margin-top:3px">2026 — الآن</div></div><span class="chip chip-green">حالي</span></div></div>`
+    : `<div class="card"><p style="color:#64748b;text-align:center;padding:40px">المحتوى سيُعرض هنا.</p></div>`;
+  return `
+  ${header()}
+  <main style="flex:1;max-width:1280px;margin:0 auto;padding:24px 20px;width:100%">
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start">
+      <div>
+        <div class="card" style="margin-bottom:16px;padding:0;overflow:hidden">
+          <div style="height:160px;background:linear-gradient(135deg,#96E3FF,#4169E1)"></div>
+          <div style="padding:0 24px 24px">
+            <div style="display:flex;align-items:flex-end;gap:16px;margin-top:-56px;margin-bottom:16px">
+              <div style="width:110px;height:130px;border-radius:12px;border:4px solid white;overflow:hidden;flex-shrink:0;background:#e2e8f0">
+                <img src="${p.photo}" onerror="this.src='https://picsum.photos/seed/${p.id}/110/130'" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+              </div>
+              <div style="flex:1;padding-bottom:4px">
+                <h1 style="font-size:24px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">${p.name}${p.v?badge(p.v,20):''}</h1>
+                <p style="font-size:14px;color:#475569">${p.role}</p>
+              </div>
+              <div style="display:flex;gap:8px;padding-bottom:4px">
+                <button class="btn btn-blue" style="padding:9px 20px;font-size:13px;border-radius:100px">متابعة</button>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="chip chip-green">موثّق ✓</span>
+              <span class="chip chip-gray">${p.country}</span>
+              <span class="chip chip-gray">رؤساء تنفيذيون</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:4px;border-bottom:1px solid #e2e8f0;margin-bottom:16px">
+          ${tabs.map(t=>`<button onclick="S.profileTab='${t.id}';draw()" style="background:none;border:none;padding:12px 16px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:${S.profileTab===t.id?700:500};color:${S.profileTab===t.id?'#2563eb':'#64748b'};border-bottom:${S.profileTab===t.id?'2px solid #2563eb':'2px solid transparent'}">${t.l}</button>`).join('')}
+        </div>
+        ${content}
+      </div>
+      <aside style="display:flex;flex-direction:column;gap:18px">
+        <div style="background:#F1F4FF;border-radius:12px;padding:16px;text-align:center">
+          <h3 style="font-size:15px;font-weight:800;margin-bottom:12px;text-align:right;display:flex;align-items:center;gap:5px">شخصية اليوم ${badge('blue',14)}</h3>
+          <img src="${PEOPLE[1].photo}" onerror="this.src='https://picsum.photos/seed/p2/100/116'" style="width:100px;height:116px;border-radius:8px;object-fit:cover;object-position:top;display:block;margin:0 auto">
+          <h3 style="font-weight:800;font-size:15px;margin:12px 0 4px">${PEOPLE[1].name}</h3>
+          <p style="font-size:12px;color:#475569">${PEOPLE[1].role}</p>
+        </div>
+        <div>
+          <h3 style="font-weight:800;font-size:15px;margin-bottom:12px">موشور | أحدث التغييرات</h3>
+          <div style="background:#F3F4F5;border-radius:12px;padding:16px">
+            ${MAWSHOOR.slice(0,3).map((m,i)=>`
+            <div style="display:flex;gap:10px;${i<2?'padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid rgba(130,130,130,.2)':''}">
+              <div style="flex:1">
+                <strong style="font-size:14px;color:#1e293b;display:block;margin-bottom:3px">${m.who}</strong>
+                <p style="font-size:12px;color:#4F4F4F;margin-bottom:4px;line-height:1.5">${m.what}${m.co?` <span style="color:#4169E1;font-weight:600">${m.co}</span>`:''}</p>
+                <span style="font-size:11px;color:#94a3b8">${m.when}</span>
+              </div>
+            </div>`).join('')}
+          </div>
+        </div>
+        <div>
+          <p style="font-size:15px;font-weight:800;margin-bottom:10px">رؤساء تنفيذيون</p>
+          ${[PEOPLE[5],PEOPLE[6]].map(vp=>`
+          <div class="vip-ceo" onclick="go('profile',{personId:'${vp.id}'})">
+            <div style="flex:1"><div style="font-size:14px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:5px">${vp.name}${badge('gold',13)}</div><p style="font-size:12px;color:#4F4F4F;line-height:1.5">${vp.role}</p></div>
+            <img src="${vp.photo}" onerror="this.src='https://picsum.photos/seed/${vp.id}/56/66'" style="width:56px;height:66px;border-radius:8px;object-fit:cover;object-position:top;flex-shrink:0;display:block">
+          </div>`).join('')}
+        </div>
+      </aside>
+    </div>
+  </main>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: CATEGORIES
+// ══════════════════════════════════════════
+function sCategories(){
+  const cats=['رجال وسيدات أعمال','رؤساء تنفيذيون','كفاءات سعودية','رواد أعمال','أطباء وطبيبات','استثمار جريء','ملاك شركات عائلية','أثرياء العالم العربي'];
+  return `
+  ${header('categories')}
+  <main style="flex:1;max-width:1280px;margin:0 auto;padding:40px 20px;width:100%">
+    <h1 style="font-size:32px;font-weight:800;text-align:center;margin-bottom:32px">التصنيفات</h1>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      ${cats.map((c,i)=>`
+      <div onclick="go('search')" style="border-radius:16px;overflow:hidden;cursor:pointer;position:relative;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+        <img src="https://picsum.photos/seed/cat${i+20}/400/250" style="width:100%;height:160px;object-fit:cover;display:block">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:16px">
+          <h3 style="color:white;font-size:17px;font-weight:800;margin-bottom:4px">${c}</h3>
+          <span style="color:rgba(255,255,255,.8);font-size:13px">${(Math.random()*10+3|0)},${(Math.random()*900+100|0)} شخصية</span>
+        </div>
+      </div>`).join('')}
+    </div>
+  </main>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: LISTS
+// ══════════════════════════════════════════
+function sLists(){
+  const lists=[{t:'قدرات السعودية 500',n:500,c:'#166534'},{t:'أقوى 100 امرأة عربية',n:100,c:'#7c3aed'},{t:'أبرز رجال الأعمال الإماراتيين',n:200,c:'#1d4ed8'},{t:'رواد التقنية العربية',n:150,c:'#b45309'}];
+  return `
+  ${header('lists')}
+  <main style="flex:1;max-width:1100px;margin:0 auto;padding:40px 20px;width:100%">
+    <h1 style="font-size:32px;font-weight:800;text-align:center;margin-bottom:32px">القوائم المميزة</h1>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      ${lists.map(l=>`
+      <div onclick="go('search')" style="background:white;border:1px solid #f1f5f9;border-radius:16px;padding:28px 24px;cursor:pointer;display:flex;align-items:center;gap:16px;transition:box-shadow .2s,transform .2s" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+        <div style="width:52px;height:52px;border-radius:14px;background:${l.c};display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px">⭐</div>
+        <div><h3 style="font-size:18px;font-weight:800;margin-bottom:6px">${l.t}</h3><span style="font-size:13px;color:#64748b">${l.n} شخصية</span></div>
+      </div>`).join('')}
+    </div>
+  </main>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: COMPANY
+// ══════════════════════════════════════════
+function sCompany(){
+  return `
+  ${header()}
+  <main style="flex:1;max-width:1280px;margin:0 auto;padding:20px;width:100%">
+    <div style="background:linear-gradient(135deg,#1e3a8a,#2563eb);border-radius:20px;padding:36px 32px;color:white;margin-bottom:18px">
+      <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+        <div style="width:110px;height:110px;border-radius:18px;background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <img src="https://picsum.photos/seed/eand/80/80" style="width:80px;height:80px;border-radius:12px;object-fit:contain;display:block">
+        </div>
+        <div style="flex:1"><h1 style="font-size:32px;font-weight:800;margin-bottom:8px">مجموعة إي آند</h1><p style="font-size:15px;opacity:.9">إحدى أكبر مجموعات الاتصالات والتقنية في المنطقة، تخدم أكثر من 170 مليون مشترك.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.18)">
+        ${[{n:'15K+',l:'موظف'},{n:'170M',l:'مشترك'},{n:'16',l:'دولة'},{n:'$45B',l:'إيرادات'}].map(s=>`<div><div style="font-size:24px;font-weight:800;margin-bottom:2px">${s.n}</div><div style="font-size:12px;opacity:.85">${s.l}</div></div>`).join('')}
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <h2 style="font-size:18px;font-weight:800;margin-bottom:12px">نبذة عن الشركة</h2>
+      <p style="font-size:15px;color:#334155;line-height:2">مجموعة <b>إي آند</b> هي مجموعة عالمية رائدة في قطاع الاتصالات والتكنولوجيا. تأسست عام 1976.</p>
+    </div>
+    <div class="card">
+      <h2 style="font-size:18px;font-weight:800;margin-bottom:14px">القيادات الحالية</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        ${PEOPLE.slice(0,6).map(p=>`
+        <div onclick="go('profile',{personId:'${p.id}'})" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;cursor:pointer;border:1px solid #f1f5f9" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+          <img src="${p.photo}" onerror="this.src='https://picsum.photos/seed/${p.id}/44/44'" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;display:block">
+          <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700">${p.name}</div><div style="font-size:11px;color:#64748b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.role}</div></div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </main>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: MAWSHOOR
+// ══════════════════════════════════════════
+function sMawshoor(){
+  if(S.mawshoorSub) return `
+  ${header()}
+  <div style="max-width:720px;margin:60px auto;padding:0 20px 60px">
+    <button onclick="S.mawshoorSub=false;draw()" style="display:inline-flex;align-items:center;gap:8px;color:#2563eb;font-weight:700;font-size:14px;background:none;border:none;cursor:pointer;font-family:inherit;margin-bottom:32px">← العودة</button>
+    <div class="card">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:24px">الاشتراك في موشور</h2>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px">الاسم الكامل</label><input class="pay-input" placeholder="اسمك الكامل"></div>
+        <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px">البريد الإلكتروني</label><input class="pay-input" type="email" placeholder="بريدك الإلكتروني"></div>
+        <button class="btn btn-primary" onclick="S.mawshoorSub=false;draw()">اشترك الآن</button>
+      </div>
+    </div>
+  </div>
+  ${footer()}`;
+
+  return `
+  ${header('mawshoor')}
+  <section style="padding:80px 20px 40px;text-align:center">
+    <div style="max-width:900px;margin:0 auto">
+      <h1 style="font-size:46px;font-weight:900;color:#0f172a;line-height:1.2;margin-bottom:28px">التغييرات الإدارية تجلب <span style="color:#2563eb">الفرص</span></h1>
+      <p style="font-size:18px;color:#475569;line-height:1.8;max-width:700px;margin:0 auto 40px">نشرة أسبوعية ذكية ترصد لك كافة التعيينات والتغييرات الإدارية في كبرى الشركات.</p>
+      <button onclick="S.mawshoorSub=true;draw()" style="background:#2563eb;color:white;border:none;border-radius:100px;padding:18px 48px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 16px 40px rgba(37,99,235,.25)">اشترك الآن مجاناً لمدة شهر</button>
+    </div>
+  </section>
+  <section style="padding:40px 20px 60px">
+    <div style="max-width:1100px;margin:0 auto">
+      <h2 style="font-size:26px;font-weight:800;text-align:center;margin-bottom:32px">أحدث التغييرات الإدارية</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        ${MAWSHOOR.map(m=>`
+        <div style="display:flex;gap:14px;padding:20px;background:white;border-radius:14px;border:1px solid #f1f5f9;align-items:flex-start">
+          <div class="day-badge ${m.color}"><div class="nb">${m.day}</div><div class="mb">${m.mon}</div></div>
+          <div style="flex:1">
+            <strong style="font-size:16px;display:block;margin-bottom:6px">${m.who}</strong>
+            <p style="font-size:14px;color:#334155;line-height:1.6;margin-bottom:4px">${m.what}${m.co?` <span style="color:#4169E1;font-weight:700">${m.co}</span>`:''}</p>
+            <span style="font-size:12px;color:#94a3b8">${m.when}</span>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: NOMINATE
+// ══════════════════════════════════════════
+function sNominate(){
+  const q=S.nominateQ||'';
+  const filtered=q?PEOPLE.filter(p=>p.name.includes(q)).slice(0,6):[];
+  return `
+  ${header()}
+  <section style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);padding:60px 20px 40px;text-align:center;border-bottom:1px solid #bbf7d0">
+    <h1 style="font-size:38px;font-weight:900;color:#14532d;margin-bottom:16px">رشح شخصية لقائمة قدرات السعودية 2026</h1>
+    <div style="max-width:680px;margin:0 auto">
+      <input value="${q}" oninput="S.nominateQ=this.value;draw()" placeholder="ابحث بالاسم..." style="width:100%;height:56px;padding:0 20px;border-radius:100px;border:none;box-shadow:0 8px 28px rgba(0,0,0,.12);font-size:15px;font-family:inherit;outline:none;text-align:right;box-sizing:border-box">
+    </div>
+  </section>
+  <main style="max-width:1100px;margin:0 auto;padding:40px 20px">
+    ${q?(filtered.length
+      ?`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">${filtered.map(p=>pcard(p,`go('profile',{personId:'${p.id}'})`)).join('')}</div>`
+      :`<p style="text-align:center;color:#64748b;padding:48px 0">لم يتم العثور على شخصية</p>`)
+    :`<div><h2 style="font-size:20px;font-weight:800;text-align:center;margin-bottom:24px">أبرز المرشحين</h2><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">${PEOPLE.slice(0,8).map(p=>pcard(p,`go('profile',{personId:'${p.id}'})`)).join('')}</div></div>`}
+  </main>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: ADD
+// ══════════════════════════════════════════
+function sAdd(){
+  const steps=['معلومات أساسية','المسيرة المهنية','مراجعة'];
+  const s=S.addStep;
+  return `
+  ${header()}
+  <main style="flex:1;max-width:760px;margin:40px auto;padding:0 20px;width:100%">
+    <h1 style="font-size:28px;font-weight:800;text-align:center;margin-bottom:8px">إضافة شخصية جديدة</h1>
+    <p style="font-size:15px;color:#64748b;text-align:center;margin-bottom:36px">أضف شخصية موثوقة إلى قاعدة بيانات من هم</p>
+    <div style="display:flex;align-items:center;justify-content:center;margin-bottom:36px">
+      ${steps.map((st,i)=>`
+      <div style="display:flex;align-items:center">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+          <div style="width:34px;height:34px;border-radius:50%;background:${i<=s?'#2563eb':'#e2e8f0'};color:${i<=s?'white':'#64748b'};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">${i+1}</div>
+          <span style="font-size:12px;font-weight:${i===s?700:500};color:${i===s?'#1e293b':'#64748b'};white-space:nowrap">${st}</span>
+        </div>
+        ${i<steps.length-1?`<div style="width:60px;height:2px;background:${i<s?'#2563eb':'#e2e8f0'};margin-bottom:22px"></div>`:''}
+      </div>`).join('')}
+    </div>
+    <div class="card">
+      ${s===0?`<div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px">الاسم بالعربية *</label><input class="pay-input" style="height:44px"></div>
+          <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px">الاسم بالإنجليزية</label><input class="pay-input" style="height:44px"></div>
+        </div>
+        <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px">الجنسية</label><select style="width:100%;height:44px;padding:0 14px;border:2px solid #e2e8f0;border-radius:10px;font-size:14px;font-family:inherit;outline:none"><option>الإمارات</option><option>السعودية</option><option>مصر</option></select></div>
+        <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px">نبذة مختصرة</label><textarea rows="3" style="width:100%;padding:12px 14px;border:2px solid #e2e8f0;border-radius:10px;font-size:14px;font-family:inherit;outline:none;resize:none;line-height:1.7;box-sizing:border-box"></textarea></div>
+      </div>`
+      :s===1?`<h3 style="font-size:17px;font-weight:800;margin-bottom:20px">المسيرة المهنية</h3>
+        <div style="background:#f8fafc;border-radius:12px;padding:20px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div><label style="font-size:12px;font-weight:700;color:#64748b;display:block;margin-bottom:6px">المسمى الوظيفي</label><input class="pay-input" style="height:40px"></div>
+            <div><label style="font-size:12px;font-weight:700;color:#64748b;display:block;margin-bottom:6px">المؤسسة</label><input class="pay-input" style="height:40px"></div>
+          </div>
+        </div>`
+      :`<div style="text-align:center;padding:40px 0">
+        <div style="width:80px;height:80px;background:#eff6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:40px;color:#2563eb">✓</div>
+        <h2 style="font-size:22px;font-weight:800;margin-bottom:12px">جاهز للإرسال</h2>
+        <p style="font-size:14px;color:#64748b;line-height:1.7">سيتم مراجعة الطلب وإضافته خلال 48 ساعة.</p>
+      </div>`}
+      <div style="display:flex;justify-content:space-between;margin-top:28px;padding-top:20px;border-top:1px solid #f1f5f9">
+        ${s>0?`<button onclick="S.addStep--;draw()" style="background:white;color:#2563eb;border:1px solid #bfdbfe;border-radius:100px;padding:10px 24px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit">السابق</button>`:'<div></div>'}
+        <button onclick="${s<2?'S.addStep++;draw()':'go(\'home\')'}" style="background:#2563eb;color:white;border:none;border-radius:100px;padding:10px 28px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit">${s<2?'التالي':'إرسال للمراجعة'}</button>
+      </div>
+    </div>
+  </main>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: MEMBERSHIP
+// ══════════════════════════════════════════
+function sMembership(){
+  const benefits=[
+    {icon:'https://manhom.com/asset/svg/verifyco.svg',  title:'توثيق ملف الشركة',   desc:'لتؤكد لكل من يبحث عن اسمك أن الملف هو المصدر المعتمد للمعلومات.'},
+    {icon:'https://manhom.com/asset/svg/verifypeop.svg',title:'توثيق ملفات الفريق', desc:'احصل على ملف موثق بالعلامة الزرقاء وحدث المعلومات بشكل مباشر.'},
+    {icon:'https://manhom.com/asset/svg/upfile.svg',    title:'ظهور أكبر للملف',    desc:'في نتائج البحث والصفحة الرئيسية وضمن الاقتراحات.'},
+    {icon:'https://manhom.com/asset/svg/campaign.svg',  title:'حملة ترويجية',       desc:'على لينكدإن وإكس وضمن نشرات من هم البريدية.'},
+    {icon:'https://manhom.com/asset/svg/report.svg',    title:'تقرير أداء',         desc:'اعرف عدد زياراتك والدول التي يبحث عنك فيها.'},
+    {icon:'https://manhom.com/asset/svg/manager.svg',   title:'مدير حساب',         desc:'للاستجابة لطلباتك وتحديث المعلومات والإعلان بسرعة.'},
+  ];
+  const stats=[{n:'24 مليون',l:'زائر سنوياً'},{n:'500,000',l:'ملف شخصية ومؤسسة'},{n:'150,000',l:'عضو مسجل'},{n:'18 مليون',l:'ظهور على شبكات التواصل'}];
+  const vp=[
+    {name:'أثير جاسم البنعلي',role:'الرئيسة التنفيذية للشؤون القانونية في "بدائل"',photo:'https://manhom.majarracdn.cloud/mgmt/images/623344/1760524758/%D8%A3%D8%AB%D9%8A%D8%B1-%D8%AC%D8%A7%D8%B3%D9%85-%D8%A7%D9%84%D8%A8%D9%86%D8%B9%D9%84%D9%8A.webp',v:false},
+    {name:'محمد العجلان',role:'نائب رئيس مجلس إدارة "مجموعة عجلان"',photo:'https://manhom.majarracdn.cloud/mgmt/images/113971/1714305705/%D8%A7%D9%84%D8%B4%D9%8A%D8%AE-%D9%85%D8%AD%D9%85%D8%AF-%D8%A8%D9%86-%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D8%B9%D8%B2%D9%8A%D8%B2-%D8%A7%D9%84%D8%B9%D8%AC%D9%84%D8%A7%D9%86.webp',v:true},
+    {name:'عبداللَّه العثمان',role:'رائد أعمال سعودي',photo:'https://manhom.majarracdn.cloud/mgmt/images/5337/1724833154/%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%84%D9%87-%D9%85%D8%A7%D8%AC%D8%AF-%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%84%D9%87-%D8%A7%D9%84%D8%B9%D8%AB%D9%85%D8%A7%D9%86.webp',v:false},
+    {name:'أمير شريف',role:'رائد أعمال مصري',photo:'https://manhom.majarracdn.cloud/mgmt/images/123393/1739870322/%D8%A3%D9%85%D9%8A%D8%B1-%D8%B4%D8%B1%D9%8A%D9%81.webp',v:true},
+  ];
+  const vc=[
+    {name:'شركة ترانستك للأنظمة',img:'https://manhom.majarracdn.cloud/mgmt/images/3002/%D8%B4%D8%B1%D9%83%D8%A9-%D8%AA%D8%B1%D8%A7%D9%86%D8%B3%D8%AA%D9%83-%D9%84%D9%84%D8%A3%D9%86%D8%B8%D9%85%D8%A9-transtek-systems.webp'},
+    {name:'مكتب مزيج للاستشارات',img:'https://manhom.majarracdn.cloud/mgmt/images/50568/1705513140/%D9%85%D9%83%D8%AA%D8%A8-%D9%85%D8%B2%D9%8A%D8%AC-%D9%84%D9%84%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D8%AA%D8%B3%D9%88.webp'},
+    {name:'الشركة الكيميائية السعودية',img:'https://manhom.majarracdn.cloud/mgmt/images/6935/1730122577/%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9-%D8%A7%D9%84%D9%83%D9%8A%D9%85%D9%8A%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9.webp'},
+    {name:'شركة هيكلة للخدمات العقارية',img:'https://manhom.majarracdn.cloud/mgmt/images/73176/1758111617/%D8%B4%D8%B1%D9%83%D8%A9-%D9%87%D9%8A%D9%83%D9%84%D8%A9-%D9%84%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%D8%A9.webp'},
+    {name:'شركة التيسير العربية',img:'https://manhom.majarracdn.cloud/mgmt/images/67231/1740394804/%D8%B4%D8%B1%D9%83%D8%A9-%D8%A7%D9%84%D8%AA%D9%8A%D8%B3%D9%8A%D8%B1-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D9%84%D9%84%D8%AA%D9%85%D9%88%D9%8A%D9%84.webp'},
+    {name:'مكتب طرابلسي وشركاؤه',img:'https://manhom.majarracdn.cloud/mgmt/images/73300/1742669820/%D9%85%D9%83%D8%AA%D8%A8-%D9%81%D8%B1%D8%A7%D8%B3-%D8%B7%D8%B1%D8%A7%D8%A8%D9%84%D8%B3%D9%8A-%D9%85%D8%AD%D8%A7%D9%85%D9%88%D9%86-%D9%88%D9%85%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D9%88%D9%86.webp'},
+  ];
+  const pkgs=[
+    {title:'الأساسية',sub:'للأفراد والشركات الصغيرة',yearly:300,monthly:30,features:['توثيق ملف واحد','حملة ترويجية','ظهور في قسم تحت الضوء','تحديث المعلومات خلال 3 أيام','تقرير شهري للأداء']},
+    {title:'النمو',sub:'للشركات المتوسطة',yearly:null,features:['توثيق 3 ملفات للشخصيات','حملة ترويجية موسعة','مدير حساب مخصص','تحديث المعلومات خلال 48 ساعة','تقرير شهري مفصل']},
+  ];
+  return `
+  ${header()}
+  <!-- Benefits -->
+  <section style="padding:56px 20px 48px;background:white">
+    <div style="max-width:1100px;margin:0 auto">
+      <h1 style="font-size:36px;font-weight:800;text-align:center;margin-bottom:40px">ماذا تستفيد من العضوية الموثقة؟</h1>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        ${benefits.map(b=>`<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px 24px;text-align:center"><img src="${b.icon}" style="width:56px;height:56px;margin:0 auto 16px;object-fit:contain;display:block" onerror="this.style.display='none'"><h3 style="font-size:17px;font-weight:700;margin-bottom:10px">${b.title}</h3><p style="font-size:14px;color:#64748b;line-height:1.7">${b.desc}</p></div>`).join('')}
+      </div>
+    </div>
+  </section>
+  <!-- Stats -->
+  <section style="padding:56px 20px;background:#f1f5f9">
+    <div style="max-width:1100px;margin:0 auto">
+      <h1 style="font-size:36px;font-weight:800;text-align:center;margin-bottom:40px">من هم <span style="color:#4169E1">في أرقام</span></h1>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px">
+        ${stats.map(s=>`<div style="background:white;border-radius:14px;padding:24px 16px;text-align:center;border:1px solid #e2e8f0"><div style="font-size:28px;font-weight:900;margin-bottom:6px">${s.n}</div><div style="font-size:13px;color:#64748b;font-weight:500">${s.l}</div></div>`).join('')}
+      </div>
+      <div style="text-align:center"><button class="btn btn-blue" onclick="go('checkout',{plan:{title:'الأساسية',price:300,cycle:'yearly'}})" style="padding:16px 48px;font-size:18px">وثّق ملفك الآن</button></div>
+    </div>
+  </section>
+  <!-- Verified people -->
+  <section style="padding:56px 20px;background:white">
+    <div style="max-width:1100px;margin:0 auto">
+      <h1 style="font-size:36px;font-weight:800;text-align:center;margin-bottom:40px">أفراد وثقوا ملفاتهم في <span style="color:#4169E1">من هم</span></h1>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+        ${vp.map(p=>`
+        <div style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:8px;border-radius:12px;transition:background .15s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+          <img src="${p.photo}" style="width:72px;height:84px;border-radius:10px;object-fit:cover;object-position:top;flex-shrink:0;display:block" onerror="this.src='https://picsum.photos/seed/${encodeURIComponent(p.name)}/72/84'">
+          <div><h4 style="font-size:15px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:4px">${p.name}${p.v?badge('blue',14):''}</h4><p style="font-size:12.5px;color:#64748b;line-height:1.5">${p.role}</p></div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+  <!-- Verified companies -->
+  <section style="padding:56px 20px;background:#96E3FF">
+    <div style="max-width:1100px;margin:0 auto">
+      <h1 style="font-size:36px;font-weight:800;text-align:center;margin-bottom:40px">شركات وثقت ملفاتها في <span style="color:#1e3a8a">من هم</span></h1>
+      <div style="background:white;border-radius:20px;padding:24px">
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px">
+          ${vc.map(c=>`<div style="border:1px solid #f1f5f9;border-radius:12px;padding:12px;text-align:center;cursor:pointer"><img src="${c.img}" style="width:100%;height:80px;object-fit:contain;display:block;margin-bottom:8px" onerror="this.src='https://picsum.photos/seed/${Math.random()|0}/80/80'"><p style="font-size:11.5px;font-weight:600;line-height:1.4">${c.name}</p></div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Packages -->
+  <section style="padding:56px 20px;background:white">
+    <div style="max-width:900px;margin:0 auto">
+      <h1 style="font-size:36px;font-weight:800;text-align:center;margin-bottom:40px">باقات <span style="color:#4169E1">من هم</span></h1>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        ${pkgs.map((pkg,i)=>`
+        <div style="border-radius:24px;overflow:hidden;border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(0,0,0,.06);background:${i===0?'linear-gradient(135deg,#eff6ff,#dbeafe)':'linear-gradient(135deg,#f8fafc,#f1f5f9)'}">
+          <div style="padding:32px 28px 20px;text-align:center"><h2 style="font-size:28px;font-weight:900;margin-bottom:6px">${pkg.title}</h2><p style="font-size:14px;color:#64748b">${pkg.sub}</p></div>
+          <div style="padding:0 28px 32px">
+            <ul style="list-style:none;margin-bottom:20px">
+              ${pkg.features.map((f,j)=>`<li style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:13.5px;color:#334155;border-bottom:${j<pkg.features.length-1?'1px solid rgba(0,0,0,.06)':'none'}"><span style="color:#16a34a;flex-shrink:0;margin-top:2px">✓</span>${f}</li>`).join('')}
+            </ul>
+            ${pkg.yearly?`
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div style="background:#2563eb;border-radius:14px;padding:16px 12px;text-align:center">
+                <div style="font-size:26px;font-weight:900;color:white">${pkg.yearly}</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.85);margin:2px 0 10px">دولار سنوياً</div>
+                <button onclick="go('checkout',{plan:{title:'${pkg.title}',price:${pkg.yearly},cycle:'yearly'}})" style="width:100%;background:white;color:#2563eb;border:none;border-radius:100px;padding:9px 0;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit">اشترك سنوي</button>
+              </div>
+              <div style="background:white;border:1px solid #bfdbfe;border-radius:14px;padding:16px 12px;text-align:center">
+                <div style="font-size:26px;font-weight:900">${pkg.monthly}</div>
+                <div style="font-size:12px;color:#64748b;margin:2px 0 10px">دولار شهرياً</div>
+                <button onclick="go('checkout',{plan:{title:'${pkg.title}',price:${pkg.monthly},cycle:'monthly'}})" style="width:100%;background:#2563eb;color:white;border:none;border-radius:100px;padding:9px 0;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit">اشترك شهري</button>
+              </div>
+            </div>`:`<a href="#" style="display:block;text-align:center;padding:16px;background:#2563eb;color:white;border-radius:100px;font-weight:700;font-size:15px">تواصل معنا</a>`}
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+  ${footer()}`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: CHECKOUT
+// ══════════════════════════════════════════
+function sCheckout(){
+  const plan=S.plan||{title:'الأساسية',price:300,cycle:'yearly'};
+  const price=plan.price||300, title=plan.title||'الأساسية', isY=plan.cycle==='yearly';
+  const vat=Math.round(price*.2), total=price+vat;
+
+  // SCA screen
+  if(S.checkoutSca) return `
+  <div style="min-height:100vh;background:#f4f6f9;display:flex;align-items:center;justify-content:center;padding:20px;font-family:'IBM Plex Sans Arabic',sans-serif">
+    <div style="background:white;border-radius:20px;padding:40px 32px;max-width:440px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.08);border:1px solid #e5e7eb">
+      <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#1d4ed8,#6d28d9);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px">🔐</div>
+      <div style="font-size:11px;font-weight:700;color:#6b7280;letter-spacing:1px;margin-bottom:8px">STRONG CUSTOMER AUTHENTICATION</div>
+      <h2 style="font-size:20px;font-weight:900;margin-bottom:8px">تأكيد الدفع بخطوتين</h2>
+      <p style="font-size:13.5px;color:#6b7280;line-height:1.8;margin-bottom:28px">مطلوب بموجب PSD2 / SCA للمدفوعات في المملكة المتحدة.</p>
+      <div style="background:#f8fafc;border-radius:12px;padding:20px;margin-bottom:24px;border:1px solid #e2e8f0">
+        <p style="font-size:13px;color:#374151;margin-bottom:16px;font-weight:600">أُرسل رمز التحقق إلى رقمك المسجل لدى البنك</p>
+        <div style="display:flex;gap:8px;justify-content:center;direction:ltr">
+          ${[0,1,2,3,4,5].map(()=>`<input maxlength="1" style="width:44px;height:52px;text-align:center;border:2px solid #e2e8f0;border-radius:10px;font-size:22px;font-weight:800;outline:none;font-family:inherit" onfocus="this.style.borderColor='#0570de'" onblur="this.style.borderColor='#e2e8f0'">`).join('')}
+        </div>
+        <p style="font-size:12px;color:#9ca3af;margin-top:12px">لم يصلك الرمز؟ <span style="color:#0570de;cursor:pointer;font-weight:600">إعادة الإرسال</span></p>
+      </div>
+      <button class="btn btn-primary" onclick="go('verify')">تأكيد الدفع → بدء التوثيق</button>
+      <button class="btn btn-ghost" onclick="S.checkoutSca=false;draw()">رجوع</button>
+      <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:20px;color:#9ca3af;font-size:12px">🔒 Secured by Stripe · PCI DSS Level 1</div>
+    </div>
+  </div>`;
+
+  // Main checkout
+  return `
+  <div style="min-height:100vh;background:#f1f5f9;font-family:'IBM Plex Sans Arabic',sans-serif;padding-bottom:48px">
+
+    <!-- Top bar -->
+    <div style="background:#0f172a;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-weight:900;font-size:18px;color:white">من<span style="color:#60a5fa">هم</span></span>
+      <div style="font-size:12px;color:#94a3b8">🔒 Secured by Stripe · PCI DSS L1 · FCA Compliant</div>
+      <button onclick="go('membership')" style="font-size:12px;color:#64748b;background:none;border:none;cursor:pointer;font-family:inherit">✕</button>
+    </div>
+
+    <!-- Two columns -->
+    <div style="max-width:900px;margin:32px auto;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 4px 24px rgba(0,0,0,0.07);display:grid;grid-template-columns:1fr 1fr">
+
+      <!-- LEFT: Order summary (grey background) -->
+      <div style="background:#f8fafc;padding:36px 40px;border-left:1px solid #e5e7eb;direction:rtl">
+        <div style="font-size:14px;color:#6b7280;margin-bottom:6px">الاشتراك في</div>
+        <h2 style="font-size:30px;font-weight:900;color:#1a1f36;margin-bottom:6px">عضوية ${title}</h2>
+        <div style="font-size:38px;font-weight:900;color:#1a1f36;margin-bottom:4px">£${price}</div>
+        <div style="font-size:13px;color:#9ca3af;margin-bottom:36px">يُجدد ${isY?'سنوياً':'شهرياً'} · يمكن الإلغاء في أي وقت</div>
+        <div style="border-top:1px solid #e2e8f0;padding-top:20px">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#4b5563;padding:10px 0;border-bottom:1px solid #f1f5f9">
+            <span style="font-weight:500">عضوية ${title}</span><span>£${price}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#4b5563;padding:10px 0;border-bottom:1px solid #f1f5f9">
+            <span style="font-weight:500">ضريبة القيمة المضافة UK (20%)</span><span>£${vat}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:900;color:#1a1f36;padding:14px 0">
+            <span>الإجمالي اليوم</span><span>£${total}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Payment form -->
+      <div style="padding:36px 40px;direction:rtl;overflow-y:auto">
+        <h2 style="font-size:20px;font-weight:800;color:#1a1f36;margin-bottom:28px">تفاصيل الدفع</h2>
+
+        <div style="margin-bottom:20px">
+          <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:8px">رقم البطاقة</label>
+          <input class="pay-input" placeholder="1234  5678  9012  3456" style="font-family:monospace;letter-spacing:2px">
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:8px">تاريخ الانتهاء</label>
+            <input class="pay-input" placeholder="MM / YY">
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:8px">CVC</label>
+            <input class="pay-input" placeholder="•••">
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px">
+          <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:8px">الاسم على البطاقة</label>
+          <input class="pay-input" placeholder="كما هو مكتوب على البطاقة">
+        </div>
+
+        <div style="margin-bottom:24px">
+          <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:8px">Postcode</label>
+          <input class="pay-input" placeholder="SW1A 1AA" style="font-family:monospace">
+          <p style="font-size:11.5px;color:#9ca3af;margin:6px 0 0">مطلوب للمصادقة الثنائية (SCA) في المملكة المتحدة</p>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px">
+          <span style="font-size:12px;color:#9ca3af">نقبل:</span>
+          ${['VISA','MC','AMEX','Apple Pay','Google Pay'].map(c=>`<span style="font-size:11px;font-weight:700;color:#4b5563;background:#f1f5f9;padding:3px 8px;border-radius:6px">${c}</span>`).join('')}
+        </div>
+
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 14px;margin-bottom:20px;display:flex;gap:8px;align-items:flex-start">
+          <span style="flex-shrink:0">ℹ️</span>
+          <p style="font-size:12.5px;color:#1e40af;margin:0;line-height:1.7">ستصلك رسالة تأكيد من بنكك (3D Secure) للموافقة على الدفع — متطلب قانوني في المملكة المتحدة.</p>
+        </div>
+
+        <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;cursor:pointer;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px 16px">
+          <input type="checkbox" id="chk-terms" onchange="checkPayBtnState()" style="margin-top:3px;accent-color:#b45309;flex-shrink:0;width:16px;height:16px">
+          <span style="font-size:12.5px;color:#4b5563;line-height:1.9">
+            أوافق على <a href="#" style="color:#0570de">شروط الاستخدام</a> والتجديد التلقائي للاشتراك، وأطلب تفعيل الخدمة فوراً مع علمي وموافقتي على سقوط حقي في إلغاء الاشتراك واسترداد الأموال (فترة الـ 14 يوماً القانونية) بمجرد البدء في استخدام المنصة.
+          </span>
+        </label>
+
+        <button id="pay-btn" onclick="submitPayment()" style="width:100%;background:#cbd5e1;color:white;border:none;border-radius:10px;padding:16px 0;font-size:16px;font-weight:700;cursor:not-allowed;font-family:inherit;transition:background .2s" disabled>
+          ادفع £${total} الآن
+        </button>
+
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px">
+          ${[{i:'🔒',t:'TLS 256-bit'},{i:'🛡️',t:'PCI DSS L1'},{i:'🇬🇧',t:'FCA Compliant'}].map(b=>`<div style="display:flex;align-items:center;gap:4px;font-size:11px;color:#9ca3af">${b.i} ${b.t}</div>`).join('')}
+        </div>
+      </div>
+
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════
+// SCREEN: VERIFY (KYC)
+// ══════════════════════════════════════════
+function sVerify(){
+  const stepNum={why:1,docType:2,scanDoc:3,selfie:4,done:4};
+  const cur=stepNum[S.verifyStep]||1, total=4;
+  const pct=(cur/total)*100;
+
+  const wrap = (html) => `
+  <div style="min-height:100vh;background:#f4f6f9;font-family:'IBM Plex Sans Arabic',sans-serif">
+    <div style="background:white;border-bottom:1px solid #e5e7eb;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-weight:900;font-size:20px;color:#1e293b">من<span style="color:#4169E1">هم</span></span>
+      <div style="display:flex;align-items:center;gap:8px">
+        ${Array.from({length:total},(_,i)=>`<div style="width:${i<cur?28:8}px;height:8px;border-radius:100px;background:${i<cur?'#0570de':'#e2e8f0'};transition:all .3s"></div>`).join('')}
+        <span style="font-size:12px;color:#9ca3af;margin-right:4px">${cur} / ${total}</span>
+      </div>
+      <button onclick="go('membership')" style="font-size:13px;color:#6b7280;background:none;border:none;cursor:pointer;font-family:inherit">✕ إلغاء</button>
+    </div>
+    <div class="kyc-progress-bar"><div class="kyc-progress-fill" style="width:${pct}%"></div></div>
+    <div style="max-width:560px;margin:0 auto;padding:40px 20px 60px">${html}</div>
+  </div>`;
+
+  const card = (h) => `<div style="background:white;border-radius:16px;padding:32px 28px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e5e7eb">${h}</div>`;
+  const pb = (l,fn) => `<button onclick="${fn}" style="width:100%;background:#0570de;color:white;border:none;border-radius:10px;padding:15px 0;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px">${l}</button>`;
+  const gb = (l,fn) => `<button onclick="${fn}" style="width:100%;background:transparent;color:#6b7280;border:1px solid #e2e8f0;border-radius:10px;padding:13px 0;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:8px">${l}</button>`;
+
+  // WHY
+  if(S.verifyStep==='why') return wrap(card(`
+    <!-- Payment confirmed banner -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:14px 16px;margin-bottom:24px">
+      <span style="font-size:18px">✅</span>
+      <span style="font-size:14px;font-weight:800;color:#15803d">اكتمل الدفع بنجاح</span>
+    </div>
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="width:72px;height:72px;border-radius:50%;background:#eff6ff;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px">🛡️</div>
+      <h2 style="font-size:22px;font-weight:900;margin-bottom:10px">التحقق من الهوية</h2>
+      <p style="font-size:14px;color:#6b7280;line-height:1.8">للامتثال للوائح FCA ومتطلبات KYC نحتاج تأكيد هويتك لتفعيل عضويتك الموثقة.</p>
+    </div>
+    <div style="background:#f8fafc;border-radius:12px;padding:20px;margin-bottom:24px">
+      <p style="font-size:13px;font-weight:700;color:#374151;margin-bottom:12px">لماذا نطلب هذا؟</p>
+      ${[['🔒','ضمان أن الملف الموثق يعود لشخص حقيقي'],['🏦','متطلبات Stripe للاشتراكات المتكررة في UK'],['⚖️','الامتثال لقانون مكافحة غسيل الأموال AMLD6'],['🛡️','حماية هويتك من الانتحال']].map((r,i)=>`
+      <div style="display:flex;gap:10px;padding:7px 0;border-bottom:${i<3?'1px solid #f1f5f9':'none'}"><span style="font-size:16px;flex-shrink:0">${r[0]}</span><span style="font-size:13px;color:#4b5563;line-height:1.6">${r[1]}</span></div>`).join('')}
+    </div>
+    <div style="display:flex;gap:10px;padding:12px 14px;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;margin-bottom:16px">
+      <span style="flex-shrink:0;font-size:16px">⚠️</span>
+      <p style="font-size:12.5px;color:#991b1b;margin:0;line-height:1.8"><strong>تنبيه هام:</strong> تماشياً مع القوانين البريطانية لمكافحة انتحال الشخصيات، يُحظر نشر أي بيانات أو سير ذاتية للعامة في المنصة حتى يتم التحقق من الهوية بنجاح.</p>
+    </div>
+    <div style="display:flex;gap:10px;padding:12px 14px;background:#fafafa;border-radius:10px;border:1px solid #e5e7eb;margin-bottom:20px">
+      <span style="flex-shrink:0">🔒</span>
+      <p style="font-size:12.5px;color:#6b7280;margin:0;line-height:1.7">بياناتك مشفرة. لن تُشارك مع أي طرف ثالث. تُحذف الصور خلال 30 يوماً وفق GDPR.</p>
+    </div>
+    <div style="text-align:center;font-size:13px;color:#6b7280;margin-bottom:8px">⏱️ يستغرق أقل من 3 دقائق</div>
+    ${pb('ابدأ التحقق الآن',"S.verifyStep='docType';draw()")}
+    <button onclick="go('home')" style="width:100%;background:transparent;color:#9ca3af;border:none;border-radius:10px;padding:13px 0;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:8px">التوثيق لاحقاً — الانتقال للرئيسية</button>
+  `));
+
+  // DOC TYPE
+  if(S.verifyStep==='docType'){
+    const docs=[{id:'passport',l:'جواز سفر',d:'مقبول من جميع الدول',i:'🛂'},{id:'national_id',l:'بطاقة هوية وطنية',d:'للمقيمين في دول تصدرها',i:'🪪'},{id:'driving_licence',l:'رخصة قيادة بريطانية',d:'DVLA UK فقط',i:'🚗'},{id:'brp',l:'Biometric Residence Permit',d:'للمقيمين في المملكة المتحدة',i:'📋'}];
+    return wrap(card(`
+      <h2 style="font-size:20px;font-weight:900;margin-bottom:6px">اختر نوع الوثيقة</h2>
+      <p style="font-size:13.5px;color:#6b7280;margin-bottom:24px;line-height:1.7">اختر وثيقة سارية المفعول وغير منتهية الصلاحية.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+        ${docs.map(d=>`
+        <label onclick="S.verifyDoc='${d.id}';draw()" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;border:2px solid ${S.verifyDoc===d.id?'#0570de':'#e2e8f0'};cursor:pointer;background:${S.verifyDoc===d.id?'#eff6ff':'white'};transition:all .15s">
+          <span style="font-size:22px;flex-shrink:0">${d.i}</span>
+          <div style="flex:1"><div style="font-size:14px;font-weight:700">${d.l}</div><div style="font-size:12px;color:#6b7280">${d.d}</div></div>
+          <div style="width:20px;height:20px;border-radius:50%;border:2px solid ${S.verifyDoc===d.id?'#0570de':'#d1d5db'};background:${S.verifyDoc===d.id?'#0570de':'white'};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            ${S.verifyDoc===d.id?'<div style="width:8px;height:8px;border-radius:50%;background:white"></div>':''}
+          </div>
+        </label>`).join('')}
+      </div>
+      <p style="font-size:13px;font-weight:700;color:#374151;margin-bottom:10px">طريقة الرفع</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px">
+        ${[{id:'camera',l:'كاميرا الجهاز',i:'📷'},{id:'upload',l:'رفع ملف PDF/صورة',i:'📁'}].map(m=>`
+        <button onclick="S.verifyMode='${m.id}';draw()" style="padding:12px;border-radius:10px;border:2px solid ${S.verifyMode===m.id?'#0570de':'#e2e8f0'};background:${S.verifyMode===m.id?'#eff6ff':'white'};cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;color:${S.verifyMode===m.id?'#0570de':'#374151'};display:flex;flex-direction:column;align-items:center;gap:6px">
+          <span style="font-size:22px">${m.i}</span>${m.l}
+        </button>`).join('')}
+      </div>
+      ${pb('متابعة',"S.verifyStep='scanDoc';draw()")}
+      ${gb('رجوع',"S.verifyStep='why';draw()")}
+    `));
+  }
+
+  // SCAN DOC
+  if(S.verifyStep==='scanDoc') return wrap(card(`
+    <div style="font-size:12px;color:#0570de;font-weight:700;margin-bottom:6px">● الخطوة 1 من 2 — مسح الوثيقة</div>
+    <h2 style="font-size:20px;font-weight:900;margin-bottom:6px">صوّر وثيقتك الرسمية</h2>
+    <p style="font-size:13px;color:#6b7280;margin-bottom:20px;line-height:1.7">تأكد من وضوح الصورة وإضاءة جيدة وعدم وجود انعكاس.</p>
+    ${S.verifyMode==='camera'?`
+    <div style="background:#111827;border-radius:14px;overflow:hidden;margin-bottom:20px">
+      <div style="aspect-ratio:4/3;position:relative;display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;top:12px;right:12px;width:28px;height:28px;border-top:3px solid #00d66f;border-right:3px solid #00d66f"></div>
+        <div style="position:absolute;top:12px;left:12px;width:28px;height:28px;border-top:3px solid #00d66f;border-left:3px solid #00d66f"></div>
+        <div style="position:absolute;bottom:12px;right:12px;width:28px;height:28px;border-bottom:3px solid #00d66f;border-right:3px solid #00d66f"></div>
+        <div style="position:absolute;bottom:12px;left:12px;width:28px;height:28px;border-bottom:3px solid #00d66f;border-left:3px solid #00d66f"></div>
+        <div style="text-align:center"><div style="font-size:36px;margin-bottom:10px">📄</div><p style="color:rgba(255,255,255,.5);font-size:13px">ضع الوثيقة داخل الإطار</p></div>
+      </div>
+      <div style="background:rgba(0,0,0,.6);padding:10px 16px;display:flex;gap:16px;justify-content:center">
+        ${['إضاءة جيدة','لا انعكاس','البيانات ظاهرة'].map(t=>`<span style="font-size:11px;color:#00d66f;font-weight:600">✓ ${t}</span>`).join('')}
+      </div>
+    </div>`:`
+    <div style="border:2px dashed #bfdbfe;border-radius:14px;padding:40px 20px;text-align:center;margin-bottom:20px;background:#f8fafc;cursor:pointer">
+      <div style="font-size:40px;margin-bottom:12px">📁</div>
+      <p style="font-size:14px;font-weight:700;margin-bottom:6px">اسحب الملف هنا أو اضغط للاختيار</p>
+      <p style="font-size:12px;color:#9ca3af">PDF, JPG, PNG — الحجم الأقصى 10MB</p>
+    </div>`}
+    ${pb('التقطت الصورة — متابعة',"S.verifyStep='selfie';draw()")}
+    ${gb('رجوع',"S.verifyStep='docType';draw()")}
+  `));
+
+  // SELFIE
+  if(S.verifyStep==='selfie') return wrap(card(`
+    <div style="font-size:12px;color:#0570de;font-weight:700;margin-bottom:6px">● الخطوة 2 من 2 — Liveness Check</div>
+    <h2 style="font-size:20px;font-weight:900;margin-bottom:6px">صورة حية للتحقق</h2>
+    <p style="font-size:13px;color:#6b7280;margin-bottom:16px;line-height:1.7">النظام يتحقق أنك شخص حقيقي وليس صورة مطبوعة.</p>
+    <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px 16px;margin-bottom:20px">
+      <p style="font-size:12.5px;font-weight:700;color:#0369a1;margin-bottom:10px">تعليمات:</p>
+      ${['انظر مباشرة إلى الكاميرا','ابتسم أو حرّك رأسك ببطء عند الطلب','لا نظارات شمسية أو غطاء رأس','إضاءة جيدة من الأمام'].map((t,i)=>`<div style="font-size:12.5px;color:#0c4a6e;padding:4px 0;border-bottom:${i<3?'1px solid #e0f2fe':'none'}">✓ ${t}</div>`).join('')}
+    </div>
+    <div style="background:#111827;border-radius:14px;overflow:hidden;margin-bottom:20px">
+      <div style="aspect-ratio:3/4;max-width:280px;margin:0 auto;display:flex;align-items:center;justify-content:center;position:relative">
+        <div style="width:72%;height:80%;border:3px solid rgba(0,214,111,.7);border-radius:50%;display:flex;align-items:center;justify-content:center">
+          <span style="color:rgba(255,255,255,.4);font-size:12px;text-align:center;padding:0 16px">ضع وجهك داخل البيضاوي</span>
+        </div>
+        <div style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.6);border-radius:100px;padding:5px 14px;display:flex;align-items:center;gap:6px">
+          <div style="width:7px;height:7px;border-radius:50%;background:#00d66f;animation:pulse 2s infinite"></div>
+          <span style="color:white;font-size:11px;font-weight:600">Liveness Detection نشط</span>
+        </div>
+      </div>
+    </div>
+    ${pb('تم — إنهاء التوثيق',"S.verifyStep='done';draw()")}
+    ${gb('رجوع',"S.verifyStep='scanDoc';draw()")}
+  `));
+
+  // DONE
+  return wrap(`
+  <div style="background:white;border-radius:16px;padding:48px 28px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e5e7eb;text-align:center">
+    <div style="width:88px;height:88px;border-radius:50%;background:#f0fdf4;border:3px solid #86efac;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:48px">✓</div>
+    <h2 style="font-size:24px;font-weight:900;margin-bottom:8px">تم التحقق من هويتك! 🎉</h2>
+    <p style="font-size:14.5px;color:#6b7280;line-height:1.8;margin-bottom:28px">اجتازت هويتك فحوصات KYC بنجاح. حسابك الآن نشط ومُوثَّق بالكامل.</p>
+    <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:16px 20px;margin-bottom:28px;text-align:right">
+      ${[['✅','شارة التوثيق الزرقاء مفعّلة'],['📝','يمكنك تعديل بياناتك الآن'],['🔍','ملفك يظهر في نتائج البحث الموثقة'],['📊','تقارير الأداء متاحة']].map(f=>`<div style="display:flex;gap:8px;align-items:center;font-size:13.5px;color:#166534;padding:5px 0">${f[0]} ${f[1]}</div>`).join('')}
+    </div>
+    <button onclick="go('home')" style="width:100%;background:#0570de;color:white;border:none;border-radius:10px;padding:15px 0;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">انتقل إلى ملفك الموثق</button>
+  </div>`);
+}
+
+// ══════════════════════════════════════════
+// ROUTER
+// ══════════════════════════════════════════
+const SCREENS = {
+  home:       sHome,
+  search:     sSearch,
+  profile:    sProfile,
+  categories: sCategories,
+  lists:      sLists,
+  company:    sCompany,
+  mawshoor:   sMawshoor,
+  nominate:   sNominate,
+  add:        sAdd,
+  membership: sMembership,
+  checkout:   sCheckout,
+  verify:     sVerify,
+};
+
+function draw(){
+  document.getElementById('app').innerHTML = (SCREENS[S.screen]||sHome)();
+}
+
+// ══════════════════════════════════════════
+// DROPDOWN LOGIC
+// ══════════════════════════════════════════
+function toggleDD(id){
+  const menu = document.getElementById(id+'-menu');
+  if(!menu) return;
+  const isOpen = menu.classList.contains('open');
+  closeDD();
+  if(!isOpen) menu.classList.add('open');
+}
+function closeDD(){
+  document.querySelectorAll('.dd-menu.open').forEach(m=>m.classList.remove('open'));
+}
+document.addEventListener('mousedown', e=>{
+  if(!e.target.closest('.dropdown')) closeDD();
+});
+
+// ══════════════════════════════════════════
+// CHECKOUT HELPERS
+// ══════════════════════════════════════════
+function checkPayBtnState(){
+  const t = document.getElementById('chk-terms');
+  const btn = document.getElementById('pay-btn');
+  if(!t || !btn) return;
+  const ok = t.checked;
+  btn.disabled = !ok;
+  btn.style.background = ok ? '#0570de' : '#cbd5e1';
+  btn.style.cursor = ok ? 'pointer' : 'not-allowed';
+}
+function submitPayment(){
+  S.checkoutSca = true;
+  draw();
+}
+
+// ══════════════════════════════════════════
+// BOOT
+// ══════════════════════════════════════════
+draw();
+</script>
+</body>
+</html>
