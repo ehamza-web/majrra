@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركاء النهضة - تعيين كلمة المرور (الويب)</title>
+    
+    <!-- استيراد خط Tajawal كاحتياطي ممتاز ومجال متناسق -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- استيراد خط دبي الرسمي المتوافق مع متصفحات الويب والأنظمة لدقة المحاكاة -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dubai-font@1.0.1/dubai-font/css/dubai-font.css">
+    
+    <!-- تضمين مكتبة Tailwind CSS للتصاميم الحديثة والتجاوبية المطلقة -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        majarraGreen: '#009639',
+                        successGreen: '#4cd964',
+                        hilalBlue: '#21409a',
+                        hilalYellow: '#ffc619',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* تطبيق خط دبي على مستوى كامل الصفحة كقاعدة أساسية */
+        body {
+            font-family: 'Dubai-Regular', 'Dubai', 'Tajawal', sans-serif;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* تطبيق مواصفات الخط المحددة بدقة متناهية من لقطة الشاشة image_0c2ce5.png للفقرة الوصفية وتوسيطها */
+        .exact-inspect-text {
+            font-family: 'Dubai-Medium', 'Dubai', serif !important;
+            color: #595A5B !important;
+            font-size: 21.2438px !important;
+            margin: 0px auto 32px !important;
+            line-height: 1.55 !important;
+            text-align: center !important;
+            display: block !important;
+        }
+
+        /* تنسيقات العناوين الفاخرة */
+        .exact-title {
+            font-family: 'Dubai-Bold', 'Dubai', 'Tajawal', sans-serif !important;
+            font-weight: 700;
+        }
+
+        /* تأثيرات حركة سلسة لتنبيهات الأخطاء وبطاقات النجاح */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        /* تنسيقات مخصصة للفوتر لضمان توافقه الكامل دون تداخل مع بوتستراب */
+        .main-footer {
+            background-color: #111111;
+            color: #ffffff;
+            font-family: 'Dubai-Regular', 'Dubai', 'Tajawal', sans-serif;
+            text-align: right;
+        }
+        .main-footer h1.no-dots-border {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            border-bottom: 2px solid #222222;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        .main-footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .main-footer ul li {
+            margin-bottom: 8px;
+        }
+        .main-footer a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 14px;
+        }
+        .main-footer a:hover {
+            color: #009639;
+        }
+        .store-image {
+            height: 40px;
+            margin-left: 8px;
+            display: inline-block;
+        }
+        .social-media-link {
+            display: inline-block;
+            margin-left: 12px;
+            background-color: #222222;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        .social-media-link:hover {
+            background-color: #009639;
+        }
+        .social-media-link img {
+            width: 16px;
+            height: 16px;
+        }
+        .footer-payment-mehtod img {
+            height: 24px;
+            display: inline-block;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .footer-copy-rights {
+            font-size: 13px;
+            color: #777777;
+        }
+        .bottom-footer-container {
+            border-top: 1px solid #222222;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col justify-between">
+
+    <!-- نظام التنبيهات المخصص (بديل alert) -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-red-600 text-white px-6 py-3.5 rounded-xl shadow-xl flex items-center gap-3 transition-all duration-300 transform -translate-y-20 opacity-0 pointer-events-none">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <span id="toast-text" class="font-medium text-sm">خطأ في الإدخال</span>
+    </div>
+
+    <!-- حاوية التطبيق الرئيسية المصممة للويب -->
+    <div class="w-full max-w-4xl mx-auto p-6 md:p-12 text-center relative overflow-hidden flex-grow flex flex-col justify-center">
+        
+        <!-- بطاقة النجاح لنسخة الويب -->
+        <div id="desktop-success-overlay" class="absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-8 hidden fade-in">
+            <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-4 scale-110">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h2 class="text-xl font-bold text-gray-900 mb-2 exact-title">تم تعيين كلمة المرور بنجاح!</h2>
+            <p class="text-gray-500 text-xs text-center max-w-sm mb-6 leading-relaxed">
+                تم تفعيل الحساب، سيتم الآن نقلك للوحة التحكم لتتمتع بالاشتراك المجاني لمدة عام...
+            </p>
+            <div class="w-40 bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-[#21409a] h-full rounded-full transition-all duration-[2000ms] w-0" id="desktop-redirect-progress"></div>
+            </div>
+        </div>
+
+        <!-- ترويسة شركاء النهضة الموحدة كـ image_0ca471.png -->
+        <div class="flex flex-col items-center justify-center w-full gap-4 mb-8">
+            <img src="https://my.majarra.com/_nuxt/img/majarra.98be799.svg" alt="شركاء النهضة ومجرة" class="h-16 w-auto object-contain">
+            <div class="flex flex-row items-center justify-center gap-8 w-full">
+                <img src="https://my.majarra.com/_nuxt/img/sponser1.385c97a.svg" alt="الهلال للمشاريع" class="h-10 w-auto object-contain">
+                <img src="https://my.majarra.com/_nuxt/img/smf-logo.df698ce.png" alt="المنتدى السعودي للإعلام" class="h-10 w-auto object-contain">
+            </div> 
+        </div>
+
+        <!-- علامة صح الخضراء -->
+        <div class="w-14 h-14 bg-[#4cd964] rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-5 shadow-lg shadow-emerald-100">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+
+        <!-- النصوص المطابقة والمحدثة في المساحة -->
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4 exact-title text-center block mx-auto">مبارك، تم قبول طلبك بنجاح</h1>
+        <p class="exact-inspect-text max-w-2xl mx-auto px-4 text-center">
+            يمكنك الآن التمتع باستفادة غير محدودة من اشتراك مجرة لمدة عام كامل من خلال منحة شركاء النهضة. الرجاء تعيين كلمة المرور الخاصة بك بالأسفل للمتابعة وتنشيط حسابك فوراً.
+        </p>
+
+        <!-- نموذج الإدخال الجديد -->
+        <form id="desktop-password-form" class="max-w-md mx-auto bg-gray-50 rounded-2xl p-6 border border-gray-100 text-right mb-8 w-full shadow-sm" onsubmit="handleFormSubmit(event)">
+            <div class="mb-4 relative">
+                <label for="desktop-password" class="block text-xs font-bold text-gray-700 mb-1.5 exact-title">أضف كلمة المرور للمتابعة</label>
+                <div class="relative rounded-lg shadow-sm">
+                    <input type="password" id="desktop-password" required minlength="6"
+                           class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#21409a] pl-8 text-right font-sans"
+                           placeholder="كلمة المرور الجديدة" oninput="validateInputs()">
+                    <button type="button" onclick="togglePasswordVisibility('desktop-password', this)" class="absolute inset-y-0 left-0 pl-2.5 flex items-center text-gray-400 hover:text-gray-600">
+                        <svg class="w-4 h-4 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-5 relative">
+                <label for="desktop-confirm" class="block text-xs font-bold text-gray-700 mb-1.5 exact-title">تأكيد كلمة المرور</label>
+                <div class="relative rounded-lg shadow-sm">
+                    <input type="password" id="desktop-confirm" required
+                           class="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#21409a] pl-8 text-right font-sans"
+                           placeholder="تأكيد كلمة المرور الجديدة" oninput="validateInputs()">
+                    <button type="button" onclick="togglePasswordVisibility('desktop-confirm', this)" class="absolute inset-y-0 left-0 pl-2.5 flex items-center text-gray-400 hover:text-gray-600">
+                        <svg class="w-4 h-4 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div id="desktop-indicator" class="text-xs mt-2 mr-1 flex items-center gap-1 opacity-0 transition-opacity">
+                    <span class="w-2 h-2 rounded-full inline-block" id="desktop-indicator-dot"></span>
+                    <span id="desktop-indicator-text" class="text-[11px] exact-title"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-[#21409a] hover:bg-[#162e70] text-white font-bold py-2.5 px-4 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 exact-title">
+                <span>متابعة</span>
+                <svg class="w-3.5 h-3.5 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+        </form>
+
+        <!-- رمز الـ QR الرسمي لمجرة -->
+        <div class="border-t border-gray-100 pt-6 text-center select-none">
+            <p class="text-sm font-bold text-gray-800 mb-3 exact-title">كن مستعداً لدخولك تطبيق مجرة حمله الآن</p>
+            <div class="bg-white p-2.5 rounded-xl border border-gray-100 inline-block shadow-sm">
+                <img src="https://my.majarra.com/_nuxt/img/status-qr.9902a72.svg" alt="QR Code" class="w-20 h-20 object-contain">
+            </div>
+        </div>
+    </div>
+
+    <!-- فوتر مجرة الرسمي المتوافق مع كافة الأنظمة بمظهر رائع للويب -->
+    <footer class="main-footer pt-10 mt-12 w-full" data-v-46ff94a2="">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-v-46ff94a2="">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" data-v-46ff94a2="">
+                
+                <div class="" data-v-46ff94a2="">
+                    <h1 class="no-dots-border exact-title" data-v-46ff94a2="">أهم الروابط</h1> 
+                    <div class="website-links mt-2" data-v-46ff94a2="">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-v-46ff94a2="">
+                            <ul class="" data-v-46ff94a2="">
+                                <li data-v-46ff94a2=""><a href="/about-us" class="about-2 link" data-v-46ff94a2="">مجرة: أفضل محتوى عربي على الإنترنت</a></li> 
+                                <li data-v-46ff94a2=""><a href="/stc" class="about-2 link" data-v-46ff94a2="">اشتراك عن طريق STC</a></li> 
+                                <li data-v-46ff94a2=""><a href="/gift-subscription" class="about-2 link" data-v-46ff94a2="">إهداء اشتراك</a></li> 
+                                <li data-v-46ff94a2=""><a href="/shorakaa-nahda" class="about-2 link" data-v-46ff94a2="">برنامج شركاء النهضة</a></li>
+                            </ul> 
+                            <ul class="" data-v-46ff94a2="">
+                                <li data-v-46ff94a2=""><a href="https://majarra.com/ar/majarra-for-business" target="_blank" class="about-2 link" data-v-46ff94a2="">خدمات الشركات</a></li> 
+                                <li data-v-46ff94a2=""><a href="/entercode" class="about-2 link" data-v-46ff94a2="">استخدام رمز الهدية</a></li> 
+                                <li data-v-46ff94a2=""><a href="/policies" class="about-2 link" data-v-46ff94a2="">شروط استخدام اشتراك مجرة</a></li> 
+                                <li data-v-46ff94a2=""><a href="/privacy" class="about-2 link" data-v-46ff94a2="">سياسة الخصوصية</a></li> 
+                                <li data-v-46ff94a2=""><a href="/faqs" class="about-2 link" data-v-46ff94a2="">الأسئلة الشائعة</a></li> 
+                                <li data-v-46ff94a2=""><a href="https://majarrahelp.zendesk.com/hc/ar/requests/new" target="_blank" class="about-2 link" data-v-46ff94a2="">خدمة القراء والمشتركين</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="" data-v-46ff94a2="">
+                    <h1 class="no-dots-border exact-title" data-v-46ff94a2="">منصاتنا</h1> 
+                    <ul class="website-links mt-2" data-v-46ff94a2="">
+                        <li data-v-46ff94a2=""><a href="https://hbrarabic.com" target="_blank" class="about-2" data-v-46ff94a2="">هارفارد بزنس ريفيو</a></li>
+                        <li data-v-46ff94a2=""><a href="https://mittrarabia.com" target="_blank" class="about-2" data-v-46ff94a2="">إم آي تي تكنولوجي</a></li>
+                        <li data-v-46ff94a2=""><a href="https://oloom.majarra.com" target="_blank" class="about-2" data-v-46ff94a2="">العلوم للعموم</a></li>
+                        <li data-v-46ff94a2=""><a href="https://nafseyati.com" target="_blank" class="about-2" data-v-46ff94a2="">نفسيتي</a></li>
+                    </ul>
+                </div> 
+
+                <div class="" data-v-46ff94a2="">
+                    <h1 class="no-dots-border exact-title" data-v-46ff94a2="">حمّل التطبيق</h1> 
+                    <div class="flex flex-row gap-2 mt-2" data-v-16bdb92a="" data-v-46ff94a2="">
+                        <a href="https://play.google.com/store/apps/details?id=com.majarra.majarra" target="_blank" data-v-16bdb92a="">
+                            <img alt="google play" src="https://my.majarra.com/_nuxt/img/googl-play.bde92fe.svg" class="store-image" data-v-16bdb92a="">
+                        </a> 
+                        <a href="https://apps.apple.com/ca/app/%D9%85%D8%AC%D8%B1%D8%A9-5-%D9%85%D9%86%D8%B5%D8%A7%D8%AA-%D8%B9%D8%A7%D9%84%D9%85%D9%8I%D8%A9-%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8E%D9%82%D8%B9%D9%8I%D8%A9/id1626695790" target="_blank" class="ml-0" data-v-16bdb92a="">
+                            <img src="https://my.majarra.com/_nuxt/img/apple-store.75cac4f.svg" alt="app store" class="store-image" data-v-16bdb92a="">
+                        </a>
+                    </div> 
+                </div>
+
+                <div class="" data-v-46ff94a2="">
+                    <h1 class="no-dots-border exact-title" data-v-46ff94a2="">تابعنا</h1> 
+                    <div class="flex flex-row gap-1 mt-2" data-v-46ff94a2="">
+                        <a href="https://instagram.com/hunamajarra?igshid=NTc4MTIwNjQ2YQ==" target="_blank" class="social-media-link Instagram" data-v-46ff94a2="">
+                            <img loading="lazy" alt="instagram" src="https://my.majarra.com/_nuxt/img/fff-insta.d52caf7.svg" data-v-46ff94a2="">
+                        </a> 
+                        <a href="https://twitter.com/majarra" target="_blank" class="social-media-link twitter" data-v-46ff94a2="">
+                            <img loading="lazy" alt="twitter" src="https://my.majarra.com/_nuxt/img/fff-tw.dac6790.svg" data-v-46ff94a2="">
+                        </a> 
+                        <a href="https://www.linkedin.com/company/haykalmedia/mycompany" target="_blank" class="social-media-link linkedin" data-v-46ff94a2="">
+                            <img loading="lazy" alt="linkedin" src="https://my.majarra.com/_nuxt/img/fff-in.399037c.svg" data-v-46ff94a2="">
+                        </a> 
+                        <a href="https://www.facebook.com/Majarra" target="_blank" class="social-media-link facebook" data-v-46ff94a2="">
+                            <img loading="lazy" alt="facebook" src="https://my.majarra.com/_nuxt/img/fff-fb.cb5449d.svg" data-v-46ff94a2="">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div> 
+
+        <div class="bottom-footer-container mt-12 py-6" data-v-46ff94a2="">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-v-46ff94a2="">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-6" data-v-46ff94a2="">
+                    
+                    <div class="flex flex-col sm:flex-row items-center gap-4" data-v-46ff94a2="">
+                        <div class="footer-text text-center sm:text-right text-gray-400" data-v-46ff94a2="">
+                            طرق الدفع المتاحة للاشتراك
+                        </div> 
+                        <div class="footer-payment-mehtod flex flex-wrap gap-2 justify-center" data-v-46ff94a2="">
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/ApplePay.c129627.svg" alt="Apple-Pay" data-v-46ff94a2=""> 
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/GooglePay.97a40f6.svg" alt="Google-Pay" data-v-46ff94a2=""> 
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Visa.9010abc.svg" alt="Visa" data-v-46ff94a2=""> 
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Mastercard.e0d878a.svg" alt="Mastercard" data-v-46ff94a2=""> 
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/AMEX.f90aee9.svg" alt="AmericanX" data-v-46ff94a2=""> 
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Fawry.b064f22.svg" alt="Fawry" data-v-46ff94a2=""> 
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Tabby.ce59fa7.svg" alt="Tabby" data-v-46ff94a2=""> 
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Tamara-Logo.c37a7a6.svg" alt="Tamara" data-v-46ff94a2=""> 
+                            <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Stc-logo.5def6b5.svg" alt="Stc-logo" data-v-46ff94a2="">
+                        </div>
+                    </div> 
+
+                    <div class="footer-text footer-copy-rights text-center lg:text-left" data-v-46ff94a2="">
+                        © جميع الحقوق محفوظة لمجرة 2026
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // إخفاء وإظهار الرموز بشكل انسيابي
+        function togglePasswordVisibility(fieldId, button) {
+            const field = document.getElementById(fieldId);
+            const isPassword = field.type === 'password';
+            field.type = isPassword ? 'text' : 'password';
+            
+            const svg = button.querySelector('.eye-icon');
+            if (isPassword) {
+                svg.classList.add('text-emerald-500');
+                svg.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m11.828 11.828L21 21"/>
+                `;
+            } else {
+                svg.classList.remove('text-emerald-500');
+                svg.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                `;
+            }
+        }
+
+        // التحقق من قوة الرمز ومطابقته وعرض النتيجة بشكل فوري في واجهة المستخدم
+        function validateInputs() {
+            const password = document.getElementById(`desktop-password`).value;
+            const confirm = document.getElementById(`desktop-confirm`).value;
+            const indicator = document.getElementById(`desktop-indicator`);
+            const dot = document.getElementById(`desktop-indicator-dot`);
+            const text = document.getElementById(`desktop-indicator-text`);
+
+            if (!password) {
+                indicator.classList.add('opacity-0');
+                return;
+            }
+
+            indicator.classList.remove('opacity-0');
+
+            if (password.length < 6) {
+                dot.className = "w-2 h-2 rounded-full inline-block bg-amber-500 animate-pulse";
+                text.className = "text-amber-600 font-bold text-xs";
+                text.innerText = "كلمة المرور يجب أن لا تقل عن 6 رموز لضمان أمان حسابك";
+                return;
+            }
+
+            if (confirm === "") {
+                dot.className = "w-2 h-2 rounded-full inline-block bg-zinc-400";
+                text.className = "text-zinc-500 text-xs";
+                text.innerText = "يرجى كتابة كلمة المرور مجدداً في حقل التأكيد...";
+                return;
+            }
+
+            if (password === confirm) {
+                dot.className = "w-2 h-2 rounded-full inline-block bg-emerald-500";
+                text.className = "text-emerald-600 font-bold text-xs";
+                text.innerText = "كلمات المرور متطابقة ومستعدة للحفظ";
+            } else {
+                dot.className = "w-2 h-2 rounded-full inline-block bg-red-500";
+                text.className = "text-red-500 font-bold text-xs";
+                text.innerText = "كلمات المرور غير متطابقة، يرجى التثبت!";
+            }
+        }
+
+        // استدعاء نظام التنبيهات المخصص كبديل تفاعلي لـ alert()
+        function showCustomToast(message) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            
+            toastText.innerText = message;
+            toast.classList.remove('-translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.add('-translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3500);
+        }
+
+        // إرسال النموذج ومعالجة حركة التحميل والنجاح بشكل فريد
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const password = document.getElementById(`desktop-password`).value;
+            const confirm = document.getElementById(`desktop-confirm`).value;
+            const targetForm = document.getElementById(`desktop-password-form`);
+
+            if (password.length < 6) {
+                showCustomToast('يرجى كتابة كلمة مرور مكونة من 6 رموز على الأقل لحماية الحساب.');
+                targetForm.classList.add('shake');
+                setTimeout(() => targetForm.classList.remove('shake'), 400);
+                return;
+            }
+
+            if (password !== confirm) {
+                showCustomToast('كلمتا المرور غير متطابقتين، يرجى التحقق وإعادة المحاولة.');
+                targetForm.classList.add('shake');
+                setTimeout(() => targetForm.classList.remove('shake'), 400);
+                return;
+            }
+
+            // تفعيل بطاقات النجاح المستقلة
+            const successOverlay = document.getElementById(`desktop-success-overlay`);
+            const progressBar = document.getElementById(`desktop-redirect-progress`);
+            
+            successOverlay.classList.remove('hidden');
+            
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+            }, 100);
+
+            // تحويل المستخدم بعد اكتمال التقدم التفاعلي
+            setTimeout(() => {
+                window.location.href = "https://my.majarra.com/dashboard";
+            }, 2100);
+        }
+    </script>
+</body>
+</html>
