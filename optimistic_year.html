@@ -414,56 +414,33 @@
                         </div>
                     </div>
 
-                    <!-- ٢. القسم الثاني: الباقات والاشتراكات السنوية والشهرية (Pricing & Subscription Plans) -->
+                    <!-- ٢. القسم الثاني: الباقات والاشتراكات السنوية (تم تعديل السعر لـ 99 وحذف التوصيف) -->
                     <section id="plans-section" class="bg-slate-50 py-16 border-t border-b border-slate-200/40">
                         <div class="max-w-7xl mx-auto px-6">
                             <div class="text-center max-w-2xl mx-auto mb-12">
-                                <h2 class="text-3xl font-black text-slate-900 mb-4">اختر الخطة المناسبة لرحلتك</h2>
-                                <p class="text-slate-600">اشترك الآن مباشرة للوصول الفوري يومياً للأفكار والتمارين المعرفية التراكمية.</p>
+                                <h2 class="text-3xl font-black text-slate-900 mb-4">خطة الاشتراك</h2>
+                                <p class="text-slate-600">اشترك الآن للوصول الفوري يومياً للأفكار والتمارين المعرفية التراكمية على مدار العام.</p>
                             </div>
 
-                            <!-- كروت الأسعار للويب (سنوي وشهري) -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-10">
-                                <!-- كرت الاشتراك السنوي -->
-                                <div class="bg-white p-8 rounded-3xl border-2 border-orange-500 shadow-xl relative overflow-hidden flex flex-col justify-between transition-all transform hover:-translate-y-1">
-                                    <div class="absolute -left-6 -top-6 w-24 h-24 bg-orange-500 rounded-full blur-2xl opacity-15"></div>
-                                    <div>
-                                        <div class="flex justify-between items-start mb-4">
-                                            <span class="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-bold inline-block">الاشتراك السنوي</span>
-                                        </div>
-                                        <div class="text-4xl font-black text-slate-900 mb-2">٩٠ <span class="text-sm font-normal text-slate-500">درهم إماراتي / سنوياً</span></div>
-                                        <p class="text-xs text-slate-500 leading-relaxed mb-6">اشتراك كامل لمدة عام، استمتع بجرعة التفاؤل اليومية بدون انقطاع وبأفضل سعر متوفر.</p>
-                                        
-                                        <ul class="space-y-3 mb-8 text-right text-sm text-slate-600">
-                                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> وصول كامل لـ ٣٦٥ نصيحة تفاؤل</li>
-                                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> أرشيف تفاعلي كامل متاح في أي وقت</li>
-                                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> ميزة الاستماع الصوتي المباشر بالتطبيق</li>
-                                        </ul>
+                            <!-- كارت الاشتراك السنوي الوحيد المعتمد - ممركز ومميز للغاية -->
+                            <div class="max-w-md mx-auto bg-white p-8 rounded-3xl border-2 border-orange-500 shadow-xl relative overflow-hidden flex flex-col justify-between transition-all transform hover:-translate-y-1 mb-10">
+                                <div class="absolute -left-6 -top-6 w-24 h-24 bg-orange-500 rounded-full blur-2xl opacity-15"></div>
+                                <div>
+                                    <div class="flex justify-between items-start mb-4">
+                                        <span class="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-bold inline-block">عام من التفاؤل</span>
                                     </div>
-                                    <button onclick="simulateSubscription()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-orange-500/10 transition-all text-center">
-                                        اشترك بالباقة السنوية (٩٠ درهم)
-                                    </button>
+                                    <!-- تحديث السعر هنا ليكون 99 درهم إماراتي وزيادة الهامش السفلي لتعويض مكان البارغراف المحذوف بجمالية متناسقة -->
+                                    <div class="text-4xl font-black text-slate-900 mb-8">٩٩ <span class="text-sm font-normal text-slate-500">درهم إماراتي / سنوياً</span></div>
+                                    
+                                    <ul class="space-y-3 mb-8 text-right text-sm text-slate-600">
+                                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> وصول كامل لـ ٣٦٥ نصيحة تفاؤل على مدار السنة</li>
+                                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> أرشيف تفاعلي كامل متاح في أي وقت للرجوع والنشر</li>
+                                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> ميزة الاستماع الصوتي المباشر والواضح بالتطبيق</li>
+                                    </ul>
                                 </div>
-
-                                <!-- كرت الاشتراك الشهري -->
-                                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md flex flex-col justify-between transition-all transform hover:-translate-y-1">
-                                    <div>
-                                        <div class="flex justify-between items-start mb-4">
-                                            <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-bold inline-block">الاشتراك الشهري</span>
-                                        </div>
-                                        <div class="text-4xl font-black text-slate-900 mb-2">١٠ <span class="text-sm font-normal text-slate-500">درهم إماراتي / شهرياً</span></div>
-                                        <p class="text-xs text-slate-500 leading-relaxed mb-6">اشتراك مرن يتجدد تلقائياً بشكل شهري، يمكنك ترقية أو إلغاء اشتراكك في أي وقت تراه مناسباً.</p>
-                                        
-                                        <ul class="space-y-3 mb-8 text-right text-sm text-slate-600">
-                                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> تجديد تلقائي مرن شهرياً</li>
-                                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> أرشيف تفاعلي متاح دائماً لتصفحه</li>
-                                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-500"></i> ميزة الاستماع الصوتي المباشر بالتطبيق</li>
-                                        </ul>
-                                    </div>
-                                    <button onclick="simulateSubscription()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-6 rounded-2xl transition-all text-center">
-                                        اشترك بالباقة الشهرية (١٠ دراهم)
-                                    </button>
-                                </div>
+                                <button onclick="simulateSubscription()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-orange-500/10 transition-all text-center">
+                                    اشترك بالباقة السنوية (٩٩ درهم)
+                                </button>
                             </div>
 
                             <!-- صندوق تنبيه وتنويه هام للمشتركين عن الفروقات -->
@@ -471,7 +448,7 @@
                                 <i data-lucide="info" class="w-5 h-5 shrink-0 text-amber-600 mt-0.5"></i>
                                 <div class="space-y-2 text-right">
                                     <p class="font-bold">هل تود تفعيل الأسبوع التجريبي المجاني؟</p>
-                                    <p class="leading-relaxed text-amber-700">الفترة التجريبية المجانية (٧ أيام) حصرية لمشتركي تطبيق الهواتف الذكية. يرجى تحميل تطبيق "مجرة" عبر متجر التطبيقات لتنشيط اشتراكك التجريبي مجاناً.</p>
+                                    <p class="leading-relaxed text-amber-700">الفترة التجريبية المجانية (٧ أيام) حصرية لمشتركي تطبيق الهواتف الذكية. يرجى تحميل تطبيق "مجرة" عبر متجر التطبيقات لتنشيط اشتراكك التجريبي مجاناً وسنوياً.</p>
                                     <button onclick="toggleLandingView('mobile')" class="mt-1 inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white text-[11px] font-bold px-4 py-2 rounded-xl shadow-md active:scale-95 transition-all">
                                         <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> 
                                         <span>حمّل التطبيق للأسبوع المجاني</span>
@@ -595,7 +572,7 @@
                                                 <a href="/about-us" class="text-right flex-grow leading-tight">مجرة: أفضل محتوى عربي على الإنترنت</a>
                                                 <span class="w-2 h-2 rounded-full border border-slate-400 shrink-0"></span>
                                             </li>
-                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-slate-300 hover:text-white transition-colors">
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-slate-350 hover:text-white transition-colors">
                                                 <a href="/#" class="text-right flex-grow">اشتراكات مجرة</a>
                                                 <span class="w-2 h-2 rounded-full border border-slate-400 shrink-0"></span>
                                             </li>
@@ -730,9 +707,9 @@
             <div id="landing-mobile-view" class="hidden flex justify-center py-10 bg-slate-100 dark:bg-slate-900 min-h-screen">
                 <div class="relative w-[360px] h-[720px] bg-slate-950 rounded-[48px] shadow-2xl border-[10px] border-slate-900 overflow-hidden flex flex-col">
                     <!-- سماعة الهاتف -->
-                    <div class="absolute top-0 inset-x-0 h-7 bg-slate-900 z-30 flex items-center justify-between px-6 text-[10px] text-white">
+                    <div class="absolute top-0 inset-x-0 h-7 bg-slate-900 z-35 flex items-center justify-between px-6 text-[10px] text-white">
                         <span>١٢:٠٠ م</span>
-                        <div class="w-16 h-4 bg-slate-950 rounded-full mx-auto"></div>
+                        <div class="w-16 h-4 bg-slate-955 rounded-full mx-auto"></div>
                         <div class="flex items-center gap-1">
                             <i data-lucide="wifi" class="w-3 h-3"></i>
                             <i data-lucide="battery" class="w-3 h-3"></i>
@@ -770,50 +747,30 @@
                                 </p>
                             </div>
 
-                            <!-- أداة تحويل اختيارية تفاعلية للسنوي والشهري -->
-                            <div class="bg-slate-150 dark:bg-slate-900 p-1 rounded-xl flex gap-1 mb-4 border border-slate-200/50 dark:border-slate-800/80">
-                                <button id="plan-annual" onclick="selectPlan('annual')" class="flex-1 text-center py-2 text-[11px] font-black rounded-lg bg-orange-500 text-white transition-all shadow-sm">
-                                    سنوي (٩٠ درهم)
-                                </button>
-                                <button id="plan-monthly" onclick="selectPlan('monthly')" class="flex-1 text-center py-2 text-[11px] font-bold rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all">
-                                    شهري (١٠ دراهم)
-                                </button>
+                            <!-- بطاقة الاشتراك السنوية للموبايل بعنوان "عام من التفاؤل" وتضم ميزات الويب وتحديث السعر إلى 99 درهماً -->
+                            <div class="bg-orange-50 dark:bg-slate-900 p-4 rounded-2xl mb-4 border border-orange-200/50 dark:border-orange-950 text-right space-y-3">
+                                <div class="flex justify-between items-center border-b border-orange-200/40 dark:border-orange-950/60 pb-2">
+                                    <span class="text-xs font-black text-slate-900 dark:text-white">عام من التفاؤل</span>
+                                    <span class="text-xs font-black text-orange-500">٩٩ درهم / سنوياً</span>
+                                </div>
+                                <!-- ميزات الاشتراك نفسها الموجودة في صفحة الويب مضافة للموبايل -->
+                                <ul class="space-y-2 text-[10px] text-slate-600 dark:text-slate-350">
+                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-500 shrink-0"></i> وصول كامل لـ ٣٦٥ نصيحة تفاؤل على مدار السنة</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-500 shrink-0"></i> أرشيف تفاعلي كامل متاح في أي وقت للرجوع والنشر</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-500 shrink-0"></i> ميزة الاستماع الصوتي المباشر والواضح بالتطبيق</li>
+                                </ul>
                             </div>
 
-                            <!-- زر الاشتراك المباشر -->
+                            <!-- زر الاشتراك المباشر للموبايل (تم تحديث السعر إلى 99 درهماً) -->
                             <button onclick="simulateSubscription()" class="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-orange-500/20 active:scale-95 transition-all text-center flex flex-col items-center justify-center gap-0.5">
                                 <span class="flex items-center gap-1 text-[11px]"><i data-lucide="arrow-right-circle" class="w-4 h-4"></i> ابدأ أسبوعك التجريبي المجاني الآن</span>
-                                <span id="mobile-cta-subtext" class="text-[9px] text-orange-100 font-medium">٩٠ درهم إماراتي/سنوياً بعد الفترة التجريبية</span>
+                                <span class="text-[9px] text-orange-100 font-medium">٩٩ درهم إماراتي/سنوياً بعد الفترة التجريبية</span>
                             </button>
                             
-                            <!-- العبارة الخاصة بالسياسات والتجديد تحت الزر مباشرة -->
-                            <p id="mobile-cta-disclaimer" class="text-[8.5px] text-slate-400 dark:text-slate-500 text-center mt-3 leading-relaxed px-1">
-                                سيتم تجديد الاشتراك تلقائياً بمبلغ ٩٠ درهماً سنوياً ما لم يتم إلغاؤه قبل ٢٤ ساعة من نهاية الفترة الحالية. يمكنك إدارة اشتراكك وإيقاف التجديد من إعدادات حسابك في متجر التطبيقات.
+                            <!-- العبارة الخاصة بالسياسات والتجديد تحت الزر مباشرة (تم تحديث السعر إلى 99 درهماً) -->
+                            <p class="text-[8.5px] text-slate-400 dark:text-slate-500 text-center mt-3 leading-relaxed px-1">
+                                سيتم تجديد الاشتراك تلقائياً بمبلغ ٩٩ درهماً سنوياً ما لم يتم إلغاؤه قبل ٢٤ ساعة من نهاية الفترة الحالية. يمكنك إدارة اشتراكك وإيقاف التجديد من إعدادات حسابك في متجر التطبيقات.
                             </p>
-                        </div>
-
-                        <!-- خطوات العمل سريعة بالهاتف -->
-                        <div class="bg-white dark:bg-slate-900 px-5 py-6 border-y border-slate-100 dark:border-slate-800/80">
-                            <div class="space-y-4">
-                                <div class="flex gap-3">
-                                    <div class="w-7 h-7 rounded-lg bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xs font-bold shrink-0">١</div>
-                                    <div class="flex items-center">
-                                        <h4 class="text-xs font-bold text-slate-900 dark:text-white">اشترك مجاناً في ثوانٍ</h4>
-                                    </div>
-                                </div>
-                                <div class="flex gap-3">
-                                    <div class="w-7 h-7 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs font-bold shrink-0">٢</div>
-                                    <div class="flex items-center">
-                                        <h4 class="text-xs font-bold text-slate-900 dark:text-white">استقبل فكرتك يومياً صباحاً</h4>
-                                    </div>
-                                </div>
-                                <div class="flex gap-3">
-                                    <div class="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">٣</div>
-                                    <div class="flex items-center">
-                                        <h4 class="text-xs font-bold text-slate-900 dark:text-white">أعد بناء صحتك التراكمية</h4>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <!-- روابط الشفافية القانونية تحت صفحة الهبوط -->
@@ -831,11 +788,11 @@
                         <div class="h-12"></div>
                     </div>
 
-                    <!-- شريط سفلي ثابت (Sticky Bottom Bar) خاص بنسخة الموبايل -->
+                    <!-- شريط سفلي ثابت (Sticky Bottom Bar) خاص بنسخة الموبايل (تم تحديث السعر إلى 99 درهماً) -->
                     <div class="absolute bottom-0 inset-x-0 bg-white/95 backdrop-blur-md dark:bg-slate-900/95 border-t border-slate-200/80 dark:border-slate-800 px-4 py-3.5 flex items-center justify-between gap-3 z-30 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
                         <div class="text-right">
                             <p class="text-[8px] text-slate-400 dark:text-slate-500 font-bold">٧ أيام مجاناً، ثم</p>
-                            <p id="sticky-price" class="text-xs font-black text-orange-500">٩٠ درهم / سنوياً</p>
+                            <p class="text-xs font-black text-orange-500">٩٩ درهم / سنوياً</p>
                         </div>
                         <button onclick="simulateSubscription()" class="bg-orange-500 text-white font-bold text-[10px] px-3.5 py-2 rounded-lg active:scale-95 transition-all shadow-md shadow-orange-500/10">
                             بدء الفترة التجريبية
@@ -880,11 +837,11 @@
                                 </svg>
                             </div>
                             
-                            <!-- النصوص ومباركة الانضمام لرحلة التفاؤل (تم إزالة كلمة "عام") -->
+                            <!-- Texts -->
                             <div class="space-y-3 px-2">
                                 <h2 class="text-lg font-black text-white leading-snug">مبارك انضمامك إلى رحلة التفاؤل</h2>
                                 <p class="text-[11.5px] text-slate-350 leading-relaxed font-normal text-justify">
-                                    أنت الآن مشترك في رحلة التفاؤل اليومية. ستحصل على أفكار ونوايا تفاؤلية مركزة ومستخلصة من أحدث دراسات علم النفس الإيجابي وعلم الأعصاب، صممت خصيصاً لتمنحك سلاماً داخلياً واتزاناً ذهنياً في خطوة يومية بسيطة تلهمك التغيير والراحة والسكينة.
+                                    أنت الآن مشترك في رحلة التفاؤل اليومية. ستحصل على أفكار ونوايا تفاؤلية مركزة ومستخلصة من أحدث دراسات علم النفس الإيجابي وعلم الأعصاب، صممت خصيصاً لتمنحك سلاماً داخلياً واتزاناً ذهنياً في خطوة يومية بسيطة تلهمك Tالتغيير والراحة والسكينة.
                                 </p>
                             </div>
                         </div>
@@ -905,7 +862,7 @@
         <!-- ======================= ٢. القسم الإعلاني في الرئيسية (In-App Banner) ======================= -->
         <section id="sec-banner" class="tab-content hidden py-10 flex justify-center bg-slate-100 dark:bg-slate-900 min-h-screen">
             <!-- محاآي شاشة التطبيق الرئيسية (تطبيق مجرة) ومدمج فيها البانر -->
-            <div class="relative w-[360px] h-[720px] bg-slate-950 rounded-[48px] shadow-2xl border-[10px] border-slate-900 overflow-hidden flex flex-col">
+            <div class="relative w-[360px] h-[720px] bg-slate-955 rounded-[48px] shadow-2xl border-[10px] border-slate-900 overflow-hidden flex flex-col">
                 <!-- شريط الحالة العلوي للهاتف -->
                 <div class="absolute top-0 inset-x-0 h-7 bg-white dark:bg-slate-900 z-30 flex items-center justify-between px-6 text-[10px] text-slate-700 dark:text-white border-b border-slate-100 dark:border-slate-800">
                     <span>١٢:٠٠ م</span>
@@ -1102,7 +1059,7 @@
                             <i data-lucide="chevron-down" class="w-4.5 h-4.5"></i>
                         </button>
                         <!-- أيقونة حفظ المفضلة جهة اليسار -->
-                        <button onclick="toggleFav(this)" class="text-slate-400 hover:text-rose-500 transition-colors">
+                        <button onclick="toggleFav(this)" class="text-slate-450 hover:text-rose-500 transition-colors">
                             <i data-lucide="bookmark" class="w-5 h-5"></i>
                         </button>
                     </div>
@@ -1396,29 +1353,10 @@
             lucide.createIcons();
         }
 
+        // تم تبسيط دالة تحديد الخطة لتلائم حقيقة وجود باقة سنوية واحدة فقط
         function selectPlan(plan) {
-            selectedPlan = plan;
-            const btnAnnual = document.getElementById('plan-annual');
-            const btnMonthly = document.getElementById('plan-monthly');
-            const ctaSubtext = document.getElementById('mobile-cta-subtext');
-            const ctaDisclaimer = document.getElementById('mobile-cta-disclaimer');
-            const stickyPrice = document.getElementById('sticky-price');
-
-            if (plan === 'annual') {
-                btnAnnual.className = "flex-1 text-center py-2 text-[11px] font-black rounded-lg bg-orange-500 text-white transition-all shadow-sm";
-                btnMonthly.className = "flex-1 text-center py-2 text-[11px] font-bold rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all";
-                ctaSubtext.textContent = "٩٠ درهم إماراتي/سنوياً بعد الفترة التجريبية";
-                ctaDisclaimer.textContent = "سيتم تجديد الاشتراك تلقائياً بمبلغ ٩٠ درهماً سنوياً ما لم يتم إلغاؤه قبل ٢٤ ساعة من نهاية الفترة الحالية. يمكنك إدارة اشتراكك وإيقاف التجديد من إعدادات حسابك في متجر التطبيقات.";
-                stickyPrice.textContent = "٩٠ درهم / سنوياً";
-                showToast("تم اختيار الاشتراك السنوي بـ ٩٠ درهم");
-            } else {
-                btnAnnual.className = "flex-1 text-center py-2 text-[11px] font-bold rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all";
-                btnMonthly.className = "flex-1 text-center py-2 text-[11px] font-black rounded-lg bg-orange-500 text-white transition-all shadow-sm";
-                ctaSubtext.textContent = "١٠ دراهم إماراتية/شهرياً بعد الفترة التجريبية";
-                ctaDisclaimer.textContent = "سيتم تجديد الاشتراك تلقائياً بمبلغ ١٠ دراهم شهرياً ما لم يتم إلغاؤه قبل ٢٤ ساعة من نهاية الفترة الحالية. يمكنك إدارة اشتراكك وإيقاف التجديد من إعدادات حسابك في متجر التطبيقات.";
-                stickyPrice.textContent = "١٠ دراهم / شهرياً";
-                showToast("تم اختيار الاشتراك الشهري بـ ١٠ دراهم");
-            }
+            selectedPlan = 'annual';
+            showToast("الاشتراك السنوي بـ ٩٩ درهم");
         }
 
         function switchTab(tabName) {
@@ -1439,7 +1377,7 @@
             });
             const activeBtn = document.getElementById(`tab-${tabName}`);
             if (activeBtn) {
-                activeBtn.classList.remove('text-slate-300', 'hover:text-white');
+                activeBtn.classList.remove('text-slate-350', 'hover:text-white');
                 activeBtn.classList.add('bg-orange-500', 'text-white');
             }
 
