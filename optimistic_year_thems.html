@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة معاينة تجربة "عام من التفاؤل" - منصة نفسيتي وتطبيق مجرة</title>
+    <!-- تضمين مكتبة Tailwind CSS للتصميم العصري والمستجيب -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تهيئة تدوين النمط الداكن في تايلوند وتخصيص لوحة الألوان الطبيعية الجديدة -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#1e293b',
+                            750: '#334155',
+                        },
+                        // ربط متغيرات الألوان البراندية بمتغيرات الـ CSS الديناميكية للثيمات الثلاثة
+                        brandBgLight: 'var(--bg-light)',
+                        brandBgMain: 'var(--bg-main)',
+                        brandBgHighlight: 'var(--bg-highlight)',
+                        brandTextTitle: 'var(--text-title)',
+                        brandTextBody: 'var(--text-body)',
+                        brandAccent: 'var(--color-accent)',
+                        brandAccentHover: 'var(--color-accent-hover)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- تضمين خطوط جوجل لخطوط مريحة للعين وقراءة ممتازة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات Lucide عن طريق CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- تضمين مكتبة Font Awesome للأيقونات الكلاسيكية -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تعريف الألوان لكل ثيم بشكل متغيرات CSS */
+        :root, .theme-mint {
+            --bg-light: #F4FBF7;
+            --bg-main: #EAF7F0;       /* أخضر نعناعي فاتح */
+            --bg-highlight: #D2EFE1;
+            --text-title: #1F5C4A;     /* أخضر غامق */
+            --text-body: #2F3A3D;      /* رمادي فحمي */
+            --color-accent: #4CAF7A;   /* أخضر متوسط */
+            --color-accent-hover: #3e9c6a;
+        }
+        .theme-blue {
+            --bg-light: #F4F9FC;
+            --bg-main: #EEF6FB;       /* أزرق سماوي باهت */
+            --bg-highlight: #D5E8F0;
+            --text-title: #26435D;     /* كحلي هادئ */
+            --text-body: #39444A;      /* رمادي داكن */
+            --color-accent: #4CA8A8;   /* أخضر تركوازي */
+            --color-accent-hover: #3b9393;
+        }
+        .theme-ivory {
+            --bg-light: #FCFAF5;
+            --bg-main: #FFF8EE;       /* عاجي دافئ */
+            --bg-highlight: #F5EAD6;
+            --text-title: #244E73;     /* أزرق عميق */
+            --text-body: #3B3B3B;      /* رمادي داكن */
+            --color-accent: #D6A84A;   /* ذهبي هادئ */
+            --color-accent-hover: #C1953D;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-body);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* التنسيقات الخاصة بهيدر مجرة الجديد ليتوافق مع الهوية الرسمية */
+        .majarra-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--bg-highlight);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .nav-container {
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0.875rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        .logo img {
+            height: 1.85rem;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+        .nav-links {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                align-items: center;
+                gap: 1.75rem;
+                font-size: 0.875rem;
+                color: var(--text-body);
+                font-weight: 500;
+            }
+            .nav-links a {
+                transition: color 0.15s ease;
+            }
+            .nav-links a:hover {
+                color: var(--text-title);
+            }
+        }
+        .platforms-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .left-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .login-link {
+            font-size: 0.875rem;
+            color: var(--text-body);
+            font-weight: 600;
+            transition: color 0.15s ease;
+        }
+        .login-link:hover {
+            color: var(--text-title);
+        }
+        .btn-subscribe {
+            background-color: var(--text-title);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.6rem 1.25rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+        .btn-subscribe:hover {
+            background-color: var(--color-accent);
+        }
+        .btn-subscribe:active {
+            transform: scale(0.97);
+        }
+        /* تنسيقات الفوتر الرسمي الجديد لمجرة باللون الأخضر الداكن الفخم */
+        .main-footer {
+            border-top: 1px solid var(--bg-highlight);
+            color: var(--text-body);
+            font-size: 0.85rem;
+            transition: border-color 0.3s ease;
+        }
+        .main-footer h1 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-title);
+            border-bottom: 2px solid var(--bg-main);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+        .main-footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .main-footer li {
+            margin-bottom: 0.6rem;
+        }
+        .main-footer .link {
+            color: var(--text-body);
+            transition: color 0.15s ease;
+            font-size: 0.8rem;
+        }
+        .main-footer .link:hover {
+            color: var(--color-accent);
+        }
+        .main-footer .about-2 {
+            font-size: 0.8rem;
+            color: var(--text-body);
+        }
+        .main-footer .store-image {
+            height: 2.3rem;
+            display: inline-block;
+            transition: transform 0.15s ease;
+        }
+        .main-footer .store-image:hover {
+            transform: translateY(-2px);
+        }
+        .main-footer .social-media-link {
+            display: inline-block;
+            margin-left: 0.5rem;
+            background-color: var(--bg-main);
+            padding: 0.45rem;
+            border-radius: 9999px;
+            transition: background-color 0.15s;
+        }
+        .main-footer .social-media-link:hover {
+            background-color: var(--bg-highlight);
+        }
+        .main-footer .social-media-link img {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+        .main-footer .footer-payment-mehtod {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+        .main-footer .footer-payment-mehtod img {
+            height: 1.4rem;
+            background-color: #fafafa;
+            padding: 2px 4px;
+            border: 1px solid var(--bg-main);
+            border-radius: 4px;
+        }
+        .main-footer .bottom-footer-container {
+            border-top: 1px solid var(--bg-main);
+            background-color: var(--bg-light);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .main-footer .footer-text {
+            font-size: 0.75rem;
+            color: var(--text-body);
+        }
+        /* مظهر مخصص للتوهج الخاص باليوم الحالي بالأخضر النعناعي المتألق */
+        .pulsing-glow {
+            box-shadow: 0 0 15px rgba(76, 175, 122, 0.4);
+            animation: pulse-border 2s infinite ease-in-out;
+        }
+        @keyframes pulse-border {
+            0%, 100% {
+                border-color: rgba(76, 175, 122, 0.6);
+                box-shadow: 0 0 8px rgba(76, 175, 122, 0.3);
+            }
+            50% {
+                border-color: rgba(76, 175, 122, 1);
+                box-shadow: 0 0 20px rgba(76, 175, 122, 0.7);
+            }
+        }
+        /* إخفاء شريط التمرير الافتراضي لمحاكيات الهواتف لتبدو حقيقية */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-brandTextBody dark:text-slate-200 flex flex-col min-h-screen theme-mint">
+
+    <!-- شريط التنقل العلوي للمعاينة السريعة والتحكم بجميع الواجهات المطلوبة -->
+    <header class="sticky top-0 z-50 bg-brandTextTitle text-white shadow-lg border-b border-brandAccent/20">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col xl:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-brandAccent text-white p-2 rounded-xl shadow-md">
+                    <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-wide text-white">بوابة تجربة "عام من التفاؤل"</h1>
+                    <p class="text-xs text-brandBgLight">معاينة تفاعلية لكافة الشاشات (ويب، موبايل، تطبيق، وإيميل)</p>
+                </div>
+            </div>
+            
+            <!-- أدوات التبديل التفاعلية في ترويسة البوابة -->
+            <div class="flex flex-wrap items-center gap-3">
+                <!-- أداة الاختيار التفاعلية والذكية لثيمات الهوية البصرية الثلاثة (النعناعي vs السماوي vs العاجي) -->
+                <div class="flex flex-wrap items-center gap-2 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700">
+                    <span class="text-xs font-bold text-slate-350 px-1">الهوية:</span>
+                    <button onclick="setBrandTheme('mint')" id="brand-mint-btn" class="px-2.5 py-1 rounded-lg text-xs font-black transition-all bg-brandAccent text-white shadow-md">🌿 النعناعي</button>
+                    <button onclick="setBrandTheme('blue')" id="brand-blue-btn" class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white">💙 السماوي</button>
+                    <!-- الزر التفاعلي الجديد للثيم العاجي الدافئ الموصوف بدقة -->
+                    <button onclick="setBrandTheme('ivory')" id="brand-ivory-btn" class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white">✨ العاجي الدافئ</button>
+                </div>
+
+                <!-- أزرار التبويبات للتنقل بين الواجهات -->
+                <nav class="flex flex-wrap gap-1 bg-slate-800/80 p-1 rounded-xl border border-slate-700">
+                    <button onclick="switchTab('landing')" id="tab-landing" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-brandAccent text-white">
+                        <span class="flex items-center gap-1.5"><i data-lucide="home" class="w-3.5 h-3.5"></i> صفحة الهبوط</span>
+                    </button>
+                    <button onclick="switchTab('banner')" id="tab-banner" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-brandBgLight hover:text-white transition-all duration-200">
+                        <span class="flex items-center gap-1.5"><i data-lucide="image" class="w-3.5 h-3.5"></i> الإعلان بالتطبيق</span>
+                    </button>
+                    <button onclick="switchTab('email')" id="tab-email" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-brandBgLight hover:text-white transition-all duration-200">
+                        <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5"></i> الإيميل اليومي</span>
+                    </button>
+                    <button onclick="switchTab('content-view')" id="tab-content-view" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-brandBgLight hover:text-white transition-all duration-200">
+                        <span class="flex items-center gap-1.5"><i data-lucide="smartphone" class="w-3.5 h-3.5"></i> عرض الفكرة بالتطبيق</span>
+                    </button>
+                    <button onclick="switchTab('archive')" id="tab-archive" class="tab-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-brandBgLight hover:text-white transition-all duration-200">
+                        <span class="flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> الأرشيف</span>
+                    </button>
+                </nav>
+
+                <!-- زر التحويل للنمط داكن / لايت للمعاينة -->
+                <button onclick="toggleGlobalTheme()" id="theme-toggle-btn" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-brandAccent/10 text-brandAccent hover:bg-brandAccent/20 border border-brandAccent/20 active:scale-95 transition-all text-xs font-bold">
+                    <i data-lucide="moon" id="theme-icon" class="w-4 h-4"></i>
+                    <span id="theme-text">تصفح بالنمط الداكن</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوى البوابة الرئيسي والديناميكي -->
+    <main class="flex-grow">
+
+        <!-- ======================= ١. صفحة الهبوط (Landing Page) ======================= -->
+        <section id="sec-landing" class="tab-content block">
+            <!-- شريط خيارات تبديل العرض لصفحة الهبوط (محاكاة هاتف أم ويب ديسكتوب) -->
+            <div class="bg-brandBgMain dark:bg-slate-800 border-b border-brandBgHighlight dark:border-slate-700 py-3 px-4 shadow-inner">
+                <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="text-sm text-brandTextTitle dark:text-slate-300 flex items-center gap-2">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-brandAccent animate-ping"></span>
+                        <span>أنت تتصفح الآن <strong>صفحة الهبوط (Landing Page)</strong> لبرنامج ٣٦٥ يوماً من التفاؤل.</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white dark:bg-slate-900 p-1 rounded-lg border border-brandBgHighlight dark:border-slate-750 shadow-sm">
+                        <button onclick="toggleLandingView('desktop')" id="btn-view-desktop" class="view-toggle-btn flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-brandTextTitle text-white">
+                            <i data-lucide="monitor" class="w-3.5 h-3.5"></i> نسخة الويب كاملة
+                        </button>
+                        <button onclick="toggleLandingView('mobile')" id="btn-view-mobile" class="view-toggle-btn flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold text-brandTextBody dark:text-slate-300 hover:bg-brandBgLight dark:hover:bg-slate-800">
+                            <i data-lucide="tablet" class="w-3.5 h-3.5"></i> محاكي الموبايل التفاعلي
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- أ) نسخة الويب لصفحة الهبوط (Desktop Layout) - معزولة تماماً في مظهر لايت مريح ومشرق ومثالي للبراندينغ -->
+            <div id="landing-desktop-view" class="block bg-brandBgLight min-h-screen pb-16 transition-all duration-300 text-brandTextBody">
+                <!-- هيدر الصفحة الرسمي لمجرة -->
+                <header class="majarra-header">
+                    <div class="nav-container">
+                        <div class="right-section">
+                            <a href="#" class="logo">
+                                <img src="https://my.majarra.com/_nuxt/img/majarra-logo.9855042.svg" alt="شعار مجرة">
+                            </a>
+                            <nav class="nav-links">
+                                <a href="#" class="platforms-btn">
+                                    المنصات
+                                    <i class="fas fa-chevron-down text-[10px]"></i>
+                                </a>
+                                <a href="#" class="font-bold border-b-2 border-brandTextTitle text-brandTextTitle">الرئيسية</a>
+                                <a href="#">باقات الاشتراك</a>
+                                <a href="#">حمّل تطبيق مجرة</a>
+                            </nav>
+                        </div>
+
+                        <div class="left-section">
+                            <a href="#" class="login-link">تسجيل الدخول</a>
+                            <a href="#" class="btn-subscribe bg-brandTextTitle hover:bg-brandAccent text-white">اشترك الآن</a>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- الحاوية الأساسية لمحتويات الويب غير المشتركة لتسهيل عملية التبديل للمشتركين -->
+                <div id="desktop-main-content" class="block">
+                    <!-- ١. القسم الأول: قسم الهيرو والتعريف (Hero & Introduction Section) -->
+                    <div class="max-w-7xl mx-auto px-6 py-12 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <!-- الجانب الأيمن: النصوص والدعوة للإجراء -->
+                        <div class="lg:col-span-7 text-right">
+                            <span class="inline-flex items-center gap-1.5 bg-brandBgHighlight text-brandTextTitle text-xs px-3 py-1.5 rounded-full font-bold mb-6">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brandAccent"></i> متوفر الآن على الويب وتطبيق مجرة
+                            </span>
+                            
+                            <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-brandTextTitle leading-relaxed mb-6">
+                                <span class="block text-brandTextTitle mb-2">٣٦٥ يوماً من السلام الداخلي..</span>
+                                <span class="block text-brandAccent mt-4 md:mt-5 font-black">ابدأ رحلتك اليوم.</span>
+                            </h1>
+                            
+                            <p class="text-lg md:text-xl text-brandTextBody leading-relaxed mb-8 max-w-2xl">
+                                أفكار ونصائح يومية تدعو للتفاؤل من منظور علمي ونفسي موثوق، تصلك مباشرة عبر بريدك الإلكتروني وبشكل حصري داخل تطبيق "مجرة".
+                            </p>
+                            
+                            <!-- أزرار الإجراء الخاصة بالويب - للتمرير السلس للأسفل -->
+                            <div class="flex flex-col sm:flex-row items-center gap-4 mb-5">
+                                <button onclick="document.getElementById('plans-section').scrollIntoView({behavior: 'smooth'})" class="w-full sm:w-auto bg-brandAccent hover:bg-brandTextTitle text-white text-lg font-bold px-8 py-4 rounded-2xl shadow-lg shadow-brandAccent/20 transform hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-2">
+                                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                                    <span>اشترك الآن وابدأ رحلتك</span>
+                                </button>
+                                <button onclick="toggleLandingView('mobile')" class="w-full sm:w-auto bg-white border border-brandBgHighlight hover:border-brandAccent text-brandTextBody text-sm font-bold px-6 py-4 rounded-[1rem] text-center flex items-center justify-center gap-3 shadow-sm transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4.5 h-4.5 text-brandAccent"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg> 
+                                    <span>حمّل التطبيق للأسبوع المجاني 📱</span>
+                                </button>
+                            </div>
+
+                            <!-- صندوق تنبيه وتنويه هام للمسخدمين عن الفروقات -->
+                            <div class="p-3 bg-brandBgMain border border-brandBgHighlight rounded-xl text-xs text-brandTextTitle flex items-start gap-2 max-w-2xl">
+                                <i data-lucide="info" class="w-4 h-4 shrink-0 text-brandAccent mt-0.5"></i>
+                                <p class="leading-relaxed text-right">
+                                    <strong>ملاحظة:</strong> تفعيل الفترة التجريبية (٧ أيام) متاح حصرياً من خلال تطبيق "مجرة" للهواتف الذكية. يرجى تنزيل التطبيق لتنشيط العرض التجريبي المجاني.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- الجانب الأيسر: محاكاة الموبايل والنصيحة المعرفية والبريد الإلكتروني -->
+                        <div class="lg:col-span-5 relative flex justify-center items-center">
+                            <!-- تدرج لوني خلفي يعبر عن الشروق والتفاؤل -->
+                            <div class="absolute w-72 h-72 md:w-96 md:h-96 bg-gradient-to-tr from-brandBgHighlight to-brandBgLight rounded-full blur-3xl opacity-60 -z-10"></div>
+                            
+                            <!-- محاكاة شكل هاتف يعرض فكرة تفاؤلية (النصيحة) -->
+                            <div class="relative w-72 bg-brandTextTitle p-3 rounded-[40px] shadow-2xl border-4 border-brandTextTitle/45 transform rotate-2 z-10 hover:rotate-0 transition-transform duration-300">
+                                <!-- سماعة الهاتف -->
+                                <div class="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-brandTextTitle rounded-full z-20"></div>
+                                
+                                <div class="bg-white rounded-[32px] overflow-hidden min-h-[460px] flex flex-col p-4 relative text-right">
+                                    <div class="mt-4 flex items-center justify-between border-b border-brandBgHighlight pb-3">
+                                        <div class="flex items-center gap-1.5">
+                                            <div class="bg-brandAccent text-white p-1 rounded-md text-[10px]">
+                                                <i data-lucide="sparkles" class="w-2.5 h-2.5"></i>
+                                            </div>
+                                            <span class="text-[10px] font-bold text-brandTextTitle">تطبيق مجرة</span>
+                                        </div>
+                                        <span class="text-[9px] text-slate-455 font-bold bg-brandBgLight px-1.5 py-0.5 rounded">اليوم الأول</span>
+                                    </div>
+                                    
+                                    <div class="flex-grow flex flex-col justify-center py-4 text-center">
+                                        <span class="text-xs font-bold text-brandAccent tracking-wide mb-1 block">نصيحة التفاؤل المعرفية</span>
+                                        <div class="text-brandAccent text-xl mb-1">“</div>
+                                        <p class="text-xs font-bold text-brandTextBody leading-relaxed mb-3">
+                                            "مرونتك العقلية ليست صفة وراثية ثابتة، بل عضلة تنمو مع كل فكرة تختار التركيز عليها وتفسيرها بإيجابية."
+                                        </p>
+                                        <div class="text-brandAccent text-xl mb-1">”</div>
+                                        <p class="text-[10px] text-brandTextBody/80 leading-relaxed mb-2">تثبت الدراسات العصبية بستانفورد أن عقلية التفاؤل تخفف التوتر بنسبة ٢٣٪ عن طريق تقليل هرمون الكورتيزول.</p>
+                                    </div>
+
+                                    <div class="bg-brandBgMain p-2.5 rounded-2xl text-right border border-brandBgHighlight">
+                                        <p class="text-[10px] font-bold text-brandTextTitle mb-1">خطوتك السلوكية لليوم:</p>
+                                        <p class="text-[9.5px] text-brandTextBody leading-normal">دوّن فكرة واحدة اليوم أثارت قلقك، وأعد صياغتها كفرصة للتعلم من منظور ناضج.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- محاكاة رسالة بريد إلكتروني أنيقة بجانب الهاتف -->
+                            <div class="absolute -bottom-6 -left-8 bg-white border border-brandBgHighlight p-4 rounded-2xl shadow-xl max-w-[260px] hidden md:block transform -rotate-3 z-20">
+                                <div class="flex items-center gap-2 border-b border-brandBgLight pb-2 mb-2">
+                                    <div class="bg-brandBgHighlight text-brandTextTitle p-1 rounded-full"><i data-lucide="mail" class="w-3.5 h-3.5"></i></div>
+                                    <div class="text-[10px]">
+                                        <p class="font-bold text-brandTextTitle">فكرة اليوم الأول وصلت!</p>
+                                        <p class="text-brandTextBody/60 text-[8px]">من: نفسيتي للسلام الداخلي</p>
+                                    </div>
+                                </div>
+                                <p class="text-[9px] text-brandTextBody leading-relaxed">
+                                    مرحباً أحمد، نبارك لك بداية رحلتك.. إليك الفكرة التفاؤلية العلمية الأولى لتبدأ بها يومك بكل اتزان...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ٢. القسم الثاني: الباقات والاشتراكات السنوية -->
+                    <section id="plans-section" class="bg-brandBgMain py-16 border-t border-b border-brandBgHighlight/55">
+                        <div class="max-w-7xl mx-auto px-6">
+                            <div class="text-center max-w-2xl mx-auto mb-12">
+                                <h2 class="text-3xl font-black text-brandTextTitle mb-4">خطة الاشتراك</h2>
+                                <p class="text-brandTextBody/80">اشترك الآن للوصول الفوري يومياً للأفكار والتمارين المعرفية التراكمية على مدار العام.</p>
+                            </div>
+
+                            <!-- كارت الاشتراك السنوي الوحيد المعتمد - ممركز ومميز للغاية -->
+                            <div class="max-w-md mx-auto bg-white p-8 rounded-3xl border-2 border-brandAccent shadow-xl relative overflow-hidden flex flex-col justify-between transition-all transform hover:-translate-y-1 mb-10">
+                                <div class="absolute -left-6 -top-6 w-24 h-24 bg-brandAccent rounded-full blur-2xl opacity-15"></div>
+                                <div>
+                                    <div class="flex justify-between items-start mb-4">
+                                        <!-- تم تغيير العنوان التوضيحي للبطاقة هنا من "الاشتراك السنوي المعتمد" إلى "عام من التفاؤل" -->
+                                        <span class="text-xs bg-brandBgHighlight text-brandTextTitle px-3 py-1 rounded-full font-bold inline-block">عام من التفاؤل</span>
+                                    </div>
+                                    <div class="text-4xl font-black text-brandTextTitle mb-8">٩٩ <span class="text-sm font-normal text-brandTextBody/60">درهم إماراتي / سنوياً</span></div>
+                                    
+                                    <ul class="space-y-3 mb-8 text-right text-sm text-brandTextBody">
+                                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brandAccent"></i> وصول كامل لـ ٣٦٥ نصيحة تفاؤل على مدار السنة</li>
+                                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brandAccent"></i> أرشيف تفاعلي كامل متاح في أي وقت للرجوع والنشر</li>
+                                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brandAccent"></i> ميزة الاستماع الصوتي المباشر والواضح بالتطبيق</li>
+                                    </ul>
+                                </div>
+                                <button onclick="simulateSubscription()" class="w-full bg-brandAccent hover:bg-brandTextTitle text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-brandAccent/10 transition-all text-center">
+                                    اشترك بالباقة السنوية (٩٩ درهم)
+                                </button>
+                            </div>
+
+                            <!-- صندوق تنبيه وتنويه هام للمشتركين عن الفروقات -->
+                            <div class="p-4 bg-white border border-brandBgHighlight rounded-2xl text-xs text-brandTextTitle flex items-start gap-2.5 max-w-2xl mx-auto">
+                                <i data-lucide="info" class="w-5 h-5 shrink-0 text-brandAccent mt-0.5"></i>
+                                <div class="space-y-2 text-right">
+                                    <p class="font-bold">هل تود تفعيل الأسبوع التجريبي المجاني؟</p>
+                                    <p class="leading-relaxed text-brandTextBody/80">الفترة التجريبية المجانية (٧ أيام) حصرية لمشتركي تطبيق الهواتف الذكية. يرجى تحميل تطبيق "مجرة" عبر متجر التطبيقات لتنشيط اشتراكك التجريبي مجاناً وسنوياً.</p>
+                                    <button onclick="toggleLandingView('mobile')" class="mt-1 inline-flex items-center gap-1.5 bg-brandAccent hover:bg-brandTextTitle text-white text-[11px] font-bold px-4 py-2 rounded-xl shadow-md active:scale-95 transition-all">
+                                        <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> 
+                                        <span>حمّل التطبيق للأسبوع المجاني</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ٣. القسم الثالث: كيف تسير معك رحلة التفاؤل؟ (How it Works) -->
+                    <section id="how-it-works" class="max-w-7xl mx-auto px-6 py-16">
+                        <div class="text-center max-w-2xl mx-auto mb-12">
+                            <h2 class="text-3xl font-black text-brandTextTitle mb-4">كيف تسير معك رحلة التفاؤل؟</h2>
+                            <p class="text-brandTextBody/80">٣ خطوات ميسرة، مصممة بنموذج علمي يراعي سلامة عاداتك النفسية ويحميك من التشتت والضغط المعرفي.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <!-- الخطوة الأولى -->
+                            <div class="bg-white p-6 rounded-2xl border border-brandBgHighlight shadow-sm hover:shadow-md transition-shadow">
+                                <div class="w-12 h-12 bg-brandBgMain text-brandAccent rounded-xl flex items-center justify-center font-bold text-lg mb-5">
+                                    <i data-lucide="user-plus" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-brandTextTitle mb-2">١. اختر طريقتك</h3>
+                                <p class="text-sm text-brandTextBody leading-relaxed text-right">
+                                    اشترك مباشرة عبر موقعنا للبدء الفوري بالرحلة التراكمية، أو حمّل تطبيق مجرة لتتمتع بأول ٧ أيام مجاناً بالكامل لتجربة الخدمة.
+                                </p>
+                            </div>
+
+                            <!--  الخطوة الثانية -->
+                            <div class="bg-white p-6 rounded-2xl border border-brandBgHighlight shadow-sm hover:shadow-md transition-shadow">
+                                <div class="w-12 h-12 bg-brandBgMain text-brandAccent rounded-xl flex items-center justify-center font-bold text-lg mb-5">
+                                    <i data-lucide="bell" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-brandTextTitle mb-2">٢. استقبل فكرتك اليومية</h3>
+                                <p class="text-sm text-brandTextBody leading-relaxed text-right">
+                                    كل صباح، تصلك فكرة علمية مركزة وموجزة تفتح لك آفاق التفاؤل والراحة النفسية دون تشتيت أو ضغط معرفي يناسب جدولك المزدحم.
+                                </p>
+                            </div>
+
+                            <!-- الخطوة الثالثة -->
+                            <div class="bg-white p-6 rounded-2xl border border-brandBgHighlight shadow-sm hover:shadow-md transition-shadow">
+                                <div class="w-12 h-12 bg-brandBgMain text-brandAccent rounded-xl flex items-center justify-center font-bold text-lg mb-5">
+                                    <i data-lucide="activity" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-brandTextTitle mb-2">٣. ابنِ عاداتك النفسية</h3>
+                                <p class="text-sm text-brandTextBody leading-relaxed text-right">
+                                    رحلتنا متسلسلة تضمن لك الاستمرار التراكمي. كافة الأفكار والرسائل التي تصلك تُحفظ تلقائياً في أرشيفك الخاص، لتتمكن من العودة إليها ومراضعتها في أي وقت يناسبك.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- الفوتر الرسمي لمجرة الداكن والموثق بالكامل من الصورة المرجعية بلون الغابات الخضراء الفخم -->
+                    <footer class="w-full mt-12">
+                        <div class="max-w-7xl mx-auto bg-brandTextTitle text-white rounded-[40px] px-8 md:px-12 py-12 md:py-16 shadow-2xl relative overflow-hidden">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12">
+                                
+                                <!-- العمود الأول من اليسار: حمّل التطبيق وتابعنا -->
+                                <div class="lg:col-span-3 flex flex-col items-center lg:items-start text-center lg:text-right gap-6">
+                                    <div>
+                                        <h3 class="text-lg font-bold mb-4 text-white">حمّل التطبيق</h3>
+                                        <div class="flex gap-2.5">
+                                            <a href="https://apps.apple.com/ca/app/%D9%85%D8%AC%D8%B1%D8%A9-5-%D9%٨%D9%٨D%D8%B5%D8%A7%D8%AA-%D8%B9%D8%A7%D9%٨D%D8%A9-%D8%A8%D8%A7%D9%٨D%D8%B9%D8%B1%D8%A8%D9%٨D%D8%A9/id1626695790" target="_blank" class="hover:scale-105 transition-transform">
+                                                <img src="https://my.majarra.com/_nuxt/img/apple-store.75cac4f.svg" alt="متجر آب ستور" class="h-9 border border-brandAccent/40 rounded-lg">
+                                            </a>
+                                            <a href="https://play.google.com/store/apps/details?id=com.majarra.majarra" target="_blank" class="hover:scale-105 transition-transform">
+                                                <img src="https://my.majarra.com/_nuxt/img/googl-play.bde92fe.svg" alt="متجر غوغل بلاي" class="h-9 border border-brandAccent/40 rounded-lg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="w-full">
+                                        <h3 class="text-lg font-bold mb-4 text-white">تابعنا</h3>
+                                        <div class="flex justify-center lg:justify-start gap-2.5">
+                                            <a href="https://instagram.com/hunamajarra?igshid=NTc4MTIwNjQ2YQ==" target="_blank" class="w-9 h-9 rounded-lg bg-black/25 hover:bg-brandAccent transition-all flex items-center justify-center text-white text-base">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
+                                            <a href="https://twitter.com/majarra" target="_blank" class="w-9 h-9 rounded-lg bg-black/25 hover:bg-brandAccent transition-all flex items-center justify-center text-white text-base">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                            <a href="https://www.linkedin.com/company/haykalmedia/mycompany" target="_blank" class="w-9 h-9 rounded-lg bg-black/25 hover:bg-brandAccent transition-all flex items-center justify-center text-white text-base">
+                                                <i class="fab fa-linkedin-in"></i>
+                                            </a>
+                                            <a href="https://www.facebook.com/Majarra" target="_blank" class="w-9 h-9 rounded-lg bg-black/25 hover:bg-brandAccent transition-all flex items-center justify-center text-white text-base">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- العمود الثاني: منصاتنا -->
+                                <div class="lg:col-span-3 text-right">
+                                    <h3 class="text-lg font-bold mb-6 text-white pb-2 border-b border-brandAccent/20">منصاتنا</h3>
+                                    <ul class="space-y-3.5 font-medium">
+                                        <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                            <a href="https://hbrarabic.com" target="_blank" class="text-right flex-grow">هارفارد بزنس ريفيو</a>
+                                            <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                        </li>
+                                        <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                            <a href="https://mittrarabia.com" target="_blank" class="text-right flex-grow">إم آي تي تكنولوجي</a>
+                                            <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                        </li>
+                                        <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                            <a href="https://oloom.majarra.com" target="_blank" class="text-right flex-grow">العلوم للعموم</a>
+                                            <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                        </li>
+                                        <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                            <a href="https://nafseyati.com" target="_blank" class="text-right flex-grow">نفسيتي</a>
+                                            <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- العمود الثالث والرابع: أهم الروابط -->
+                                <div class="lg:col-span-6 text-right">
+                                    <h3 class="text-lg font-bold mb-6 text-white pb-2 border-b border-brandAccent/20">أهم الروابط</h3>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <!-- العمود الفرعي الأيمن -->
+                                        <ul class="space-y-3.5 font-medium">
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                                <a href="/about-us" class="text-right flex-grow leading-tight">مجرة: أفضل محتوى عربي على الإنترنت</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                                <a href="/#" class="text-right flex-grow">اشتراكات مجرة</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                                <a href="/stc" class="text-right flex-grow">اشتراك عن طريق اس تي سي</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-slate-300 hover:text-white transition-colors">
+                                                <a href="/gift-subscription" class="text-right flex-grow">إهداء اشتراك</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                                <a href="/shorakaa-nahda" class="text-right flex-grow">برنامج شركاء النهضة</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                        </ul>
+                                        <!-- العمود الفرعي الأيسر -->
+                                        <ul class="space-y-3.5 font-medium">
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-[#2F3A3D] hover:text-white transition-colors">
+                                                <a href="https://majarra.com/ar/majarra-for-business" target="_blank" class="text-right flex-grow">خدمات الشركات</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                                <a href="/entercode" class="text-right flex-grow">استخدام رمز الهدية</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                                <a href="/policies" class="text-right flex-grow">شروط استخدام اشتراك مجرة</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                                <a href="/privacy" class="text-right flex-grow">سياسة الخصوصية</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-slate-350 hover:text-white transition-colors">
+                                                <a href="/faqs" class="text-right flex-grow">الأسئلة الشائعة</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                            <li class="flex items-center gap-2.5 justify-start flex-row-reverse text-sm text-brandBgLight hover:text-white transition-colors">
+                                                <a href="https://majarrahelp.zendesk.com/hc/ar/requests/new" target="_blank" class="text-right flex-grow">خدمة القراء والمشتركين</a>
+                                                <span class="w-2 h-2 rounded-full border border-brandBgHighlight shrink-0"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- شريط الدفع والحقوق الخارجي الممتد أسفل البطاقة -->
+                        <div class="max-w-7xl mx-auto px-4 py-6 mt-6 border-t border-brandAccent/20">
+                            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                                
+                                <!-- اليمين: عنوان طرق الدفع -->
+                                <div class="text-right text-xs font-bold text-brandBgLight md:w-1/4">
+                                    طرق الدفع المتاحة للاشتراك
+                                </div>
+
+                                <!--  المنتصف: بوابات قنوات الدفع -->
+                                <div class="flex flex-wrap justify-center items-center gap-2.5">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/ApplePay.c129627.svg" alt="آبل باي" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/GooglePay.97a40f6.svg" alt="غوغل بلاي" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Visa.9010abc.svg" alt="فيزا" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Mastercard.e0d878a.svg" alt="ماستركارد" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/AMEX.f90aee9.svg" alt="أمكس" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Fawry.b064f22.svg" alt="فوري" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Tabby.ce59fa7.svg" alt="تابي" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Tamara-Logo.c37a7a6.svg" alt="تمارا" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                    <img loading="lazy" src="https://my.majarra.com/_nuxt/img/Stc-logo.5def6b5.svg" alt="إس تي سي" class="h-5 px-1 bg-white border border-brandBgHighlight rounded">
+                                </div>
+
+                                <!-- اليسار: الحقوق والملكية -->
+                                <div class="text-left text-xs font-semibold text-brandBgHighlight md:w-1/4">
+                                    © جميع الحقوق محفوظة لمجرة ٢٠٢٦
+                                </div>
+
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+
+                <!-- ---------------- شاشة نجاح الاشتراك التفاعلية والكاملة بداخل الويب ---------------- -->
+                <div id="desktop-success-view" class="hidden min-h-[85vh] bg-brandTextTitle text-white flex flex-col justify-center items-center py-16 px-6 text-center relative overflow-hidden">
+                    <div class="absolute -top-40 -left-40 w-96 h-96 bg-brandAccent/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-brandBgHighlight/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <!-- القسم الأوسط: الرسم التوضيحي للصاروخ والنصوص السلوكية المحدثة لرحلة التفاؤل على الويب -->
+                    <div class="flex flex-col items-center justify-center max-w-2xl mx-auto space-y-8 relative z-10">
+                        <!-- صاروخ مرسوم بالكامل بلغة الـ SVG بألوان تفاؤلية نعناعية وهالة دافئة ومشرقة -->
+                        <div class="relative w-48 h-40">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <circle cx="50" cy="50" r="38" fill="url(#brand-gradient-web2)" opacity="0.15" />
+                                <defs>
+                                    <radialGradient id="brand-gradient-web2" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="var(--color-accent)" />
+                                        <stop offset="100%" stop-color="var(--text-title)" stop-opacity="0" />
+                                    </radialGradient>
+                                </defs>
+                                <path d="M50,75 Q40,90 50,98 Q60,90 50,75" fill="var(--color-accent)" opacity="0.8"/>
+                                <path d="M50,78 Q45,88 50,95 Q55,88 50,78" fill="var(--bg-main)"/>
+                                <path d="M38,55 C28,65 28,75 34,74 C37,70 37,62 38,55" fill="var(--text-title)"/>
+                                <path d="M62,55 C72,65 72,75 66,74 C63,70 63,62 62,55" fill="var(--text-title)"/>
+                                <path d="M50,15 C61,40 63,70 50,75 C37,70 39,40 50,15" fill="#f8fafc"/>
+                                <path d="M50,15 C56,40 58,70 50,75" fill="#cbd5e1"/> 
+                                <circle cx="50" cy="44" r="11" fill="url(#brand-gradient-web2)"/>
+                                <circle cx="50" cy="44" r="9" fill="var(--bg-main)"/>
+                                <path d="M50,39 L50,49 M45,44 L55,44" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M46.5,40.5 L53.5,47.5 M46.5,47.5 L53.5,40.5" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Texts -->
+                        <div class="space-y-4 max-w-xl mx-auto">
+                            <h2 class="text-3xl font-black text-white leading-snug">مبارك انضمامك إلى رحلة التفاؤل</h2>
+                            <p class="text-sm md:text-base text-brandBgLight leading-relaxed font-normal text-justify md:text-center">
+                                أنت الآن مشترك في رحلة التفاؤل اليومية. ستحصل على أفكار ونوايا تفاؤلية مركزة ومستخلصة من أحدث دراسات علم النفس الإيجابي وعلم الأعصاب، صممت خصيصاً لتمنحك سلاماً داخلياً واتزاناً ذهنياً في خطوة يومية بسيطة تلهمك التغيير والراحة والسكينة.
+                            </p>
+                        </div>
+
+                        <!-- زر الدعوة للإجراء السفلي الموحد والمنسق بالكامل بلون أبيض ناصع وخط عريض -->
+                        <div class="pt-4">
+                            <button onclick="goToContentViewFromDesktopSuccess()" class="bg-white hover:bg-brandBgLight text-brandTextTitle font-black text-sm py-4 px-10 rounded-2xl active:scale-95 transition-all duration-250 shadow-2xl">
+                                انتقل الآن إلى المحتوى
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ب) نسخة الموبايل لصفحة الهبوط (Mobile Responsive Layout) -->
+            <div id="landing-mobile-view" class="hidden flex justify-center py-10 bg-brandBgMain dark:bg-slate-900 min-h-screen">
+                <div class="relative w-[360px] h-[720px] bg-slate-950 rounded-[48px] shadow-2xl border-[10px] border-slate-900 overflow-hidden flex flex-col">
+                    <!-- سماعة الهاتف -->
+                    <div class="absolute top-0 inset-x-0 h-7 bg-slate-900 z-35 flex items-center justify-between px-6 text-[10px] text-white">
+                        <span>١٢:٠٠ م</span>
+                        <div class="w-16 h-4 bg-slate-955 rounded-full mx-auto"></div>
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="wifi" class="w-3 h-3"></i>
+                            <i data-lucide="battery" class="w-3 h-3"></i>
+                        </div>
+                    </div>
+
+                    <!-- محتوى صفحة هبوط الموبايل - قابل للتمرير -->
+                    <div class="flex-grow overflow-y-auto pt-10 pb-20 bg-brandBgLight dark:bg-[#111c18] no-scrollbar text-right">
+                        <!-- قسم الهيرو بالموبايل -->
+                        <div class="px-5 py-6">
+                            <span class="inline-flex items-center gap-1 bg-brandBgHighlight dark:bg-slate-800 text-brandTextTitle dark:text-brandBgLight text-[10px] px-2.5 py-1 rounded-full font-bold mb-3">
+                                <i data-lucide="star" class="w-3 h-3 fill-current text-brandAccent"></i> الأسبوع الأول مجاناً بالكامل
+                            </span>
+                            <h2 class="text-xl font-black text-brandTextTitle dark:text-white leading-relaxed mb-3">
+                                ٣٦٥ يوماً من السلام الداخلي.. ابدأ رحلتك اليوم.
+                            </h2>
+                            <p class="text-xs text-brandTextBody/80 dark:text-slate-300 leading-relaxed mb-4">
+                                أفكار ونصائح يومية تدعو للتفاؤل من منظور علمي ونفسي موثوق، تصلك مباشرة عبر البريد وتطبيق مجرة.
+                            </p>
+
+                            <!-- ---------------- نصيحة اليوم الأول بنسق وحقل نصي موحد لايت مود دافئ ومشرق ---------------- -->
+                            <div class="bg-gradient-to-br from-white to-brandBgLight dark:from-slate-900 dark:to-slate-850 p-4 rounded-2xl border border-brandBgHighlight dark:border-slate-855 shadow-lg text-brandTextBody dark:text-slate-100 mb-5 relative overflow-hidden">
+                                <div class="absolute -right-4 -bottom-4 w-12 h-12 bg-brandAccent rounded-full blur-xl opacity-20 pointer-events-none"></div>
+                                
+                                <div class="flex justify-between items-center text-[10px] text-brandTextBody/60 dark:text-slate-400 mb-2.5 border-b border-brandBgMain dark:border-slate-800 pb-1.5">
+                                    <span class="flex items-center gap-1 text-brandTextTitle dark:text-brandAccent font-bold text-[11px]">
+                                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brandAccent"></i> نصيحة التفاؤل المعرفية
+                                    </span>
+                                    <span class="font-semibold">اليوم الأول</span>
+                                </div>
+                                
+                                <!-- الحقل النصي الموحد والمصمم بأسلوب طباعي متسق ورائع وجاهز لقواعد البيانات -->
+                                <p class="text-[12px] text-brandTextBody dark:text-slate-200 leading-relaxed font-normal text-justify">
+                                    التفاؤل الواقعي ليس مجرد شعور عابر بالبهجة وتجاهل للتحديات، بل هو أداة معرفية وعضلة ذهنية تتيح لك رؤية البدائل الإيجابية في قلب الأزمات. تشير أبحاث علم الأعصاب الحديثة إلى أن إعادة التأطير المعرفي تعيد توجيه النشاط الدماغي بوعي من اللوزة الدماغية (المسؤولة عن تفعيل الخوف والقلق) إلى القشرة الجبهية المسؤولة عن الحلول السلام النفسي. عندما تختار اليوم أن تبحث عن احتمال بناء واحد في مواجهة موقف مربك، فإنك لا تتجاهل الواقع، بل تبني شبكات عصبية قوية تدعم مرونتك وقدرتك على المواجهة الهادئة.
+                                </p>
+                            </div>
+
+                            <!-- بطاقة الاشتراك السنوية للموبايل بعنوان "عام من التفاؤل" وتضم ميزات الويب وتحديث السعر إلى 99 درهماً -->
+                            <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl mb-4 border border-brandBgHighlight dark:border-orange-950 text-right space-y-3">
+                                <div class="flex justify-between items-center border-b border-brandBgMain dark:border-orange-950/60 pb-2">
+                                    <span class="text-xs font-black text-brandTextTitle dark:text-white">عام من التفاؤل</span>
+                                    <span class="text-xs font-black text-brandAccent">٩٩ درهم / سنوياً</span>
+                                </div>
+                                <!-- ميزات الاشتراك نفسها الموجودة في صفحة الويب مضافة للموبايل -->
+                                <ul class="space-y-2 text-[10px] text-brandTextBody dark:text-slate-355">
+                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brandAccent shrink-0"></i> وصول كامل لـ ٣٦٥ نصيحة تفاؤل على مدار السنة</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brandAccent shrink-0"></i> أرشيف تفاعلي كامل متاح في أي وقت للرجوع والنشر</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brandAccent shrink-0"></i> ميزة الاستماع الصوتي المباشر والواضح بالتطبيق</li>
+                                </ul>
+                            </div>
+
+                            <!-- زر الاشتراك المباشر للموبايل (تم تحديث السعر إلى 99 درهماً) -->
+                            <button onclick="simulateSubscription()" class="w-full bg-brandAccent hover:bg-brandTextTitle text-white text-xs font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-brandAccent/20 active:scale-95 transition-all text-center flex flex-col items-center justify-center gap-0.5">
+                                <span class="flex items-center gap-1 text-[11px]"><i data-lucide="arrow-right-circle" class="w-4 h-4 text-white"></i> ابدأ أسبوعك التجريبي المجاني الآن</span>
+                                <span class="text-[9px] text-brandBgLight font-medium">٩٩ درهم إماراتي/سنوياً بعد الفترة التجريبية</span>
+                            </button>
+                            
+                            <!-- العبارة الخاصة بالسياسات والتجديد تحت الزر مباشرة (تم تحديث السعر إلى 99 درهماً) -->
+                            <p class="text-[8.5px] text-brandTextBody/60 dark:text-slate-500 text-center mt-3 leading-relaxed px-1">
+                                سيتم تجديد الاشتراك تلقائياً بمبلغ ٩٩ درهماً سنوياً ما لم يتم إلغاؤه قبل ٢٤ ساعة من نهاية الفترة الحالية. يمكنك إدارة اشتراكك وإيقاف التجديد من إعدادات حسابك في متجر التطبيقات.
+                            </p>
+                        </div>
+
+                        <!-- تم إزالة قسم "خطوات العمل سريعة بالهاتف" (اشترك مجاناً في ثوانٍ، استقبل فكرتك، أعد بناء صحتك) بالكامل بناءً على طلبكم لتبسيط الواجهة -->
+
+                        <!-- روابط الشفافية القانونية تحت صفحة الهبوط -->
+                        <div class="px-5 py-5 bg-brandBgLight dark:bg-slate-900 text-brandTextBody/60 text-[9px] border-t border-brandBgHighlight dark:border-slate-800">
+                            <div class="flex justify-center gap-3 text-brandAccent font-bold">
+                                <a href="#" class="hover:underline">شروط الخدمة</a>
+                                <span>•</span>
+                                <a href="#" class="hover:underline">سياسة الخصوصية</a>
+                                <span>•</span>
+                                <a href="#" class="hover:underline">سياسة الشراء</a>
+                            </div>
+                        </div>
+
+                        <!-- مساحة فارغة لنضمن عدم التداخل مع الشريط الثابت -->
+                        <div class="h-12"></div>
+                    </div>
+
+                    <!-- شريط سفلي ثابت (Sticky Bottom Bar) خاص بنسخة الموبايل (تم تحديث السعر إلى 99 درهماً) -->
+                    <div class="absolute bottom-0 inset-x-0 bg-white/95 backdrop-blur-md dark:bg-slate-900/95 border-t border-brandBgHighlight px-4 py-3.5 flex items-center justify-between gap-3 z-30 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+                        <div class="text-right">
+                            <p class="text-[8px] text-brandTextBody/60 dark:text-slate-500 font-bold">٧ أيام مجاناً، ثم</p>
+                            <p class="text-xs font-black text-brandAccent">٩٩ درهم / سنوياً</p>
+                        </div>
+                        <button onclick="simulateSubscription()" class="bg-brandAccent text-white font-bold text-[10px] px-3.5 py-2 rounded-lg active:scale-95 transition-all shadow-md shadow-brandAccent/10">
+                            بدء الفترة التجريبية
+                        </button>
+                    </div>
+
+                    <!-- ---------------- شاشة نجاح الاشتراك التفاعلية والكاملة بداخل الموبايل (image_5afca4.png) ---------------- -->
+                    <div id="mobile-success-view" class="hidden absolute inset-0 bg-[#1F5C4A] z-40 flex flex-col justify-between p-6 text-center text-white">
+                        <!-- ترويسة الشاشة وشعار مجرة المتطابق تماماً -->
+                        <div class="pt-6">
+                            <h1 class="text-xl font-black tracking-widest text-white">مجرة</h1>
+                        </div>
+                        
+                        <!-- القسم الأوسط: الرسم التوضيحي للصاروخ والنصوص السلوكية المحدثة لرحلة التفاؤل -->
+                        <div class="flex flex-col items-center justify-center my-auto space-y-6">
+                            <!-- صاروخ مرسوم بالكامل بلغة الـ SVG بألوان تفاؤلية وهالة دافئة ومشرقة -->
+                            <div class="relative w-40 h-40">
+                                <svg viewBox="0 0 100 100" class="w-full h-full">
+                                    <!-- تدرج دافيء لخلفية الهالة المشرقة خلف الصاروخ -->
+                                    <circle cx="50" cy="50" r="38" fill="url(#brand-gradient-m)" opacity="0.15" />
+                                    <defs>
+                                        <radialGradient id="brand-gradient-m" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="var(--color-accent)" />
+                                            <stop offset="100%" stop-color="var(--text-title)" stop-opacity="0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <!-- ألسنة لهب وذيل الانطلاق والسرعة -->
+                                    <path d="M50,75 Q40,90 50,98 Q60,90 50,75" fill="var(--color-accent)" opacity="0.8"/>
+                                    <path d="M50,78 Q45,88 50,95 Q55,88 50,78" fill="var(--bg-main)"/>
+                                    <!-- جناح الصاروخ الأيمن والأيسر الأخضر الداكن المشرق -->
+                                    <path d="M38,55 C28,65 28,75 34,74 C37,70 37,62 38,55" fill="var(--text-title)"/>
+                                    <path d="M62,55 C72,65 72,75 66,74 C63,70 63,62 62,55" fill="var(--text-title)"/>
+                                    <!-- جسم الصاروخ الفضي العصري الصقيل -->
+                                    <path d="M50,15 C61,40 63,70 50,75 C37,70 39,40 50,15" fill="#f8fafc"/>
+                                    <path d="M50,15 C56,40 58,70 50,75" fill="#cbd5e1"/> 
+                                    <!-- نافذة الصاروخ الدائرية وفيها شمس وارفة تشع بالتفاؤل والراحة -->
+                                    <circle cx="50" cy="44" r="11" fill="#1e293b"/>
+                                    <circle cx="50" cy="44" r="9" fill="var(--bg-main)"/>
+                                    <!-- أشعة الشمس المتقاطعة بداخل نافذة الصاروخ -->
+                                    <path d="M50,39 L50,49 M45,44 L55,44" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M46.5,40.5 L53.5,47.5 M46.5,47.5 L53.5,40.5" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            
+                            <!-- Texts -->
+                            <div class="space-y-3 px-2">
+                                <h2 class="text-lg font-black text-white leading-snug">مبارك انضمامك إلى رحلة التفاؤل</h2>
+                                <p class="text-[11.5px] text-brandBgLight leading-relaxed font-normal text-justify">
+                                    أنت الآن مشترك في رحلة التفاؤل اليومية. ستحصل على أفكار ونوايا تفاؤلية مركزة ومستخلصة من أحدث دراسات علم النفس الإيجابي وعلم الأعصاب، صممت خصيصاً لتمنحك سلاماً داخلياً واتزاناً ذهنياً في خطوة يومية بسيطة تلهمك التغيير والراحة والسكينة.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- زر الدعوة للإجراء السفلي الموحد والمنسق بالكامل بلون أبيض ناصع وخط عريض -->
+                        <div class="pb-6">
+                            <button onclick="goToContentViewFromSuccess()" class="w-full bg-white hover:bg-brandBgLight text-brandTextTitle font-black text-xs py-3.5 px-4 rounded-xl active:scale-95 transition-all">
+                                انتقال الآن إلى المحتوى
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================= ٢. القسم الإعلاني في الرئيسية (In-App Banner) ======================= -->
+        <section id="sec-banner" class="tab-content hidden py-10 flex justify-center bg-brandBgLight dark:bg-slate-900 min-h-screen">
+            <!-- محاآي شاشة التطبيق الرئيسية (تطبيق مجرة) ومدمج فيها البانر -->
+            <div class="relative w-[360px] h-[720px] bg-slate-955 rounded-[48px] shadow-2xl border-[10px] border-slate-900 overflow-hidden flex flex-col">
+                <!-- شريط الحالة العلوي للهاتف -->
+                <div class="absolute top-0 inset-x-0 h-7 bg-white dark:bg-slate-900 z-35 flex items-center justify-between px-6 text-[10px] text-slate-700 dark:text-white border-b border-brandBgHighlight dark:border-slate-800">
+                    <span>١٢:٠٠ م</span>
+                    <div class="w-16 h-4 bg-slate-150 dark:bg-slate-955 rounded-full mx-auto"></div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="wifi" class="w-3 h-3 text-slate-600 dark:text-slate-400"></i>
+                        <i data-lucide="battery" class="w-3 h-3 text-slate-600 dark:text-slate-400"></i>
+                    </div>
+                </div>
+
+                <!-- واجهة التطبيق الرئيسية باللون الأبيض الفاتح / الداكن (مجرة) -->
+                <div class="flex-grow overflow-y-auto pt-8 pb-16 bg-white dark:bg-slate-900 no-scrollbar text-right">
+                    <!-- هيدر التطبيق -->
+                    <div class="px-4 py-4 flex items-center justify-between border-b border-brandBgHighlight dark:border-slate-850 bg-white/95 dark:bg-slate-900/95 sticky top-0 z-15">
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 rounded-full bg-brandBgMain dark:bg-slate-800 flex items-center justify-center text-brandTextTitle dark:text-slate-400">
+                                <i data-lucide="user" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-xs font-bold text-brandTextBody dark:text-slate-200">أهلاً بك، عبد الرحمن</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-brandBgMain dark:bg-slate-800 text-[10px] text-brandTextTitle dark:text-brandBgLight px-2 py-0.5 rounded font-bold">باقة مجرة الأساسية</span>
+                            <i data-lucide="bell" class="w-4.5 h-4.5 text-brandTextBody dark:text-slate-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- محتوى الصفحة الرئيسية للتطبيق -->
+                    <div class="p-4 space-y-6">
+                        
+                        <!-- مساحة فارغة علوية أنيقة لأقسام التطبيق التي ستضاف لاحقاً -->
+                        <div class="border border-dashed border-brandBgHighlight dark:border-slate-800 rounded-2xl py-8 px-4 text-center">
+                            <span class="text-[10px] text-slate-400 dark:text-slate-500 font-bold italic tracking-wide">مساحة مخصصة لأقسام التطبيق التي ستضاف لاحقاً</span>
+                        </div>
+
+                        <!-- ---------------- البانر الإعلاني المطلوب (In-App Banner) بنظام لايت/دارك مود ---------------- -->
+                        <div class="relative bg-gradient-to-br from-brandBgLight dark:from-slate-900 via-brandBgMain dark:via-mint-950/20 to-brandBgHighlight/30 border-2 border-brandAccent/60 rounded-3xl p-5 overflow-hidden shadow-lg shadow-brandAccent/5 group">
+                            
+                            <!--  الخلفية البصرية -->
+                            <div class="absolute -bottom-6 -left-6 w-32 h-32 border-2 border-brandBgHighlight dark:border-green-dark rounded-full flex items-center justify-center pointer-events-none">
+                                <div class="w-24 h-24 border-2 border-brandBgMain dark:border-mint-900 rounded-full flex items-center justify-center">
+                                    <div class="w-12 h-12 bg-gradient-to-tr from-brandAccent to-brandTextTitle rounded-full opacity-30 blur-sm"></div>
+                                </div>
+                            </div>
+                            <!-- خطوط إشعاعية مجردة -->
+                            <div class="absolute top-2 left-10 w-0.5 h-10 bg-gradient-to-b from-brandAccent/45 to-transparent pointer-events-none"></div>
+                            <div class="absolute top-8 left-16 w-0.5 h-8 bg-gradient-to-b from-brandAccent/30 to-transparent pointer-events-none"></div>
+
+                            <!-- العلامة التميزية (Badge) في أعلى الزاوية -->
+                            <div class="flex justify-between items-start mb-4 relative z-10">
+                                <span class="bg-gradient-to-r from-brandAccent to-brandTextTitle text-white text-[9px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                                    <i data-lucide="sparkles" class="w-2.5 h-2.5"></i> جديد بالتعاون مع نفسيتي
+                                </span>
+                                <span class="text-[9px] text-brandTextBody dark:text-brandBgLight font-bold tracking-widest">٣٦٥ يوماً</span>
+                            </div>
+
+                            <!-- النص الإعلاني الرئيسي والمساعد -->
+                            <div class="relative z-10 mb-4">
+                                <h3 class="text-sm font-black text-brandTextTitle dark:text-white leading-snug mb-1.5">
+                                    هل أنت مستعد لتغيير نظرتك للحياة في ٣٦٥ يوماً؟
+                                </h3>
+                                <p class="text-[10px] text-brandTextBody dark:text-slate-300 leading-relaxed">
+                                    انضم إلى برنامج <span class="text-brandAccent font-bold">"عام من التفاؤل"</span> واستقبل جرعتك النفسية العلمية اليومية. الأيام السبعة الأولى مجاناً.
+                                </p>
+                            </div>
+
+                            <!-- زر التوجيه والدخول السريع للرحلة - تم التحديث ليوجه تلقائياً لصفحة الهبوط على الموبايل -->
+                            <div class="relative z-10">
+                                <button onclick="switchTab('landing'); toggleLandingView('mobile');" class="w-full bg-gradient-to-r from-brandAccent to-brandTextTitle hover:from-brandTextTitle hover:to-brandAccent text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-md shadow-brandAccent/10 flex items-center justify-center gap-1.5 transition-all duration-200">
+                                    <span>اكتشف الرحلة وتفعّل فترتك المجانية</span>
+                                    <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- مساحة فارغة سفلية مريحة -->
+                        <div class="border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl py-12 px-4 text-center">
+                            <span class="text-[10px] text-slate-400 dark:text-slate-500 font-bold italic tracking-wide">مساحة مخصصة لأقسام التطبيق التي ستضاف لاحقاً</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- شريط السفلي لأزرار تحكم الهاتف الأساسية -->
+                <div class="absolute bottom-0 inset-x-0 h-14 bg-white dark:bg-slate-900 border-t border-brandBgHighlight dark:border-slate-850 px-6 flex items-center justify-between text-brandTextBody dark:text-slate-500 z-30">
+                    <button class="flex flex-col items-center justify-center gap-0.5 text-brandAccent"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[8px] font-bold">الرئيسية</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="compass" class="w-5 h-5"></i><span class="text-[8px]">اكتشف</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="bookmark" class="w-5 h-5"></i><span class="text-[8px]">المحفوظات</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="settings" class="w-5 h-5"></i><span class="text-[8px]">الإعدادات</span></button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================= ٣. طرق عرض المحتوى: أ) الإيميل اليومي ======================= -->
+        <section id="sec-email" class="tab-content hidden py-8 bg-slate-100 min-h-screen flex items-center justify-center px-4">
+            <!-- غلاف البريد الإلكتروني للتفاعل ومحاكاة الاستجابة لمختلف الشاشات -->
+            <div class="w-full max-w-2xl bg-white rounded-3xl border border-brandBgHighlight shadow-xl overflow-hidden text-right text-brandTextBody">
+                <!-- تفاصيل ترويسة تطبيق البريد الإلكتروني المحاكي -->
+                <div class="bg-brandTextTitle text-white px-6 py-4 border-b border-brandAccent/20 text-xs">
+                    <div class="flex justify-between items-center mb-1.5">
+                        <span class="text-brandBgLight">الموضوع: 🚀 [عام من التفاؤل] فكرة اليوم الـ ١٢</span>
+                        <span class="text-brandBgHighlight">منذ ساعتين</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-brandBgLight">المرسل: <strong class="text-white">فريق نفسيتي & مجرة</strong> &lt;support@nafsity.com&gt;</span>
+                        <span class="bg-brandAccent text-[9px] text-white px-1.5 py-0.5 rounded font-bold">بريد إلكتروني تفاعلي</span>
+                    </div>
+                </div>
+
+                <!-- ترويسة البريد الإلكتروني المنسقة بدقة -->
+                <div class="p-8 max-w-xl mx-auto bg-white">
+                    <!-- شعار منصة نفسيتي ومقولتها الثابتة الملهمة -->
+                    <div class="text-center pb-6 border-b border-brandBgHighlight mb-8">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                            <div class="bg-brandAccent text-white p-1.5 rounded-xl">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-xl font-black text-brandTextTitle tracking-wide">نفسيتي</span>
+                        </div>
+                        <p class="text-xs text-brandTextBody/70 font-medium">"صباح الخير، فكرتك اليومية للتفاؤل أصبحت هنا لتنير دربك"</p>
+                    </div>
+
+                    <!-- جسم الإيميل اليومي المنسق بخطوط نظيفة وجميلة -->
+                    <div class="space-y-6 bg-white">
+                        
+                        <!-- العنوان الجديد المضاف مباشرة فوق المربع الأصفر بناء على طلبكم -->
+                        <div class="text-right">
+                            <p class="text-sm md:text-base font-black text-brandTextTitle">
+                                فكرة رقم 12- ازرع الامتنان في بيتك بخطوات صغيرة
+                            </p>
+                        </div>
+
+                        <!-- ---------------- المساحة الملونة بربطها الديناميكي الجديد بهوية البوابة المتغيرة ---------------- -->
+                        <div class="bg-brandBgMain border border-brandAccent/40 p-8 md:p-10 rounded-[1.5rem] my-4 text-center relative shadow-sm transition-all duration-300">
+                            <!-- علامة الاقتباس العلوية بلون الهوية المتغير -->
+                            <div class="text-brandAccent text-3xl font-serif leading-none mb-3">"</div>
+                            
+                            <!-- الاقتباس الرئيسي بوعاء نصي عريض وبلون العناوين المختار ديناميكياً -->
+                            <p class="text-sm md:text-base text-brandTextTitle leading-relaxed font-bold max-w-lg mx-auto">
+                                "الامتنان ليس مناسبة نادرة نحتفل بها، بل عادة يومية صغيرة تجعلنا نرى الجمال فيما اعتدنا أن نمر عليه دون انتباه."
+                            </p>
+                            
+                            <!-- علامة الاقتباس السفلية بلون الهوية المتغير -->
+                            <div class="text-brandAccent text-3xl font-serif leading-none mt-3 mb-2">"</div>
+                            
+                            <!-- سطر توضيحي بلسان عربي مبين -->
+                            <p class="text-[10px] md:text-xs text-brandTextBody/70 font-semibold tracking-wide">
+                                ازرع الامتنان في منزلك بخطوات صغيرة • فكرة اليوم الـ ١٢
+                            </p>
+                        </div>
+
+                        <!-- النص المعرفي الجديد من الإدارة - موضوع خارج البلوك الأصفر بطريقة منسقة -->
+                        <div class="space-y-4 text-brandTextBody text-sm md:text-base leading-relaxed text-justify">
+                            <p>
+                                في كثير من البيوت تمر أفعال لطيفة كل يوم دون أن نلتفت إليها: شخص حضّر الطعام، آخر رتّب المكان، أو قدّم مساعدة صغيرة. ومع الوقت تصبح هذه الأفعال مألوفة لدرجة أننا نتوقف عن ملاحظتها أو التعبير عن تقديرنا لها. لكن الامتنان البسيط يمكن أن يغيّر جو المنزل أكثر مما نتوقع.
+                            </p>
+                            <p>
+                                قد يساعدك أن تبدأ بخطوة سهلة: عبّر عن شكرك بصوت مسموع عندما يقوم أحد أفضل أفراد أسرتك بعمل مفيد، حتى لو بدا أمراً عادياً. يمكنك أيضاً اقتراح عادة عائلية صغيرة، مثل أن يذكر كل شخص شيئاً واحداً يشعر بالامتنان له خلال اليوم، أو يكتب رسالة تقدير قصيرة لأحد أفراد الأسرة.
+                            </p>
+                            <p>
+                                هذه اللحظات لا تزيد فقط شعور الدفء بينكم، بل تساعد الجميع على ملاحظة الجوانب الجيدة في الحياة اليومية. فحين ندرّب أنفسنا على رؤية ما هو موجود وجميل، يصبح التعامل مع الضغوط أسهل.
+                            </p>
+                        </div>
+
+                        <!-- ---------------- السطر الرمادي مع جملة المصدر المستوحى ---------------- -->
+                        <div class="pt-4 mt-6 border-t border-slate-200">
+                            <p class="text-xs text-brandTextBody/60 italic">
+                                مستوحاة من مقال: كيف تمارس الامتنان لتحسين حياتك المهنية والعائلية؟ من منصة نفسيتي.
+                            </p>
+                        </div>
+
+                        <!-- روابط فتح المحتوى في التطبيق والتفاعل الإضافي -->
+                        <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
+                            <!-- زر Deep Linking -->
+                            <button onclick="switchTab('content-view')" class="w-full sm:w-auto bg-brandAccent text-white font-bold text-xs py-3 px-6 rounded-xl hover:bg-brandTextTitle transition-all text-center flex items-center justify-center gap-2 shadow-md">
+                                <i data-lucide="external-link" class="w-3.5 h-3.5 text-white"></i> افتح الفكرة وارتشف الصوت على تطبيق مجرة
+                            </button>
+                            <span class="text-[10px] text-brandTextBody/60 font-semibold">تحديث مستمر للرحلة النفسية</span>
+                        </div>
+                    </div>
+
+                    <!-- الفوتر المخصص للشفافية can-be-cancelled لغوغل -->
+                    <div class="mt-10 pt-6 border-t border-slate-100 text-center text-xs text-brandTextBody/70 space-y-2 bg-white">
+                        <p>أنت مشترك في "عام من التفاؤل" من نفسيتي.</p>
+                        <p>لتحديث اشتراكك يرجى الدخول الى حسابك في مجرة.</p>
+                        <p class="text-[10px] text-brandTextBody/40">© ٢٠٢٦ مجرة. جميع الحقوق محفوظة.</p>
+                        <div class="pt-2">
+                            <button onclick="toggleSubscriptionModal()" class="text-brandAccent hover:underline font-bold text-xs">إلغاء الاشتراك</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================= ٤. عرض الفكرة المفردة على التطبيق (In-App Content View) ======================= -->
+        <section id="sec-content-view" class="tab-content hidden py-10 flex justify-center bg-brandBgLight dark:bg-slate-900 min-h-screen">
+            <!-- محاكاة تفاعلية لهاتف يمنح المستخدم تجربة قراءة غامرة وتفاعل صوتي متميز -->
+            <div class="relative w-[360px] h-[720px] bg-slate-950 rounded-[48px] shadow-2xl border-[10px] border-slate-900 overflow-hidden flex flex-col">
+                <!-- شريط الحالة للهاتف -->
+                <div class="absolute top-0 inset-x-0 h-7 bg-slate-900 z-30 flex items-center justify-between px-6 text-[10px] text-white">
+                    <span>١٢:٠٠ م</span>
+                    <div class="w-16 h-4 bg-slate-955 rounded-full mx-auto"></div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="wifi" class="w-3 h-3"></i>
+                        <i data-lucide="battery" class="w-3 h-3"></i>
+                    </div>
+                </div>
+
+                <!--  واجهة التطبيق التفاعلية للقراءة الغامرة الخالية من المشتتات -->
+                <div id="immersive-reader-container" class="flex-grow h-0 overflow-hidden pt-8 bg-white dark:bg-slate-900 text-brandTextBody dark:text-slate-200 no-scrollbar flex flex-col relative transition-all duration-300">
+                    
+                    <!-- شريط التحكم العلوي البسيط المطابق تماماً للصورة المرجعية -->
+                    <div id="reader-header" class="px-6 py-2 flex items-center justify-between bg-white dark:bg-slate-900 sticky top-0 z-20 transition-transform duration-300">
+                        <!-- الزر الدائري مع السهم لأسفل جهة اليمين -->
+                        <button onclick="switchTab('archive')" class="w-8 h-8 rounded-full bg-[#f2f4f7] dark:bg-slate-800 text-slate-405 dark:text-slate-500 flex items-center justify-center hover:bg-brandBgHighlight transition-colors">
+                            <i data-lucide="chevron-down" class="w-4.5 h-4.5"></i>
+                        </button>
+                        <!-- أيقونة حفظ المفضلة جهة اليسار -->
+                        <button onclick="toggleFav(this)" class="text-slate-405 hover:text-brandAccent transition-colors">
+                            <i data-lucide="bookmark" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- إشعار عند تشغيل الوضع الغامر لإرشاد المستخدم -->
+                    <div id="immersive-hint" class="bg-brandAccent/10 text-brandTextTitle text-[10px] text-center py-1.5 px-4 hidden">
+                        مرحباً بك في وضع القراءة الغامرة، تم إخفاء المشتتات لسلامتك العقلية. اضغط لمس القراءة للرجوع.
+                    </div>
+
+                    <!-- مساحة القراءة الرئيسية المبسطة للغاية مع محتوى نفسي وعلمي للتفاؤل -->
+                    <div class="px-6 flex-grow overflow-y-auto no-scrollbar pb-36 text-right space-y-4">
+                        <!-- العنوان الرئيسي النفسي والمناسب للمنتج الجديد -->
+                        <h2 class="text-2xl font-black text-brandTextTitle dark:text-white leading-snug">المرونة الذهنية: التفاؤل كعضلة عصبية</h2>
+                        
+                        <!-- اليوم باللون الأخضر المتوسط المتناسق مع هوية عام من التفاؤل المحدثة -->
+                        <p class="text-sm font-bold text-brandAccent">اليوم الأول</p>
+                        
+                        <!-- ---------------- علبة الاقتباس النعناعية/الخضراء المربوطة كلياً بالهيئة اللونية النشطة ---------------- -->
+                        <div class="bg-brandBgMain border border-brandAccent/30 p-5 rounded-2xl text-center relative shadow-sm my-4 transition-all duration-300">
+                            <!-- علامة الاقتباس العلوية -->
+                            <div class="text-brandAccent text-2xl font-serif leading-none mb-2">"</div>
+                            
+                            <p class="text-xs md:text-sm text-brandTextTitle dark:text-slate-100 leading-relaxed font-bold italic">
+                                "الامتنان ليس مناسبة نادرة نحتفل بها، بل عادة يومية صغيرة تجعلنا نرى الجمال فيما اعتدنا أن نمر عليه دون انتباه."
+                            </p>
+                            
+                            <!-- علامة الاقتباس السفلية -->
+                            <div class="text-brandAccent text-2xl font-serif leading-none mt-2">"</div>
+                        </div>
+
+                        <!-- النص السلوكي النفسي البديل المناسب لـ "عام من التفاؤل" -->
+                        <p class="text-[13px] text-brandTextBody dark:text-slate-200 leading-relaxed font-normal">
+                            التفاؤل الواقعي ليس مجرد شعور عابر بالبهجة وتجاهل للتحديات، بل هو أداة معرفية وعضلة ذهنية تتيح لك رؤية البدائل الإيجابية في قلب الأزمات. تشير أبحاث علم الأعصاب الحديثة إلى أن إعادة التأطير المعرفي تعيد توجيه النشاط الدماغي بوعي من اللوزة الدماغية (المسؤولة عن تفعيل الخوف والقلق) إلى القشرة الجبهية المسؤولة عن الحلول السلام النفسي. عندما تختار اليوم أن تبحث عن احتمال بناء واحد في مواجهة موقف مربك، فإنك لا تتجاهل الواقع، بل تبني شبكات عصبية قوية تدعم مرونتك وقدرتك على المواجهة الهادئة.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- شريط تشغيل الصوت السفلي الفاخر العائم -->
+                <div id="reader-footer" class="absolute bottom-[72px] inset-x-6 z-30 transition-all duration-300">
+                    <div class="bg-brandTextTitle rounded-[24px] p-3 pl-4 pr-3 flex items-center justify-between shadow-xl border border-brandAccent/20">
+                        <!-- ذبذبات صوتية بيضاء متحركة على اليسار -->
+                        <div class="flex items-end gap-1 h-5">
+                            <span class="audio-bar w-0.5 bg-white h-2 rounded-full"></span>
+                            <span class="audio-bar w-0.5 bg-white h-4 rounded-full"></span>
+                            <span class="audio-bar w-0.5 bg-white h-5 rounded-full"></span>
+                            <span class="audio-bar w-0.5 bg-white h-3 rounded-full"></span>
+                            <span class="audio-bar w-0.5 bg-white h-1 rounded-full"></span>
+                        </div>
+                        
+                        <!-- عبارة "اسمع الآن" -->
+                        <span id="audio-status" class="text-xs font-bold text-white tracking-wide">اسمع الآن</span>
+                        
+                        <!-- زر تشغيل دائري أخضر تفاعلي -->
+                        <button onclick="toggleAudio()" id="audio-play-btn" class="w-10 h-10 rounded-full bg-brandAccent text-white flex items-center justify-center hover:bg-brandTextTitle transition-colors shadow-md">
+                            <i data-lucide="play" id="audio-play-icon" class="w-4 h-4 fill-current text-white"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- شريط أزرار تحكم الهاتف الأساسية -->
+                <div id="phone-nav-bar" class="absolute bottom-0 inset-x-0 h-14 bg-slate-950 border-t border-slate-900 px-6 flex items-center justify-between text-slate-400 z-30 transition-all duration-300">
+                    <button class="flex flex-col items-center justify-center gap-0.5 text-brandAccent"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[8px] font-bold">الرئيسية</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="compass" class="w-5 h-5"></i><span class="text-[8px]">اكتشف</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="bookmark" class="w-5 h-5"></i><span class="text-[8px]">المحفوظات</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="settings" class="w-5 h-5"></i><span class="text-[8px]">الإعدادات</span></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= ٥. شاشة أرشيف النصائح بالتطبيق (Content Archive) ======================= -->
+        <section id="sec-archive" class="tab-content hidden py-10 flex justify-center bg-brandBgLight dark:bg-slate-900 min-h-screen">
+            <!-- محاكاة تفاعلية لهاتف يظهر الأرشيف الحقيقي والمبسط تماماً كما في الصورة -->
+            <div class="relative w-[360px] h-[720px] bg-slate-955 rounded-[48px] shadow-2xl border-[10px] border-slate-900 overflow-hidden flex flex-col">
+                <!-- شريط الحالة للهاتف -->
+                <div class="absolute top-0 inset-x-0 h-7 bg-slate-900 z-30 flex items-center justify-between px-6 text-[10px] text-white">
+                    <span>٩:٤١ ص</span>
+                    <div class="w-16 h-4 bg-slate-955 rounded-full mx-auto"></div>
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="wifi" class="w-3 h-3"></i>
+                        <i data-lucide="battery" class="w-3 h-3"></i>
+                    </div>
+                </div>
+
+                <!-- واجهة تطبيق الأرشيف بالخلفية البيضاء النقية / الداكنة والمبسطة المتناسقة مع طابع القراءة -->
+                <div class="flex-grow overflow-y-auto pt-8 pb-16 bg-white dark:bg-slate-900 text-brandTextBody dark:text-slate-100 no-scrollbar text-right flex flex-col">
+                    
+                    <!-- عنوان الصفحة الرئيسي والمطابق للصورة بالبرتقالي الدافئ والخط العريض -->
+                    <div class="px-6 pt-5 pb-3 text-center">
+                        <h3 class="text-2xl font-black text-brandTextTitle dark:text-white tracking-wide">أفكار رحلة التفاؤل</h3>
+                    </div>
+
+                    <!-- التبويبات التفاعلية (الكل والمفضلة) الملونة بطابع المشروع البرتقالي المشرق -->
+                    <div class="px-6 mb-5 flex gap-2.5">
+                        <button class="flex-1 py-2.5 text-xs font-bold rounded-xl bg-brandAccent text-white text-center shadow-md transition-all">الكل</button>
+                        <button class="flex-1 py-2.5 text-xs font-bold rounded-xl bg-brandBgMain dark:bg-slate-800 text-brandTextTitle dark:text-slate-400 text-center transition-all hover:bg-brandBgHighlight">المفضلة</button>
+                    </div>
+
+                    <!-- قائمة النصائح والأيام المحدثة بالكامل ومرتبة ترتيباً تنازلياً (اليوم ٣، ثم اليوم ٢، ثم اليوم ١) -->
+                    <div class="px-6 space-y-4 flex-grow">
+                        
+                        <!-- ١. كارت اليوم الثالث (الأحدث في المقدمة) -->
+                        <div class="bg-white dark:bg-slate-850 hover:bg-brandBgLight dark:hover:bg-slate-800/50 p-4 rounded-[24px] border border-brandBgHighlight dark:border-slate-800 shadow-[0_2px_12px_rgba(0,0,0,0.02)] transition-all flex items-center justify-between gap-3 cursor-pointer" onclick="openArchivedDay(3)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-brandBgMain dark:bg-slate-800 text-brandAccent flex items-center justify-center font-bold text-xs">
+                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-black text-brandTextTitle dark:text-white block leading-tight">التعاطف مع الذات: تصالح مع حدودك وبشريتك</span>
+                                    <p class="text-[9px] text-brandTextBody/70 dark:text-slate-500 mt-1.5 flex items-center gap-1 justify-start">
+                                        <i data-lucide="calendar" class="w-3 h-3 text-brandAccent"></i> اليوم ٣
+                                    </p>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-left" class="w-4 h-4 text-brandAccent"></i>
+                        </div>
+
+                        <!-- ٢. كارت اليوم الثاني -->
+                        <div class="bg-white dark:bg-slate-850 hover:bg-brandBgLight dark:hover:bg-slate-800/50 p-4 rounded-[24px] border border-brandBgHighlight dark:border-slate-800 shadow-[0_2px_12px_rgba(0,0,0,0.02)] transition-all flex items-center justify-between gap-3 cursor-pointer" onclick="openArchivedDay(2)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-brandBgMain dark:bg-slate-800 text-brandAccent flex items-center justify-center font-bold text-xs">
+                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-black text-brandTextTitle dark:text-white block leading-tight">إعادة التأطير: كيف نرى الفرص في قلب التحديات؟</span>
+                                    <p class="text-[9px] text-brandTextBody/70 dark:text-slate-500 mt-1.5 flex items-center gap-1 justify-start">
+                                        <i data-lucide="calendar" class="w-3 h-3 text-brandAccent"></i> اليوم ٢
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- علامة المفضلة البرتقالية المتوافقة مع نمط الصورة بدقة متناهية -->
+                            <i data-lucide="bookmark" class="w-4 h-4 text-brandAccent fill-current"></i>
+                        </div>
+
+                        <!-- ٣. كارت اليوم الأول -->
+                        <div class="bg-white dark:bg-slate-850 hover:bg-brandBgLight dark:hover:bg-slate-800/50 p-4 rounded-[24px] border border-brandBgHighlight dark:border-slate-800 shadow-[0_2px_12px_rgba(0,0,0,0.02)] transition-all flex items-center justify-between gap-3 cursor-pointer" onclick="openArchivedDay(1)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-brandBgMain dark:bg-slate-800 text-brandAccent flex items-center justify-center font-bold text-xs">
+                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-black text-brandTextTitle dark:text-white block leading-tight">المرونة الذهنية: التفاؤل كعضلة عصبية</span>
+                                    <p class="text-[9px] text-brandTextBody/70 dark:text-slate-500 mt-1.5 flex items-center gap-1 justify-start">
+                                        <i data-lucide="calendar" class="w-3 h-3 text-brandAccent"></i> اليوم ١
+                                    </p>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-left" class="w-4 h-4 text-brandAccent"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- شريط أرشيف الموبايل السفلي الموحد -->
+                <div class="absolute bottom-0 inset-x-0 h-14 bg-slate-950 border-t border-slate-900 px-6 flex items-center justify-between text-slate-455 z-30">
+                    <button class="flex flex-col items-center justify-center gap-0.5 text-brandAccent"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[8px] font-bold">الرئيسية</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="compass" class="w-5 h-5"></i><span class="text-[8px]">اكتشف</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="bookmark" class="w-5 h-5"></i><span class="text-[8px]">المحفوظات</span></button>
+                    <button class="flex flex-col items-center justify-center gap-0.5"><i data-lucide="settings" class="w-5 h-5"></i><span class="text-[8px]">الإعدادات</span></button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ======================= النوافذ والرسائل المنبثقة التفاعلية (Modals & Alerts) ======================= -->
+    
+    <!-- ١. نافذة تأكيد الاشتراك التجريبي (تم تعديلها لتصبح عامة كلياً بلون الطبيعة النعناعي) -->
+    <div id="subscription-success-modal" class="fixed inset-0 bg-brandTextTitle/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 max-w-sm w-full border border-brandBgHighlight dark:border-slate-800 text-center space-y-4 shadow-2xl">
+            <div class="w-16 h-16 bg-brandBgMain dark:bg-slate-850 text-brandAccent rounded-full flex items-center justify-center mx-auto">
+                <i data-lucide="check-circle" class="w-10 h-10"></i>
+            </div>
+            <h3 class="text-xl font-black text-brandTextTitle dark:text-white">تهانينا الحارة! 🎉</h3>
+            <p class="text-sm text-[#2F3A3D] dark:text-slate-300 leading-relaxed">
+                لقد بدأت أسبوعك التجريبي المجاني بنجاح في <strong>"رحلة التفاؤل"</strong>. تفقد بريدك الإلكتروني والآن سنحيلك لواجهة تطبيقك فوراً لتبدأ الاستماع والقراءة.
+            </p>
+            <button onclick="closeSubscriptionModal()" class="w-full bg-brandAccent hover:bg-brandTextTitle text-white font-bold text-sm py-3 px-4 rounded-xl transition-all">
+                ابدأ رحلتي واستكشف الفكرة
+            </button>
+        </div>
+    </div>
+
+    <!-- ٢. نافذة محاكاة إدارة وتغيير الاشتراك (Manage Subscription / Cancel) لشفافية الإجراءات -->
+    <div id="manage-sub-modal" class="fixed inset-0 bg-brandTextTitle/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 max-w-md w-full border border-brandBgHighlight dark:border-slate-800 text-right space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center pb-3 border-b border-brandBgHighlight dark:border-slate-800">
+                <h3 class="text-lg font-black text-brandTextTitle dark:text-white">إدارة اشتراكك بـ "رحلة التفاؤل"</h3>
+                <button onclick="toggleSubscriptionModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            
+            <div class="bg-brandBgMain dark:bg-slate-800 p-4 rounded-2xl space-y-2 text-xs text-brandTextTitle dark:text-slate-300">
+                <div class="flex justify-between">
+                    <span class="font-bold">حالة الاشتراك الحالي:</span>
+                    <span class="text-brandAccent font-bold bg-white dark:bg-slate-955/40 px-2 py-0.5 rounded">نشط (فترة تجريبية)</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="font-bold">تاريخ البدء:</span>
+                    <span>اليوم (مجاناً لـ ٧ أيام)</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="font-bold">المنصة المفعلة:</span>
+                    <span>البريد الإلكتروني وتطبيق مجرة</span>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <p class="text-xs text-brandTextBody dark:text-slate-450 leading-relaxed">
+                    نحن في نفسيتي ومجرة نلتزم التزاماً كاملاً بالأمانة الفكرية والشفافية. يمكنك في أي وقت تعليق اشتراكك أو تحويله إلى حالة <span class="font-bold text-brandAccent">موقوف</span> بنقرة واحدة ودون تعقيد.
+                </p>
+            </div>
+
+            <div class="flex gap-3 pt-3">
+                <button onclick="cancelSubscription()" class="flex-1 bg-rose-50 dark:bg-rose-955/40 text-rose-600 dark:text-rose-400 font-bold text-xs py-3 rounded-xl hover:bg-rose-100 dark:hover:bg-rose-955 active:scale-95 transition-all text-center">
+                    إيقاف الاشتراك مؤقتاً
+                </button>
+                <button onclick="toggleSubscriptionModal()" class="flex-1 bg-brandAccent hover:bg-brandTextTitle text-white font-bold text-xs py-3 rounded-xl hover:bg-brandTextTitle/85 transition-all text-center">
+                    الاستمرار بالرحلة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ٣. نافذة تأكيد مشاركة الاقتباس اليومي كصورة أنيقة للستوري -->
+    <div id="share-modal" class="fixed inset-0 bg-brandTextTitle/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 rounded-3xl p-5 max-w-sm w-full text-center space-y-4 shadow-2xl border border-slate-800">
+            <h3 class="text-base font-black text-white">تصدير الاقتباس لوسائل التواصل</h3>
+            
+            <!-- مظهر الاقتباس المصمم للمشاركة كستوري أنيق للغاية باللون الأخضر النعناعي الفخم -->
+            <div class="bg-gradient-to-br from-brandAccent to-brandTextTitle p-6 rounded-2xl text-center text-white space-y-3 shadow-inner relative">
+                <div class="absolute top-2 left-2 text-white/30 text-[9px] font-bold">@nafsity x majarra</div>
+                <div class="text-white text-2xl">“</div>
+                <p class="text-xs font-bold leading-relaxed">
+                    "إن السلام والرضا لا يعنيان خلو الحياة من الصعاب، بل يعنيان قدرتك على البقاء ساكناً من الداخل وسط العواصف الخارجية."
+                </p>
+                <div class="text-white text-2xl">”</div>
+                <p class="text-[8px] text-brandBgLight">فكرة اليوم الـ ١٢ من رحلة التفاؤل</p>
+            </div>
+
+            <p class="text-[11px] text-slate-400">تم توليد الاقتباس كصورة بدقة عالية ومعدّة خصيصاً للستوري.</p>
+
+            <div class="grid grid-cols-2 gap-3.5 pt-2">
+                <button onclick="simulateAction('تم نسخ الرابط ومشاركة الصورة بنجاح على إنستغرام!')" class="bg-slate-800 text-slate-200 text-xs py-2.5 rounded-xl hover:bg-slate-700 font-semibold">مشاركة بالستوري</button>
+                <button onclick="simulateAction('تم حفظ الصورة في ألبوم الصور بهاتفك!')" class="bg-brandAccent hover:bg-brandTextTitle text-white text-xs py-2.5 rounded-xl font-bold">حفظ كصورة</button>
+            </div>
+            <button onclick="toggleShareModal()" class="w-full text-slate-500 hover:text-slate-455 text-xs py-1">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- ٤. صندوق رسائل التنبيه والاتصال التفاعلي كبديل كامل لـ alert() -->
+    <div id="toast-container" class="fixed bottom-6 left-6 z-50 transition-all duration-300 transform translate-y-10 opacity-0 pointer-events-none">
+        <div class="bg-brandTextTitle text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 border border-brandAccent text-xs">
+            <i data-lucide="info" class="w-4 h-4 text-brandAccent" id="toast-icon"></i>
+            <span id="toast-message" class="font-medium">تم تطبيق التغييرات بنجاح.</span>
+        </div>
+    </div>
+
+
+    <!-- ======================= JavaScript المنطقي والتفاعلي ======================= -->
+    <script>
+        let isAudioPlaying = false;
+        let isImmersiveMode = false;
+        let activeTab = 'landing';
+        let activeLandingView = 'desktop';
+        let selectedPlan = 'annual';
+        let globalTheme = 'light';
+
+        window.onload = function() {
+            lucide.createIcons();
+            resetAudioWaves();
+        };
+
+        // دالة تبديل الهوية البصرية (Brand Theme Switcher) بين النعناعي والسماوي والعاجي الدافئ
+        function setBrandTheme(theme) {
+            const body = document.body;
+            const mintBtn = document.getElementById('brand-mint-btn');
+            const blueBtn = document.getElementById('brand-blue-btn');
+            const ivoryBtn = document.getElementById('brand-ivory-btn');
+            
+            // إزالة الكلاسات السابقة بالكامل لضمان التبديل النظيف
+            body.classList.remove('theme-mint', 'theme-blue', 'theme-ivory');
+            
+            // إعادة ضبط فئات التنسيق النشطة لجميع الأزرار
+            [mintBtn, blueBtn, ivoryBtn].forEach(btn => {
+                if (btn) {
+                    btn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white";
+                }
+            });
+
+            if (theme === 'mint') {
+                body.classList.add('theme-mint');
+                mintBtn.className = "px-2.5 py-1 rounded-lg text-xs font-black transition-all bg-brandAccent text-white shadow-md";
+                showToast("تم تطبيق الهوية البصرية النعناعية المهدئة للوعي 🌿");
+            } else if (theme === 'blue') {
+                body.classList.add('theme-blue');
+                blueBtn.className = "px-2.5 py-1 rounded-lg text-xs font-black transition-all bg-brandAccent text-white shadow-md";
+                showToast("تم تطبيق الهوية البصرية السماوية الهادئة والعميقة 💙");
+            } else if (theme === 'ivory') {
+                body.classList.add('theme-ivory');
+                ivoryBtn.className = "px-2.5 py-1 rounded-lg text-xs font-black transition-all bg-brandAccent text-white shadow-md";
+                showToast("تم تطبيق الهوية البصرية العاجية الدافئة والذهبية الفاخرة ✨");
+            }
+            lucide.createIcons();
+        }
+
+        function toggleGlobalTheme() {
+            const htmlElement = document.documentElement;
+            const themeBtnText = document.getElementById('theme-text');
+            const themeIcon = document.getElementById('theme-icon');
+
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                themeBtnText.textContent = 'تصفح بالنمط الداكن';
+                themeIcon.setAttribute('data-lucide', 'moon');
+                globalTheme = 'light';
+                showToast('تم التبديل إلى نمط المعاينة الفاتح ☀️');
+            } else {
+                htmlElement.classList.add('dark');
+                themeBtnText.textContent = 'تصفح بالنمط الفاتح';
+                themeIcon.setAttribute('data-lucide', 'sun');
+                globalTheme = 'dark';
+                showToast('تم التبديل إلى نمط المعاينة الداكن 🌙');
+            }
+            lucide.createIcons();
+        }
+
+        // تم تبسيط دالة تحديد الخطة لتلائم حقيقة وجود باقة سنوية واحدة فقط
+        function selectPlan(plan) {
+            selectedPlan = 'annual';
+            showToast("الاشتراك السنوي بـ ٩٩ درهم");
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(element => {
+                element.classList.add('hidden');
+                element.classList.remove('block');
+            });
+
+            const selectedContent = document.getElementById(`sec-${tabName}`);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+                selectedContent.classList.add('block');
+            }
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brandAccent', 'text-white');
+                btn.classList.add('text-brandBgLight', 'hover:text-white');
+            });
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-brandBgLight', 'hover:text-white');
+                activeBtn.classList.add('bg-brandAccent', 'text-white');
+            }
+
+            activeTab = tabName;
+            showToast(`تصفح واجهة: ${getTabArabicName(tabName)}`);
+            
+            if (tabName !== 'content-view' && isAudioPlaying) {
+                toggleAudio(true);
+            }
+        }
+
+        function getTabArabicName(tab) {
+            switch(tab) {
+                case 'landing': return 'صفحة الهبوط الكاملة';
+                case 'banner': return 'البانر الإعلاني داخل التطبيق';
+                case 'email': return 'البريد الإلكتروني اليومي';
+                case 'content-view': return 'شاشة قراءة الفكرة بالتطبيق';
+                case 'archive': return 'الأرشيف';
+                default: return 'لوحة المعاينة';
+            }
+        }
+
+        function toggleLandingView(view) {
+            const desktopView = document.getElementById('landing-desktop-view');
+            const mobileView = document.getElementById('landing-mobile-view');
+            const btnDesktop = document.getElementById('btn-view-desktop');
+            const btnMobile = document.getElementById('btn-view-mobile');
+
+            if (view === 'desktop') {
+                desktopView.classList.remove('hidden');
+                desktopView.classList.add('block');
+                mobileView.classList.remove('flex');
+                mobileView.classList.add('hidden');
+
+                btnDesktop.className = "view-toggle-btn flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-brandTextTitle text-white";
+                btnMobile.className = "view-toggle-btn flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold text-brandTextBody dark:text-slate-355 hover:bg-brandBgLight dark:hover:bg-slate-800";
+            } else {
+                desktopView.classList.remove('block');
+                desktopView.classList.add('hidden');
+                mobileView.classList.remove('hidden');
+                mobileView.classList.add('flex');
+
+                btnMobile.className = "view-toggle-btn flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-brandTextTitle text-white";
+                btnDesktop.className = "view-toggle-btn flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold text-brandTextBody dark:text-slate-355 hover:bg-brandBgLight dark:hover:bg-slate-800";
+            }
+            activeLandingView = view;
+            showToast(`تم التبديل إلى نسخة: ${view === 'desktop' ? 'الويب المكتبية' : 'محاكي شاشة الموبايل'}`);
+        }
+
+        function toggleAudio(forceStop = false) {
+            const playIcon = document.getElementById('audio-play-icon');
+            const audioStatus = document.getElementById('audio-status');
+            const audioWaves = document.querySelectorAll('.audio-bar');
+
+            if (isAudioPlaying || forceStop) {
+                isAudioPlaying = false;
+                playIcon.setAttribute('data-lucide', 'play');
+                audioStatus.textContent = 'اسمع الآن';
+                
+                audioWaves.forEach(bar => {
+                    bar.style.animation = 'none';
+                });
+                showToast('تم إيقاف المقطع الصوتي المؤقت');
+            } else {
+                isAudioPlaying = true;
+                playIcon.setAttribute('data-lucide', 'pause');
+                audioStatus.textContent = 'جاري التشغيل.. 🎧';
+
+                let delay = 0;
+                audioWaves.forEach(bar => {
+                    bar.style.animation = `pulse-bar ${0.6 + Math.random()}s infinite ease-in-out alternate`;
+                    bar.style.animationDelay = `${delay}s`;
+                    delay += 0.15;
+                });
+                showToast('بدء الاستماع الصوتي للتأمل');
+            }
+            lucide.createIcons();
+        }
+
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes pulse-bar {
+                0% { height: 6px; }
+                100% { height: 22px; }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // إضافة دالة resetAudioWaves الناقصة لحل مشكلة ReferenceError
+        function resetAudioWaves() {
+            const audioWaves = document.querySelectorAll('.audio-bar');
+            if (audioWaves) {
+                audioWaves.forEach(bar => {
+                    bar.style.animation = 'none';
+                });
+            }
+        }
+
+        // تم إصلاح السقطة المطبعية هنا لضمان تمرير معلمة التنبيهات بالشكل السليم المطلق
+        function goToContentViewFromSuccess() {
+            document.getElementById('mobile-success-view').classList.add('hidden');
+            switchTab('content-view');
+        }
+
+        function closeSubscriptionModal() {
+            const modal = document.getElementById('subscription-success-modal');
+            modal.classList.add('hidden');
+            switchTab('content-view');
+        }
+
+        function toggleSubscriptionModal() {
+            const modal = document.getElementById('manage-sub-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function cancelSubscription() {
+            toggleSubscriptionModal();
+            showToast('تم تعديل حالتك لـ موقوف بنجاح بقمة الشفافية والأمان!');
+        }
+
+        function toggleShareModal() {
+            const modal = document.getElementById('share-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function toggleFav(btn) {
+            const icon = btn.querySelector('i');
+            if (btn.classList.contains('text-rose-500')) {
+                btn.className = "text-slate-455 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-355 transition-colors";
+                showToast('تمت الإزالة من تفضيلاتك النفسية');
+            } else {
+                btn.className = "text-rose-500 hover:text-rose-600 transition-colors";
+                showToast('تم الحفظ في مخزن السكينة والمفضلة 💖');
+            }
+        }
+
+        function openArchivedDay(dayNum) {
+            showToast(`جاري سحب بيانات اليوم الـ ${dayNum} من سجل إنجازاتك...`);
+            setTimeout(() => {
+                switchTab('content-view');
+                document.querySelector('#sec-content-view .text-green-medium').textContent = `اليوم ${dayNum}`;
+                
+                // تحديث نصوص اليوم المقروء ديناميكياً لتطابق عنوان الأرشيف لزيادة التفاعلية
+                const titleElem = document.querySelector('#sec-content-view h2');
+                if(dayNum === 1) {
+                    titleElem.textContent = "المرونة الذهنية: التفاؤل كعضلة عصبية";
+                } else if(dayNum === 2) {
+                    titleElem.textContent = "إعادة التأطير: كيف نرى الفرص في قلب التحديات؟";
+                } else if(dayNum === 3) {
+                    titleElem.textContent = "التعاطف مع الذات: تصالح مع حدودك وبشريتك";
+                }
+            }, 400);
+        }
+
+        function simulateAction(msg) {
+            toggleShareModal();
+            showToast(msg);
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const textElement = document.getElementById('toast-message');
+            
+            textElement.textContent = message;
+            
+            container.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+            container.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                container.classList.remove('translate-y-0', 'opacity-100');
+                container.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
