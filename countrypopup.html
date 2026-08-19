@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق مجرة - الصفحة الرئيسية</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        majara: {
+                            purple: '#6022A6',
+                            purpleHover: '#4D1A87',
+                            purpleLight: '#F4EFFC',
+                            border: '#E2E8F0',
+                            grayText: '#64748B',
+                            darkText: '#0F172A',
+                            gold: '#D9B238',
+                            goldHover: '#C49F2C'
+                        }
+                    },
+                    fontFamily: {
+                        arabic: ['IBM Plex Sans Arabic', 'Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: IBM Plex Sans Arabic & Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+            background-color: #0F172A;
+            min-height: 100vh;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .glow-frame {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(96, 34, 166, 0.25);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-6 text-slate-900 selection:bg-purple-600 selection:text-white">
+
+    <!-- Prototype Top Status & Toolbar -->
+    <div class="mb-3 bg-slate-800/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-700/80 flex items-center justify-between w-full max-w-[390px] text-xs text-white shadow-xl z-50">
+        <div class="flex items-center gap-2 font-medium">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="stepIndicatorText">الصفحة الرئيسية للتطبيق</span>
+        </div>
+        <button type="button" onclick="resetPrototype()" class="px-2.5 py-1 rounded-lg bg-majara-purple hover:bg-majara-purpleHover text-white text-[11px] font-semibold transition-all flex items-center gap-1 active:scale-95">
+            <i class="fa-solid fa-rotate-right text-[10px]"></i>
+            <span>إعادة فتح اختيار البلد</span>
+        </button>
+    </div>
+
+    <!-- Phone Mockup Wrapper -->
+    <div class="relative w-full max-w-[390px] h-[812px] bg-white sm:rounded-[48px] shadow-2xl border-0 sm:border-[8px] border-slate-800 ring-1 ring-slate-700/50 glow-frame flex flex-col justify-between overflow-hidden">
+        
+        <!-- Screen Content Container -->
+        <div class="relative w-full h-full bg-white flex flex-col justify-between overflow-hidden">
+            
+            <!-- Mobile Top Status Bar -->
+            <div class="px-5 pt-2 pb-1 select-none z-20 shrink-0 bg-white">
+                <div class="flex justify-between items-center text-xs font-bold text-slate-900">
+                    <span id="phoneClock">5:37</span>
+                    <div class="flex items-center gap-1.5 text-[11px] text-slate-800">
+                        <i class="fa-solid fa-signal"></i>
+                        <i class="fa-solid fa-wifi"></i>
+                        <i class="fa-solid fa-battery-full text-xs"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main App Home Screen -->
+            <div id="homeScreenContainer" class="flex flex-col justify-between h-full bg-slate-50 overflow-hidden relative">
+                
+                <!-- Home Screen Header Bar -->
+                <div class="bg-white px-4 py-2.5 border-b border-slate-100 flex items-center justify-between shadow-xs z-10 shrink-0">
+                    <!-- Left: Notifications & Profile -->
+                    <div class="flex items-center gap-2.5">
+                        <button type="button" onclick="showToast('الملف الشخصي')" class="relative w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-200 transition-colors">
+                            <i class="fa-solid fa-user text-xs"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">1</span>
+                        </button>
+                        <button type="button" onclick="showToast('الإشعارات')" class="relative w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-200 transition-colors">
+                            <i class="fa-solid fa-bell text-xs"></i>
+                            <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500"></span>
+                        </button>
+                    </div>
+
+                    <!-- Center: Credit Banner Pill -->
+                    <div class="bg-amber-300 text-amber-950 px-2.5 py-1 rounded-full text-[10px] font-bold flex items-center gap-1 shadow-xs animate-pulse">
+                        <span>متبقي مادة واحدة في رصيدك. اشترك الآن.</span>
+                    </div>
+
+                    <!-- Right: Majarra Logo -->
+                    <div class="flex items-center">
+                        <svg class="h-6 w-auto" viewBox="0 0 160 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25 25C25 15 35 10 45 18C50 22 52 28 50 34C48 40 40 44 32 42C28 41 25 38 25 35" stroke="#6022A6" stroke-width="4.5" stroke-linecap="round"/>
+                            <circle cx="138" cy="24" r="7" stroke="#6022A6" stroke-width="4.5"/>
+                            <path d="M131 24H115" stroke="#6022A6" stroke-width="4.5" stroke-linecap="round"/>
+                            <path d="M115 24C115 24 108 14 96 14C84 14 82 26 82 30C82 36 88 40 96 40C104 40 110 35 110 30" stroke="#6022A6" stroke-width="4.5" stroke-linecap="round"/>
+                            <circle cx="96" cy="27" r="2.5" fill="#6022A6"/>
+                            <path d="M78 24C72 24 64 28 60 38" stroke="#6022A6" stroke-width="4.5" stroke-linecap="round"/>
+                            <path d="M48 24C48 18 42 14 36 14C30 14 26 19 26 25C26 31 31 36 37 36C44 36 48 30 48 24Z" stroke="#6022A6" stroke-width="4.5"/>
+                            <circle cx="33" cy="7" r="2.2" fill="#6022A6"/>
+                            <circle cx="41" cy="7" r="2.2" fill="#6022A6"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Scrollable Main Content -->
+                <div class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-3 pb-16">
+                    
+                    <!-- Horizontal Scrollable Category Filter Tabs -->
+                    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+                        <button type="button" class="px-3.5 py-1.5 rounded-full bg-white text-majara-purple border border-slate-200 font-bold text-xs shrink-0 flex items-center gap-1.5 shadow-xs">
+                            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                            <span>اخترنا لك</span>
+                        </button>
+                        <button type="button" class="px-3.5 py-1.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium text-xs shrink-0 flex items-center gap-1.5">
+                            <i class="fa-solid fa-chart-line text-emerald-500 text-[10px]"></i>
+                            <span>الأكثر زيارة</span>
+                        </button>
+                        <button type="button" class="px-3.5 py-1.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium text-xs shrink-0 flex items-center gap-1.5">
+                            <i class="fa-regular fa-lightbulb text-amber-500 text-[10px]"></i>
+                            <span>معرفة في ثواني</span>
+                        </button>
+                        <button type="button" class="px-3.5 py-1.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium text-xs shrink-0">
+                            <span>مقالات مختارة</span>
+                        </button>
+                    </div>
+
+                    <!-- Gifts & Referrals Status Card -->
+                    <div class="bg-white rounded-2xl p-3 border border-slate-200/80 shadow-xs flex items-center justify-between text-slate-700">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-xl bg-purple-50 text-majara-purple flex items-center justify-center">
+                                <i class="fa-solid fa-gift text-sm"></i>
+                            </div>
+                            <div class="text-right">
+                                <div class="flex items-center gap-1 text-xs font-bold text-slate-900">
+                                    <span>0</span>
+                                    <span class="text-slate-500 font-normal text-[11px]">إهداءات متبقية هذا الشهر</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="h-6 w-[1px] bg-slate-200 mx-1"></div>
+
+                        <div class="flex items-center gap-2">
+                            <div class="text-right">
+                                <div class="flex items-center gap-1 text-xs font-bold text-slate-900">
+                                    <span>0</span>
+                                    <span class="text-slate-500 font-normal text-[11px]">شخص استفادوا من إهداءاتك</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-left text-slate-400 text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Light Blue Word Game Announcement Bar -->
+                    <div id="blueAlertBanner" class="bg-sky-100 text-sky-900 rounded-xl px-3 py-2 text-xs flex items-center justify-between font-semibold border border-sky-200/60">
+                        <button type="button" onclick="document.getElementById('blueAlertBanner').remove()" class="text-sky-600 hover:text-sky-900">
+                            <i class="fa-solid fa-xmark text-sm"></i>
+                        </button>
+                        <span class="text-center text-[11px]">لعبة كلمات في قسم تصفح أيضاً في نهاية الصفحة</span>
+                    </div>
+
+                    <!-- Featured Harvard Business Review Card -->
+                    <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-xs space-y-3">
+                        <div class="flex justify-start">
+                            <span class="bg-rose-100 text-rose-600 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                                هارفارد بيزنس ريفيو
+                            </span>
+                        </div>
+
+                        <div class="space-y-1.5 text-right">
+                            <h3 class="text-base font-extrabold text-slate-900 leading-snug">
+                                فن القيادة: فكرة واحدة كل صباح
+                            </h3>
+                            <p class="text-xs text-slate-500 leading-relaxed font-normal">
+                                عصارة خبرة هارفارد بيزنس ريفيو للقيادة، معك خلال عام كامل، في فكرة معرفية صباحية سريعة.
+                            </p>
+                        </div>
+
+                        <button type="button" onclick="showToast('التوجيه لاشتراك مجرة')" class="w-full py-2.5 px-4 bg-majara-gold hover:bg-majara-goldHover text-slate-900 font-bold text-xs rounded-xl shadow-xs transition-all active:scale-[0.98]">
+                            تعرف على الاشتراك
+                        </button>
+                    </div>
+
+                    <!-- Section Title: اخترنا لك -->
+                    <div class="pt-1 flex items-center justify-between">
+                        <div class="flex items-center gap-1 font-bold text-sm text-slate-900 cursor-pointer hover:text-majara-purple">
+                            <span>اخترنا لك</span>
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Cards Horizontal Scroll Carousel -->
+                    <div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+                        
+                        <!-- Card 1 (Icy Explorer Image Card) -->
+                        <div class="relative w-56 h-36 rounded-2xl overflow-hidden shrink-0 shadow-xs group cursor-pointer border border-slate-200 bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80" alt="Icy Landscape" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                            
+                            <button type="button" onclick="event.stopPropagation(); showToast('تم الحفظ')" class="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-black/40 text-white flex items-center justify-center text-[10px] backdrop-blur-xs">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                            <div class="absolute bottom-2.5 right-2.5 left-2.5 text-right text-white">
+                                <p class="text-xs font-bold leading-tight drop-shadow-xs">كيف تتكيف الكائنات في بيئات الجليد القاسية؟</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 (Teal Card) -->
+                        <div class="relative w-56 h-36 rounded-2xl overflow-hidden shrink-0 shadow-xs group cursor-pointer bg-emerald-600 p-3 flex flex-col justify-between text-white">
+                            <div class="flex justify-between items-center">
+                                <span class="bg-emerald-800/80 text-emerald-100 text-[10px] px-2 py-0.5 rounded-full font-medium">علوم وتكنولوجيا</span>
+                                <button type="button" onclick="event.stopPropagation(); showToast('إغلاق')" class="w-6 h-6 rounded-full bg-black/20 text-white flex items-center justify-center text-[10px]">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                            <div class="text-right">
+                                <h4 class="text-xs font-bold leading-snug">مستقبل الذكاء الاصطناعي والتطور البشري</h4>
+                                <span class="text-[10px] text-emerald-200 mt-1 block">قراءة 4 دقائق</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Phone Bottom Navigation Bar -->
+                <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-3 py-1.5 flex items-center justify-between z-30">
+                    <button type="button" class="flex flex-col items-center gap-0.5 text-majara-purple font-bold text-[10px]">
+                        <i class="fa-solid fa-house text-sm"></i>
+                        <span>الرئيسية</span>
+                    </button>
+
+                    <button type="button" onclick="showToast('قسم الصوتيات')" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-700 font-medium text-[10px]">
+                        <i class="fa-solid fa-headphones text-sm"></i>
+                        <span>الصوتيات</span>
+                    </button>
+
+                    <button type="button" onclick="showToast('قسم المنصات')" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-700 font-medium text-[10px]">
+                        <i class="fa-solid fa-layer-group text-sm"></i>
+                        <span>المنصات</span>
+                    </button>
+
+                    <button type="button" onclick="showToast('صفحة البحث')" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-700 font-medium text-[10px]">
+                        <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                        <span>ابحث</span>
+                    </button>
+
+                    <button type="button" onclick="showToast('قسم ثواني')" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-700 font-medium text-[10px]">
+                        <i class="fa-regular fa-clock text-sm"></i>
+                        <span>ثواني</span>
+                    </button>
+                </div>
+
+                <!-- Mandatory Country Selection Popup Modal (No Close Button) -->
+                <div id="countryModalOverlay" class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 transition-all duration-300">
+                    <div class="bg-white w-full max-w-[340px] rounded-3xl p-5 shadow-2xl border border-slate-100 flex flex-col max-h-[85%] animate-in fade-in zoom-in-95 duration-200">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+                            <div class="text-right w-full">
+                                <h3 class="text-base font-extrabold text-slate-900">اختر البلد</h3>
+                                <p class="text-[11px] text-slate-500 font-medium mt-0.5">يرجى تحديد البلد لمتابعة التصفح</p>
+                            </div>
+                        </div>
+
+                        <!-- Searchable Input Field -->
+                        <div class="relative mb-3">
+                            <input type="text" id="countrySearchInput" oninput="filterCountryModalList()" placeholder="ابحث عن البلد..." class="w-full px-3.5 py-2.5 pr-9 text-xs rounded-xl border border-slate-200 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-majara-purple focus:ring-1 focus:ring-majara-purple bg-slate-50 transition-all text-right font-medium">
+                            <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-slate-400 text-xs"></i>
+                        </div>
+
+                        <!-- Countries List (Text ONLY - No symbols/flags) -->
+                        <div id="countryModalList" class="flex-1 overflow-y-auto custom-scrollbar space-y-1 my-1 pr-0.5 max-h-[210px]">
+                            <!-- Populated via JS -->
+                        </div>
+
+                        <!-- Confirm Action Button -->
+                        <div class="mt-3 pt-2 border-t border-slate-100">
+                            <button type="button" onclick="confirmCountryModalSelection()" class="w-full py-2.5 bg-majara-purple hover:bg-majara-purpleHover text-white text-xs font-bold rounded-xl shadow-sm transition-all active:scale-[0.98]">
+                                تأكيد الاختيار
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Toast Popup Notification -->
+            <div id="toastNotification" class="hidden absolute bottom-12 left-4 right-4 bg-slate-900/95 text-white text-xs px-3.5 py-2.5 rounded-xl shadow-lg flex items-center justify-between border border-slate-800 z-50">
+                <div class="flex items-center gap-2">
+                    <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+                    <span id="toastMsg">تمت العملية بنجاح</span>
+                </div>
+                <button type="button" onclick="hideToast()" class="text-slate-400 hover:text-white p-0.5">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        /* Arab countries list without symbols/flags */
+        const arabCountriesList = [
+            "الإمارات العربية المتحدة",
+            "المملكة العربية السعودية",
+            "جمهورية مصر العربية",
+            "الكويت",
+            "قطر",
+            "سلطنة عمان",
+            "البحرين",
+            "الأردن",
+            "العراق",
+            "لبنان",
+            "المغرب",
+            "تونس",
+            "الجزائر",
+            "ليبيا",
+            "فلسطين",
+            "السودان",
+            "اليمن"
+        ];
+        let modalSelectedCountry = "الإمارات العربية المتحدة";
+
+        window.onload = function() {
+            updateClock();
+            setInterval(updateClock, 10000);
+
+            // Show Country Selection Modal automatically on page load
+            openCountryModal();
+        };
+
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const el = document.getElementById('phoneClock');
+            if (el) el.innerText = `${h}:${m}`;
+        }
+
+        function resetPrototype() {
+            openCountryModal();
+            showToast("تم إعادة فتح النافذة لاختيار البلد");
+        }
+
+        function openCountryModal() {
+            const modal = document.getElementById('countryModalOverlay');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.getElementById('countrySearchInput').value = '';
+                renderCountryModalList(arabCountriesList);
+            }
+        }
+
+        function closeCountryModal() {
+            const modal = document.getElementById('countryModalOverlay');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function renderCountryModalList(countries) {
+            const container = document.getElementById('countryModalList');
+            if (!container) return;
+            
+            if (countries.length === 0) {
+                container.innerHTML = `<div class="text-center py-4 text-xs text-slate-400 font-medium">لا توجد نتائج مطابقة</div>`;
+                return;
+            }
+
+            container.innerHTML = countries.map(country => {
+                const isSelected = country === modalSelectedCountry;
+                return `
+                    <button type="button" onclick="selectCountryInModal('${country}')" class="w-full text-right px-3 py-2 rounded-xl text-xs font-semibold transition-all flex items-center justify-between ${isSelected ? 'bg-purple-50 text-majara-purple border border-purple-200' : 'text-slate-700 hover:bg-slate-100'}">
+                        <span>${country}</span>
+                        ${isSelected ? '<i class="fa-solid fa-check text-xs text-majara-purple"></i>' : ''}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function filterCountryModalList() {
+            const query = document.getElementById('countrySearchInput').value.trim().toLowerCase();
+            const filtered = arabCountriesList.filter(c => c.toLowerCase().includes(query));
+            renderCountryModalList(filtered);
+        }
+
+        function selectCountryInModal(country) {
+            modalSelectedCountry = country;
+            filterCountryModalList();
+        }
+
+        function confirmCountryModalSelection() {
+            closeCountryModal();
+            showToast(`تم اختيار البلد: ${modalSelectedCountry}`);
+        }
+
+        let toastTimeout;
+        function showToast(msg, iconClass = "fa-circle-check", iconColor = "text-emerald-400") {
+            const toast = document.getElementById('toastNotification');
+            const text = document.getElementById('toastMsg');
+            const icon = document.getElementById('toastIcon');
+
+            if (!toast || !text || !icon) return;
+
+            text.innerText = msg;
+            icon.className = `fa-solid ${iconClass} ${iconColor} text-sm`;
+            toast.classList.remove('hidden');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                hideToast();
+            }, 2500);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toastNotification');
+            if (toast) toast.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
