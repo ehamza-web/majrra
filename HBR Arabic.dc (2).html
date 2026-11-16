@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"></link><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"></link><style>body{margin:0}a{color:#111;text-decoration:none}a:hover{color:#e8503a}</style></helmet>
+<div dir="rtl" style="font-family:'IBM Plex Sans Arabic',sans-serif;background:#fff;color:#111;min-height:100vh;padding-bottom:84px">
+<div style="background:#1b1b1b;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 20px 0 20px">
+<div style="display:flex;align-items:center;gap:28px;color:#fff;font-size:18px"><span style="font-weight:700;font-size:30px;letter-spacing:-1px">مجرة</span><a href="#" style="color:#fff;text-decoration:underline">المنصات ▾</a></div>
+<div style="display:flex;align-items:center;gap:22px"><a href="#" style="color:#fff;font-size:15px">تسجيل الدخول</a><a href="#" style="background:#ffe600;color:#111;font-weight:600;font-size:16px;padding:10px 14px;border-radius:10px" style-hover="background:#fff">اشترك الآن</a></div>
+</div>
+<div style="height:140px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,2.6vw,50px) 0 16px;border-bottom:1px solid #e8e8e8;background:#f8f8f8;gap:32px">
+<div style="display:flex;align-items:center;gap:clamp(20px,2.5vw,40px);flex:1;min-width:0">
+<div style="width:70px;height:92px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;text-align:center;line-height:1.1;border-radius:2px 2px 35px 35px;flex:none">HARVARD<br>BUSINESS<br>REVIEW</div>
+<nav style="display:flex;gap:clamp(10px,1.6vw,40px);font-size:clamp(12px,0.95vw,18px);min-width:0;flex-wrap:nowrap;white-space:nowrap;align-items:center"><a href="#">الرئيسية</a><a href="#">الأكثر قراءة</a><a href="#">التصنيفات</a><a href="#">الفيديو</a><a href="#">المحتوى الصوتي</a><a href="#">بودكاست طريقتي</a><a href="#">المفاهيم الإدارية</a><a href="#">الرؤساء التنفيذيون</a></nav></div>
+<div style="display:flex;width:clamp(150px,14vw,320px);height:54px;border-radius:10px;overflow:hidden;background:#fff;flex:none"><div style="background:#000;color:#fff;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:15px;white-space:nowrap;flex:none">⌕ ابحث</div><div style="flex:1"></div></div>
+</div>
+<div style="max-width:1620px;margin:30px auto 0;padding:0 24px">
+<div style="height:150px;background:#2a2208;display:flex;align-items:center;justify-content:space-between;padding:0 40px;color:#fff;gap:20px">
+<div><div style="font-size:14px;opacity:.8;margin-bottom:6px">حلقة جديدة من بودكاست طريقتي</div><div style="font-size:26px;font-weight:600;margin-bottom:10px">الموظفون سيصبحون مدراء في عصر الذكاء الاصطناعي</div><a href="#" style="display:inline-block;background:#e8b923;color:#111;font-weight:600;padding:6px 16px;border-radius:20px;font-size:18px">استمع إليها الآن</a></div>
+<div style="background:#e8b923;color:#111;font-size:34px;font-weight:700;padding:8px 26px;border-radius:30px">د. حسان صواف</div>
+<div style="font-size:48px;font-weight:700">طريقتي</div>
+</div>
+<div style="display:flex;gap:30px;margin-top:64px;align-items:flex-start;flex-wrap:wrap">
+<div style="flex:2 1 560px;height:420px;background:#4a14d1;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;opacity:.95">صورة المقال الرئيسي</div>
+<div style="flex:1 1 360px;min-width:0">
+<div style="color:#e8503a;font-size:20px;font-weight:600;border-bottom:1px solid #999;padding-bottom:6px;position:relative">الأكثر قراءة<span style="position:absolute;right:0;bottom:-2px;width:94px;height:3px;background:#e8503a"></span></div>
+<sc-for list="{{ items }}" as="it" hint-placeholder-count="2"><a href="#" style="display:flex;gap:28px;margin-top:52px;align-items:center"><div style="flex:1;min-width:0"><div style="font-size:15px;color:#888;margin-bottom:6px">{{ it.time }}</div><div style="font-size:19px;font-weight:500;line-height:1.5;color:#111">{{ it.title }}</div></div><div style="width:154px;height:102px;background:{{ it.color }};flex:none"></div></a></sc-for>
+</div></div></div>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ true }}">
+<div style="position:fixed;bottom:0;left:0;right:0;z-index:50;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;gap:22px;padding:14px 56px;flex-wrap:wrap;border-top:3px solid #e8503a">
+<span style="background:#e8503a;color:#fff;font-weight:700;font-size:15px;padding:4px 12px;border-radius:4px">الجمعة البيضاء</span>
+<span style="font-size:19px;font-weight:500">حمّل تطبيق مجرة واحصل على أول <b style="color:#ffe600">4 أشهر بسعر 8 دولار</b> فقط</span>
+<a href="https://app.majarra.com/download" target="_blank" rel="noopener" style="background:#fff;color:#111;font-weight:700;font-size:16px;padding:9px 22px;border-radius:24px" style-hover="background:#ffe600;color:#111">حمّل التطبيق الآن</a>
+<button onClick="{{ close }}" aria-label="إغلاق" style="position:absolute;left:18px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:24px;cursor:pointer">×</button>
+</div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { open: true };
+  renderVals() {
+    return {
+      open: this.state.open,
+      close: () => this.setState({ open: false }),
+      items: [
+        { time: "5 دقائق", title: "كيف تدير زملاءك عندما تترقى وتصبح مشرفاً عليهم؟", color: "#9bb4c8" },
+        { time: "15 دقيقة", title: "طرق إدارية غير مألوفة يتبعها جنسن هوانغ رئيس أكبر شركة في العالم", color: "#5a3a30" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
